@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Brew Asisstant</title>
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="js/util.js" type="text/javascript"></script>
+    <script src="js/asisstant.js" type="text/javascript"></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="py-5 text-center">
+            <h2>Brew Asisstant</h2>
+            Brew Assistant is a tool to help achieving target wort volume and gravity.
+        </div>
+        <h4><a data-toggle="collapse" href="#brew-preference" role="button" aria-expanded="true" aria-controls="brew-preference">Preference/Equipment</a></h4>
+        <div class="card card-body collapse show" id="brew-preference">
+            <div class="row">
+                <div class="col-sm-2">
+                    Unit
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-check form-check-inline">
+                        <input type="radio" class="form-check-input" name="metrics" id="unit-metrics" value=1>
+                        <label class="form-check-label" for="unit-metrics">Metrics</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="radio" class="form-check-input" name="metrics" id="unit-imperial" value=0>
+                        <label class="form-check-label" for="unit-imperial">Imperial</label>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-check form-check-inline">
+                        <input type="radio" class="form-check-input" name="gravity-unit" id="unit-sg" value=0>
+                        <label class="form-check-label" for="unit-sg">SG</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="radio" class="form-check-input" name="gravity-unit" id="unit-plato" value=1>
+                        <label class="form-check-label" for="unit-plato">Plato</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <label class="col-sm-3 col-form-label" for="mlt-deadspace">MLT Dead Space:</label>
+                <input class="col-sm-2" type="text" size=6 id="mlt-deadspace">
+                <div class="col-sm-1 vol-unit text-left"><span class="imperial"> gal</span><span class="metrics"> L</span></div>
+                <label class="col-sm-3 col-form-label" for="bk-deadspace">BK Dead Space:</label>
+                <input class="col-sm-2" type="text" size=6 id="bk-deadspace">
+                <div class="col-sm-1 text-sm-left vol-unit"><span class="imperial"> gal</span><span class="metrics"> L</span></div>
+            </div>
+            <div class="row">
+                <label class="col-sm-3 col-form-label" for="boiloff-rate">BoilOff rate:</label>
+                <input class="col-sm-2" type="text" size=6 id="boiloff-rate">
+                <div class="vol-unit col-sm-1"><span class="imperial"> gal/H</span><span class="metrics"> L/H</span></div>
+            </div>
+            <div class="row">
+                <label class="col-sm-3" for="grain-absorb">Grain absorb rate:</label>
+                <input class="col-sm-2" type="text" size=6 id="grain-absorb">
+                <span class="col-sm-1 vol-unit"><span class="imperial"> gal/lb</span><span class="metrics"> L/kg</span></span>
+                <label class="col-sm-3" for="hop-absorb">Hop absorb rate:</label>
+                <input class="col-sm-2" type="text" size=6 id="hop-absorb">
+                <span class="col-sm-1 vol-unit"><span class="imperial"> gal/lb</span><span class="metrics"> L/kg</span></span>
+            </div>
+            <div class="row">
+                <label class="col-sm-3" for="wort-boil-exp-rate">Wort expansion@boil:</label>
+                <input class="col-sm-2" type="text" size=4 id="wort-boil-exp-rate">
+                <div class="col-sm-1">%</div>
+                <label class="col-sm-3" for="wort-mash-exp-rate">Wort expansion@mash:</label>
+                <input class="col-sm-2" type="text" size=4 id="wort-mash-exp-rate">
+                <div class="col-sm-1">%</div>
+            </div>
+        </div>
+        <h4><a data-toggle="collapse" href="#brew-recipe" role="button" aria-expanded="true" aria-controls="brew-recipe">Recipe</a></h4>
+        <div class="card card-body collapse show" id="brew-recipe">
+            <div class="row">
+                <label class="col-sm-3" for="batch-size">Batch Size</label>
+                <input class="col-sm-2" type="text" size=6 id="batch-size">
+                <span class="col-sm-1 vol-unit"><span class="imperial"> gal</span><span class="metrics"> L</span></span>
+                <label class="col-sm-3" for="boil-time">Boil Time</label>
+                <input class="col-sm-2" type="text" size=6 id="boil-time">
+                <span class="col-sm-1">min</span>
+            </div>
+            <div class="row">
+                <label class="col-sm-3" for="grain-amount">Grain Amount</label>
+                <input class="col-sm-2" type="text" size=6 id="grain-amount">
+                <span class="col-sm-1 weight-unit"><span class="imperial"> lb</span><span class="metrics"> kg</span></span>
+                <label class="col-sm-3" for="hop-amount">Hop Amount</label>
+                <input class="col-sm-2" type="text" size=6 id="hop-amount">
+                <span class="col-sm-1 weight-unit-2"><span class="imperial"> oz</span><span class="metrics"> g</span></span>
+            </div>
+            <div class="row">
+                <label class="col-sm-3" for="bh-efficiency">BrewHouse Efficiency</label>
+                <input class="col-sm-2" type="text" size=6 id="bh-efficiency">
+                <span class="col-sm-1">%</span>
+                <label class="col-sm-3" for="target-og">Target OG:</label>
+                <input class="col-sm-2 gravity-input" type="text" size=6 id="target-og">
+                <span class="col-sm-1"><span class="plato-unit">&deg;P</span></span>
+            </div>
+
+        </div>
+        <h4><a data-toggle="collapse" href="#brew-mash" role="button" aria-expanded="true" aria-controls="brew-mash">Mash/Sparge</a></h4>
+        <div class="card card-body collapse show" id="brew-mash">
+            <div class="row">
+                <label class="col-sm-3" for="mash-thickness">Mash Thickness</label>
+                <input class="col-sm-2" type="text" size=6 id="mash-thickness">
+                <span class="col-sm-1 vol-unit"><span class="imperial"> qt/lb</span><span class="metrics"> L/kg</span></span>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-check form-check-inline">
+                        <input type="radio" class="form-check-input" name="sparge-type" id="no-sparge" value=0>
+                        <label class="form-check-label" for="no-sparge">No Sparge</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="radio" class="form-check-input" name="sparge-type" id="batch-sparge" value=1>
+                        <label class="form-check-label" for="batch-sparge">Batch Sparge</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="radio" class="form-check-input" name="sparge-type" id="fly-sparge" value=2>
+                        <label class="form-check-label" for="fly-sparge">Fly Sparge</label>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <label for="batch-spareg-number">Batch Sparge Number:</label>
+                    <input type="text" size=2 id="batch-sparge-number">
+                </div>
+            </div>
+
+        </div>
+        <hr>
+        <table class="table table-sm ml-2 mr-2">
+            <thead>
+                <tr>
+                    <th>Total Water</th>
+                    <th>Mash Water</th>
+                    <th>Sparge Water</th>
+                    <th>Sparge Water/Batch</th>
+                </tr>
+            </thead>
+
+            <tr>
+                <td><span id="total-water"></span> <span class="vol-unit"><span class="imperial"> gal</span><span class="metrics"> L</span></span>
+                </td>
+                <td><span id="mash-water"></span> <span class="vol-unit"><span class="imperial"> gal</span><span class="metrics"> L</span></span>
+                </td>
+                <td><span id="sparge-water"></span ><span class="vol-unit"><span class="imperial"> gal</span><span class="metrics"> L</span></span>
+                </td>
+                <td><span id="batch-sparge-water"></span ><span class="vol-unit"><span class="imperial"> gal</span><span class="metrics"> L</span></span>
+                </td>
+            </tr>
+        </table>
+        <hr>
+        <table class="table table-sm ml-4 mr-4">
+            <tbody class="table-hover">
+                <tr>
+                    <th>Values</th>
+                    <th>Maximum</th>
+                    <th>Expected</th>
+                    <th>Measured</th>
+                    <th>Projected</th>
+                </tr>
+                <tr class="fwcalrow">
+                    <th>First wort Gravity</th>
+                    <td><span id="max-firstwort-gravity"></span><span class="plato-unit">&deg;P</span> </td>
+                    <td><span id="exp-firstwort-gravity"></span><span class="plato-unit">&deg;P</span></td>
+                    <td><input class="gravity-input" type="text" size=6 id="i-fw-sg" dlg-title="First Wort Gravity"><span class="plato-unit">&deg;P</span></td>
+                    <td><span id="pro-firstwort-gravity"></span><span class="plato-unit">&deg;P</span></td>
+                </tr>
+                <tr class="fwcalrow">
+                    <th><span data-toggle="tooltip" data-placement="right" title="expanded volume"> First wort Volume *</span></th>
+                    <td></td>
+                    <td><span id="exp-firstwort-vol"></span><span class="vol-unit"><span class="imperial"> gal</span><span class="metrics"> L</span></span>
+                    </td>
+                    <td><input type="text" size=6 id="i-fw-vol"></td>
+                    <td><span id="pro-firstwort-vol"></span><span class="vol-unit"><span class="imperial"> gal</span><span class="metrics"> L</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Pre-boil wort Gravity</th>
+                    <td><span id="max-preboil-gravity"></span><span class="plato-unit">&deg;P</span></td>
+                    <td><span id="exp-preboil-gravity"></span><span class="plato-unit">&deg;P</span></td>
+                    <td><input class="gravity-input" type="text" size=6 id="i-pb-sg" dlg-title="Pre-boil Gravity"><span class="plato-unit">&deg;P</span></td>
+                    <td><span id="pro-preboil-gravity"></span><span class="plato-unit">&deg;P</span></td>
+                </tr>
+                <tr>
+                    <th><span data-toggle="tooltip" data-placement="right" title="expanded volume"> Pre-boil wort Volume *</span></th>
+                    <td></td>
+                    <td><span id="exp-preboil-vol"></span><span class="vol-unit"><span class="imperial"> gal</span><span class="metrics"> L</span></span>
+                    </td>
+                    <td><input type="text" size=6 id="i-pb-vol"></td>
+                    <td><span id="pro-preboil-vol"></span><span class="vol-unit"><span class="imperial"> gal</span><span class="metrics"> L</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Original Gravity</th>
+                    <td><span id="max-original-gravity"></span><span class="plato-unit">&deg;P</span></td>
+                    <td><span id="exp-original-gravity"></span><span class="plato-unit">&deg;P</span></td>
+                    <td><input class="gravity-input" type="text" size=6 id="i-final-sg" dlg-title="Original Gravity"><span class="plato-unit">&deg;P</span></td>
+                    <td><span id="pro-original-gravity"></span><span class="plato-unit">&deg;P</span></td>
+                </tr>
+                <tr>
+                    <th><span data-toggle="tooltip" data-placement="right" title="expanded volume"> Post-boil wort Volume *</span></th>
+                    <td></td>
+                    <td><span id="exp-postboil-vol"></span><span class="vol-unit"><span class="imperial"> gal</span><span class="metrics"> L</span></span>
+                    </td>
+                    <td><input type="text" size=6 id="i-final-vol"></td>
+                    <td><span id="pro-postboil-vol"></span><span class="vol-unit"><span class="imperial"> gal</span><span class="metrics"> L</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>in Fermenter Volume </th>
+                    <td></td>
+                    <td><span id="exp-fermenter-vol"></span><span class="vol-unit"><span class="imperial"> gal</span><span class="metrics"> L</span></span>
+                    </td>
+                    <td><input type="text" size=6 id="i-fermenter-vol"></td>
+                    <td><span id="pro-fermenter-vol"></span><span class="vol-unit"><span class="imperial"> gal</span><span class="metrics"> L</span></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>BrewHouse Efficiency</th>
+                    <td>100%</td>
+                    <td><span id="exp-bh-efficiency"></span>%</td>
+                    <td></td>
+                    <td><span id="pro-bh-efficiency"></span>%</td>
+                </tr>
+
+                <tr>
+                    <th>Stick to target OG</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr id=adjust-dilution class=stick-og>
+                    <th></th>
+                    <td>Add water</td>
+                    <td><span id="adjusted-added-water"></span><span class="vol-unit"><span class="imperial"> gal</span><span class="metrics"> L</span></td>
+                    <td><span data-toggle="tooltip" data-placement="right" title="expanded volume">Adjusted Postboil Volume*</span><br> In Fermenter volume</td>
+                    <td><span id="adjusted-volume"></span><span class="vol-unit"><span class="imperial"> gal</span><span class="metrics"> L</span> <br> <span id="adjusted-ferm-volume"></span><span class="vol-unit"><span class="imperial"> gal</span><span class="metrics"> L</span></td>
+                </tr>
+
+                <tr id=adjust-dme class=stick-og>
+                    <th></th>
+                    <td>Add DME</td>
+                    <td><span id="adjusted-added-dme"></span><span class="imperial"> oz</span><span class="metrics"> g</span></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+                <tr id=adjust-boil class=stick-og>
+                    <th></th>
+                    <td>Extra Boil Time</td>
+                    <td><span id="adjusted-boil-time"></span>mins</td>
+                    <td><span data-toggle="tooltip" data-placement="right" title="expanded volume">Adjusted Postboil Volume*</span><br> In Fermenter volume</td>
+                    <td><span id="adjusted-shrink-volume"></span><span class="vol-unit"><span class="imperial"> gal</span><span class="metrics"> L </span> <br> <span id="adjusted-shrink-ferm-volume"></span><span class="vol-unit"><span class="imperial"> gal</span>
+                        <span
+                            class="metrics"> L </span>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <hr>
+        <h4>Description/Explanation</h4>
+        <table class="table table-sm ml-4 mr-4">
+            <tr>
+                <th style="width: 16.66%">MLT Dead Space</th>
+                <td>Mash Lautering Tun dead space. For BIAB, this value is usually zero(0).</td>
+            </tr>
+            <tr>
+                <th>BK Dead Space</th>
+                <td>The amount of wort that won't go into fermenter after boiling. It is the sum of trub and hop loss without using hop filters.</td>
+            </tr>
+            <tr>
+                <th>Boiloff rate</th>
+                <td>Evaporation rate, in gallon or liter per hour.</td>
+            </tr>
+            <tr>
+                <th>Grain absorb rate</th>
+                <td>The rate of wort absorbed by grain. The values vary from grain to grain, system to system. 0.125 gallon/lb or 1.042 liter/kg is a reasonable value.</td>
+            </tr>
+            <tr>
+                <th>Hop absorb rate</th>
+                <td>The rate of wort absorbed by hop. Hop absorption might be accounted in BK Dead Space. Set it to zero(0) in this case. Otherwise, 0.5584 gal/lb or 4.66 L/kg is the value to try.</td>
+            </tr>
+            <tr>
+                <th>Wort expansion @ boil</th>
+                <td>The volume expansion of wort at boiling temperature compare to that at room temperature. 4%, usually. </td>
+            </tr>
+            <tr>
+                <th>Wort expansion @ Mash</th>
+                <td>The volume expansion of wort at mashing temperature compare to that at room temperature. 3%, usually. </td>
+            </tr>
+            <tr>
+                <th>Batch Size</th>
+                <td>The volume of wort goes into fermenter. </td>
+            </tr>
+            <tr>
+                <th>Boil time</th>
+                <td>Used to calculate evaporation. </td>
+            </tr>
+            <tr>
+                <th>Grain Amount</th>
+                <td>Grain amount in the brew. Target OG will be changed on change of grain amount.</td>
+            </tr>
+            <tr>
+                <th>Hop Amount</th>
+                <td>Hop amount in the brew.</td>
+            </tr>
+            <tr>
+                <th>Brew House Efficiency</th>
+                <td>Brew House Efficiency. Target OG will be changed on change of Brew house efficiency.</td>
+            </tr>
+
+            <tr>
+                <th>Target OG</th>
+                <td>Target Original Gravity into fermenter. Brew House Efficiency will be changed on change of Target OG.</td>
+            </tr>
+            <tr>
+                <th>Mash Thickness</th>
+                <td>Used to calculate mash water in cases of Batch Sparge and Fly Sparge. Ignored on No Sparge.</td>
+            </tr>
+
+            <tr>
+                <th>Sparge Type</th>
+                <td>The efficiency of fly sparge varies. Thefore, the calculation is baed on 3-batch Sparge.</td>
+            </tr>
+            <tr>
+                <th>Batch Sparge Number</th>
+                <td>The number of sparging. Maximum 3. Numbers over 3 are treated as 3.</td>
+            </tr>
+        </table>
+        <hr>
+        <h4>Calculation</h4>
+        <table class="table table-sm ml-4 mr-4">
+            <tr>
+                <th style="width: 16.66%">Total Water </th>
+                <td>Batch Size(amount into fermenter) + Boil off + Grain Absorption + Hop Absorption + BK DeadSpace + MLT DeadSpace </td>
+            </tr>
+            <tr>
+                <th>Mash Water</th>
+                <td>Mash Thickness * Grain AMount + MLT DeadSpace </td>
+            </tr>
+            <tr>
+                <th>Sparge Water </th>
+                <td>Total Water - Mash Water </td>
+            </tr>
+            <tr>
+                <th>Maximum First Wort Gravity</th>
+                <td> Total sugar(gravity points) / Mash Water</td>
+            </tr>
+            <tr>
+                <th>Maximum pre-boil Wort Gravity </th>
+                <td> Calculated based on Maximum First Wort Gravity with 3-batch sparge.</td>
+            </tr>
+            <tr>
+                <th>Maximum Origin Gravity</th>
+                <td> Total sugar(gravity points) / Batch Size</td>
+            </tr>
+            <tr>
+                <th>Expected First Wort Gravity</th>
+                <td>The value to get Pre-boil gravity so that target OG can be gotten.</td>
+            </tr>
+            <tr>
+                <th>Expected First Wort Volume</th>
+                <td>Mash Water - Grain Absorption - MLT DeadSpace; The volume is "expanded" volume.</td>
+            </tr>
+            <tr>
+                <th>Expected Pre-boil Wort Gravity</th>
+                <td>Calculated by deluated target OG.</td>
+            </tr>
+            <tr>
+                <th>Expected Pre-boil Wort Volume</th>
+                <td>Expected Post-boil volume + Boil off; The volume is "expanded" volume.</td>
+            </tr>
+            <tr>
+                <th>Expected Post-Boil Wort Gravity</th>
+                <td>Target OG.</td>
+            </tr>
+            <tr>
+                <th>Expected Post-boil Wort Volume</th>
+                <td>Batch Size + BK DeadSpace + Hop Absorption; ; The volume is "expanded" volume.</td>
+            </tr>
+
+            <tr>
+                <th>Projected Gravity/Volume</th>
+                <td>Calculatd based on available measured inputs or expected values.</td>
+            </tr>
+
+        </table>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="dlg_sginput" tabindex="-1" role="dialog" aria-labelledby="dlg_sginput_label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="dlg_sginput_label">Input Gravity</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+                </div>
+                <div class="modal-body">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="hydrometer-tab" data-toggle="tab" href="#hydrometer" role="tab" aria-controls="hydrometer" aria-selected="true">Hydrometer</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="refractometer-tab" data-toggle="tab" href="#refractometer" role="tab" aria-controls="refractometer" aria-selected="false">Refractometer</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="hydrometer" role="tabpanel" aria-labelledby="hydrometer-tab">
+                            <div class="container m-2">
+                                <div class="row">
+                                    <label class="col-sm-4">Reading</label> <input class="hydro-input" type=text size=4 id=hydro-reading> <span class="plato-unit">&deg;P</span>
+                                </div>
+                                <div class="row">
+                                    <label class="col-sm-4">Temperature</label><input class="hydro-input" type=text size=4 value=20 id=hydro-temp> <span class="temp-unit"><span class="metrics">&deg;C </span><span class="imperial">&deg;F</span></span>
+                                </div>
+                                <div class="row">
+                                    <label class="col-sm-4">Corrected at</label><input class="hydro-input" type=text size=4 value=15 id=corrected-temp> <span class="temp-unit"><span class="metrics">&deg;C </span><span class="imperial">&deg;F</span></span>
+                                </div>
+                                <div class="row">
+                                    <span class="col-sm-4"> Corrected:</span> <span id=hydro-value></span> <span class="plato-unit">&deg;P</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="refractometer" role="tabpanel" aria-labelledby="refrac-tab">
+                            <div class="container  m-2">
+                                <div class="row">
+                                    <label class="col-sm-4">Reading</label> <input type=text size=4 id=refrac-reading class="refrac-input">
+                                </div>
+                                <div class="row">
+                                    <label class="col-sm-4">Correction</label><input type=text size=4 value="1.0" id=refrac-correction class="refrac-input">
+                                </div>
+                                <div class="row">
+                                    <span class="col-sm-4">Corrected:</span> <span id=refrac-value></span> <span class="plato-unit">&deg;P</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>
+        window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')
+    </script>
+    <script src="bootstrap/js/bootstrap.bundle.js"></script>
+
+    <script>
+        $(function() {
+            //            $("#accordion").accordion();
+            BrewAssistant.init();
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+
+</body>
+
+</html>
