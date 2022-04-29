@@ -6,7 +6,6 @@ author: Vito
 excerpt: 'The experience of using Arduino-based BrewManiac, a Open ArdBir "clone", with Grainfather.'
 layout: post
 guid: 'http://vito.tw/?p=351'
-permalink: /2016/02/351
 categories:
     - BrewManiac
 ---

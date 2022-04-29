@@ -6,7 +6,6 @@ author: Vito
 excerpt: 'Twilight Compass V3.0 was summited to APP Store. The UI is re-designed. In fact, the APP is re-writen from scratch. '
 layout: post
 guid: 'http://vito.tw/?p=217'
-permalink: /2012/08/217
 categories:
     - 'iPhone App'
 ---

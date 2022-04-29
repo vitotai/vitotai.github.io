@@ -6,7 +6,6 @@ author: Vito
 excerpt: 'This is about my recently finding and though about mashing temperature measure and control in circulated E-BIAB.'
 layout: post
 guid: 'http://vito.tw/?p=649'
-permalink: /2017/02/649
 categories:
     - BrewManiac
 ---

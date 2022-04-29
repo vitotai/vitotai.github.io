@@ -6,7 +6,6 @@ author: Vito
 excerpt: "What's new in version 2.0:\n<ul>\n\t<li> <span style=\"color: #ff0000;\"><strong>[New Feature]</strong></span> Landmark pointer</li>\n\t<li> <strong>[Update]</strong> OS 4.0 supported</li>\n\t<li> <strong>[Update]</strong> select current location on map</li>\n\t<li><strong>[Update]</strong> update drawing</li>\n</ul>"
 layout: post
 guid: 'http://vito.tw/?p=175'
-permalink: /2010/12/175
 categories:
     - 'iPhone App'
 ---

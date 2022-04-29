@@ -6,7 +6,6 @@ author: Vito
 excerpt: 'Combining Arduino, ESP8266 together with HTML5/Javascript. The BrewManiac can be accessed on any browser that supports HTML5.'
 layout: post
 guid: 'http://vito.tw/?p=361'
-permalink: /2016/05/361
 categories:
     - BrewManiac
 ---

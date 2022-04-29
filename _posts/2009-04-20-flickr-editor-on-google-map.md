@@ -6,7 +6,6 @@ author: Vito
 excerpt: 'My Flickr and Google Mashup. To facilite my usage of Flickr.'
 layout: post
 guid: 'http://vito.tw/?p=66'
-permalink: /2009/04/66
 categories:
     - 'Flickr &amp; Google Map'
 ---

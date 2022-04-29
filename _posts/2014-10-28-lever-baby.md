@@ -5,7 +5,6 @@ date: '2014-10-28T02:54:05+00:00'
 author: Vito
 layout: post
 guid: 'http://vito.tw/?p=294'
-permalink: /2014/10/294
 categories:
     - 'caffe'', uno'
 ---

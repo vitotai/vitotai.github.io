@@ -5,7 +5,6 @@ date: '2016-12-07T05:39:42+00:00'
 author: Vito
 layout: post
 guid: 'http://vito.tw/?p=551'
-permalink: /2016/12/551
 categories:
     - BrewManiac
 ---

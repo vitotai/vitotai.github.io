@@ -5,7 +5,6 @@ date: '2012-03-27T11:49:30+00:00'
 author: Vito
 layout: post
 guid: 'http://vito.tw/?p=201'
-permalink: /2012/03/201
 categories:
     - 'Flickr &amp; Google Map'
 ---

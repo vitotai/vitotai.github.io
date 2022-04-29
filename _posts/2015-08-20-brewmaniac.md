@@ -6,7 +6,6 @@ author: Vito
 excerpt: 'BrewManiac is a rewritten program which runs on the hardware for Open Ardbir. Running on Arduino, the functionality an behavior is almost the same as Open Ardbir.'
 layout: post
 guid: 'http://vito.tw/?p=320'
-permalink: /2015/08/320
 categories:
     - BrewManiac
 ---

@@ -5,7 +5,6 @@ date: '2021-06-17T06:52:12+00:00'
 author: Vito
 layout: post
 guid: 'http://vito.tw/?p=1311'
-permalink: /2021/06/1311
 categories:
     - 釀酒筆記
 ---

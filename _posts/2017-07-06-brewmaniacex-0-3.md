@@ -5,7 +5,6 @@ date: '2017-07-06T16:41:41+00:00'
 author: Vito
 layout: post
 guid: 'http://vito.tw/?p=704'
-permalink: /2017/07/704
 categories:
     - BrewManiac
 ---
@@ -45,7 +44,7 @@ Known issues:
 
 # Post Boil Hop(HopStand)
 
-Check [this post](http://vito.tw/?p=697).
+Check [this post](/posts/2017/05/support-of-hop-stands).
 
 - - - - - -
 

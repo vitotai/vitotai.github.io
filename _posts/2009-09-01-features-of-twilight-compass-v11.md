@@ -5,7 +5,6 @@ date: '2009-09-01T19:49:58+00:00'
 author: Vito
 layout: post
 guid: 'http://vito.tw/?p=115'
-permalink: /2009/09/115
 categories:
     - 'iPhone App'
 ---

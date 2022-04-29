@@ -5,7 +5,6 @@ date: '2016-09-22T19:30:59+00:00'
 author: Vito
 layout: post
 guid: 'http://vito.tw/?p=482'
-permalink: /2016/09/482
 categories:
     - BrewPi@ESP8266
 ---

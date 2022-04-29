@@ -6,7 +6,6 @@ author: Vito
 excerpt: 發酵看起來停止了，但比重還很高怎麼辦？什麼時候可以裝瓶？有辦法預測FG（最終比重）嗎？以上是釀啤酒很常遇到的問題，FFT(快速或強制發酵測試）是一個用來預測最終比重的一種方法。
 layout: post
 guid: 'http://vito.tw/?p=876'
-permalink: /2018/01/876
 categories:
     - 釀酒筆記
 tags:

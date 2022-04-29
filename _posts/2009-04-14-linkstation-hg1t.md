@@ -5,7 +5,6 @@ date: '2009-04-14T11:38:48+00:00'
 author: Vito
 layout: post
 guid: 'http://vito.tw/?p=56'
-permalink: /2009/04/56
 categories:
     - Uncategorized
 ---

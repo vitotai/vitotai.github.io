@@ -6,7 +6,6 @@ author: Vito
 excerpt: 'This is the APP that I wanted to create when I was writing Twilight Compass. SunMoonAR Displays the positions of the sun and the moon in the way of augmented reality.'
 layout: post
 guid: 'http://vito.tw/?p=208'
-permalink: /2012/08/208
 categories:
     - 'iPhone App'
 ---
