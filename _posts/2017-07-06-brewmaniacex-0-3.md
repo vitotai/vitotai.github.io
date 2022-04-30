@@ -44,7 +44,7 @@ Known issues:
 
 # Post Boil Hop(HopStand)
 
-Check [this post](/posts/2017/05/support-of-hop-stands).
+Check [this post](/posts/support-of-hop-stands).
 
 - - - - - -
 

@@ -41,4 +41,3 @@ Price:
 
 Note: I wanted to run BrewPiLess on this board also. However, it turns out the rotary encoder doesn’t work smoothly without capacitors. Therefore, I don’t recommend to use it for BrewPiLess.  
 Please leave the message if you want to buy. I will send you PayPal invoice.  
-[Schematics](/wp-content/uploads/2017/02/BrewShield.pdf)
