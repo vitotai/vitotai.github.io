@@ -52,7 +52,7 @@ categories:
 4. 加入保留的300cc啤酒，冷卻後放入冰琪淋機
 5. 把剩下的400cc啤酒喝掉
 
-![](wp-content/2022-05/2022-05-29-beersobet.jpg)
+![](/wp-content/2022-05/2022-05-29-beersobet.jpg)
 
 成品就如同成份顯示的一樣，就像是固體的加糖啤酒。不過，不知道是不是多了甜味，酒花的苦味反而突顯了。我認為這個做法適合的是pastry beer，也就是smoothie stout/NEIPA等等有點甜味的啤酒，偏向麥芽的brown或blonde也應該會比通常是偏dry的類型適合。另外，酸啤再加點果汁可能也會很成功。
 
