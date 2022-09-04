@@ -40,8 +40,8 @@ categories:
 	4. 將喚醒的酵母擴培到想要的量。
 和最早在HBT上看的使用50ml離心管的做法，用比較小的15ml，我多加了一個用小量麥汁喚醒的動作。理論上如果凍得好，也不是不能省略這個步驟，但是因為器材的限制，我有過失敗的經驗：搬家的時候隨便把原本放在臥式冷凍櫃的凍菌管塞到普通冰箱的冷凍室內，結果差一點全滅。多了一個喚醒的動作，除了比較踏實，也是提早知道是不是失敗了，有可能節省1公升多的擴培麥汁。
 參考資料：
-	• Bryan's Comment on HBT 
-	• Discussion thread on HBT (有許多討論和實作經驗分享）
+	• [Bryan's Comment on HBT](https://www.homebrewtalk.com/threads/need-advice-on-yeast-banking.497612/post-6462728) 
+	• [Discussion thread on HBT](https://www.homebrewtalk.com/threads/do-you-know-how-to-make-a-yeast-starter-then-why-not-farm-yeast-and-freeze-it.269488/) (有許多討論和實作經驗分享）
 	• Yeast: he Practical Guide to Beer Fermentation
 
-註：參考wyeast這個網頁的資訊，可以估算酵母量：「固體部分」的密度大約是2.5 billion， 所以50ml如果一半是酵母固體，會有62.5 billion的酵母數；根據Brewersfriend.com的計算器，1500cc的擴培，視初始酵母量，會得到200~300billion的酵母量，換算成體積，約莫是80~120cc-和我的經驗相符；15ml離心管裝8ml的酵母固體約有20billion。我通常只會裝3~5管，還會剩下一半左右的酵母不冷凍直接使用。另外，一般1.050左右20公升的批次，大約需要接種Ale酵母數為200billion。
+註：參考[wyeast這個網頁](https://wyeastlab.com/pitch-rates)的資訊，可以估算酵母量：「固體部分」的密度大約是2.5 billion， 所以50ml如果一半是酵母固體，會有62.5 billion的酵母數；根據Brewersfriend.com的計算器，1500cc的擴培，視初始酵母量，會得到200~300billion的酵母量，換算成體積，約莫是80~120cc-和我的經驗相符；15ml離心管裝8ml的酵母固體約有20billion。我通常只會裝3~5管，還會剩下一半左右的酵母不冷凍直接使用。另外，一般1.050左右20公升的批次，大約需要接種Ale酵母數為200billion。
