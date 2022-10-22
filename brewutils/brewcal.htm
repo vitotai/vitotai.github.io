@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="zh">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>自釀計算器</title>
+    <!-- Bootstrap core CSS -->
+    <link href="watercalc/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+<div class="container p-3">
+
+<!-- Temperature calibration-->
+<div class="rounded container m-3" id="hydrometer-collection">
+    <div class="row" >
+        <div class="col-sm"><h3>比重計溫度修正</h3></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">比重計讀數</div>
+        <div class="col-sm-1"><input class="form-control form-control-sm" id="hc-reading" value="1.0"></div>
+        <div class="col-sm-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">溫度</div>
+        <div class="col-sm-1"><input class="form-control form-control-sm" id="hc-temp" value=""></div>
+        <div class="col-sm-1">&deg;C</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">校正溫度</div>
+        <div class="col-sm-1"><input class="form-control form-control-sm" id="hc-ctemp" value="20"></div>
+        <div class="col-sm-1">&deg;C</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">比重修正值</div>
+        <div class="col-sm-1 text-right"><span id="hc-corrected-sg"></span></div>
+        <div class="col-sm-1"></div>
+    </div>
+</div>
+<!-- Temperature calibration-->
+
+<!-- Refractometer calculation-->
+<div class="rounded container m-3" id="refractometer-calculation">
+    <div class="row" >
+        <div class="col-sm"><h3>折射儀計算</h3></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">OG/原始糖度</div>
+        <div class="col-sm-1"><input class="form-control form-control-sm" id="rc-ogr" value="12.5"></div>
+        <div class="col-sm-1">&deg;Bx</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">OG/原始比重</div>
+        <div class="col-sm-1"><input class="form-control form-control-sm" id="rc-ogh" value="1.050"></div>
+        <div class="col-sm-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">折射儀讀數</div>
+        <div class="col-sm-1"><input class="form-control form-control-sm" id="rc-sgr" value=""></div>
+        <div class="col-sm-1">&deg;Bx</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2" data-toggle="tooltip" data-placement="right" title="Sean Terrill’s Formula">比重</div>
+        <div class="col-sm-1 text-right"><span id="rc-sgh" data-toggle="tooltip" data-placement="right" title="Sean Terrill’s Formula"></span></div>
+        <div class="col-sm-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2" data-toggle="tooltip" data-placement="right" title="Sean Terrill’s Formula">發酵度ATT</div>
+        <div class="col-sm-1 text-right"><span id="rc-att"></span></div>
+        <div class="col-sm-1">%</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2" data-toggle="tooltip" data-placement="right" title="Petr Novotny's Formula">比重(Novotny)</div>
+        <div class="col-sm-1 text-right"><span id="rc-novo-sgh" data-toggle="tooltip" data-placement="right" title="Petr Novotny's Formula"></span></div>
+        <div class="col-sm-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2" data-toggle="tooltip" data-placement="right" title="Petr Novotny's Formul">發酵度ATT</div>
+        <div class="col-sm-1 text-right"><span id="rc-novo-att"></span></div>
+        <div class="col-sm-1">%</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">ABV</div>
+        <div class="col-sm-1 text-right"><span id="rc-abv"></span></div>
+        <div class="col-sm-1">%</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">ABV(alt)</div>
+        <div class="col-sm-1 text-right"><span id="rc-abva"></span></div>
+        <div class="col-sm-1">%</div>
+    </div>
+</div>
+<!-- Refractometer calculation-->
+<!-- ABV-->
+<div class="rounded container m-3" id="abv">
+    <div class="row" >
+        <div class="col-sm"><h3>酒精度ABV</h3></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">原始比重OG</div>
+        <div class="col-sm-1"><input class="form-control form-control-sm" id="abv-og" value="1.0"></div>
+        <div class="col-sm-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">最終比重FG</div>
+        <div class="col-sm-1"><input class="form-control form-control-sm" id="abv-fg" value="1.0"></div>
+        <div class="col-sm-1">&deg;C</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">ABV</div>
+        <div class="col-sm-1 text-right"><span id="abv-abv"></span></div>
+        <div class="col-sm-1">%</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">ABV(alt)</div>
+        <div class="col-sm-1 text-right"><span id="abv-abv2"></span></div>
+        <div class="col-sm-1">%</div>
+    </div>
+</div>
+<!-- ABV-->
+
+<!-- Priming-->
+<div class="rounded container m-3" id="priming">
+    <div class="row" >
+        <div class="col-sm"><h3>瓶發糖計算</h3></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">目標氣體數</div>
+        <div class="col-sm-1"><input class="form-control form-control-sm" id="prim-desire" value=""></div>
+        <div class="col-sm-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">啤酒溫度</div>
+        <div class="col-sm-1"><input class="form-control form-control-sm" id="prim-temp" value="20"></div>
+        <div class="col-sm-1">&deg;C</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">總啤酒量</div>
+        <div class="col-sm-1"><input class="form-control form-control-sm" id="prim-beervol" value="20"></div>
+        <div class="col-sm-1">L</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">已含CO2</div>
+        <div class="col-sm-1 text-right"><span id="prim-beerco2"></span></div>
+        <div class="col-sm-1">vol</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">總糖量</div>
+        <div class="col-sm-1 text-right"><span id="prim-sugar"></span></div>
+        <div class="col-sm-1">g</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">330ml瓶裝糖量</div>
+        <div class="col-sm-1 text-right"><span id="prim-sugar33"></span></div>
+        <div class="col-sm-1">g</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">600ml瓶裝糖量</div>
+        <div class="col-sm-1 text-right"><span id="prim-sugar60"></span></div>
+        <div class="col-sm-1">g</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">1公升瓶裝糖量</div>
+        <div class="col-sm-1 text-right"><span id="prim-sugar1l"></span></div>
+        <div class="col-sm-1">g</div>
+    </div>
+
+</div>
+<!-- Priming-->
+
+<!-- Pressure-->
+<div class="rounded container m-3" id="pressure">
+    <div class="row" >
+        <div class="col-sm"><h3>壓力含氣量計算</h3></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">溫度</div>
+        <div class="col-sm-1"><input class="form-control form-control-sm" id="pressure-temp" value="20"></div>
+        <div class="col-sm-1">&deg;C</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">氣體數</div>
+        <div class="col-sm-1"><input class="form-control form-control-sm" id="pressure-vol" value=""></div>
+        <div class="col-sm-1">vol</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">頭部壓力</div>
+        <div class="col-sm-1"><input class="form-control form-control-sm" id="pressure-psi" value=""></div>
+        <div class="col-sm-1">psi</div>
+    </div>
+
+</div>
+<!-- Pressure-->
+
+
+<!-- ABV without OG-->
+<div class="rounded container m-3" id="abv-no-og">
+    <div class="row" >
+        <div class="col-sm"><h3>未知原始比重,用比重計和折射儀求酒精度</h3></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">折射儀讀數</div>
+        <div class="col-sm-1"><input class="form-control form-control-sm" id="ano-brix" value=""></div>
+        <div class="col-sm-1">&deg;Bx</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">比重計讀數</div>
+        <div class="col-sm-1"><input class="form-control form-control-sm" id="ano-sg" value="1.0"></div>
+        <div class="col-sm-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">溫度</div>
+        <div class="col-sm-1"><input class="form-control form-control-sm" id="ano-temp" value="20"></div>
+        <div class="col-sm-1">&deg;C</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">校正溫度</div>
+        <div class="col-sm-1"><input class="form-control form-control-sm" id="ano-ctemp" value="20"></div>
+        <div class="col-sm-1">&deg;C</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">比重修正值</div>
+        <div class="col-sm-1 text-right"><span id="ano-corrected-sg"></span></div>
+        <div class="col-sm-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">推算原始比重OG</div>
+        <div class="col-sm-1 text-right"><span id="ano-og"></span></div>
+        <div class="col-sm-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">ABV</div>
+        <div class="col-sm-1 text-right"><span id="ano-abv"></span></div>
+        <div class="col-sm-1">%</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">ABV(alt)</div>
+        <div class="col-sm-1 text-right"><span id="ano-abv2"></span></div>
+        <div class="col-sm-1">%</div>
+    </div>
+
+</div>
+<!-- ABV without OG-->
+
+</div>
+   
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>
+        window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')
+    </script>
+    <script src="watercalc/bootstrap/js/bootstrap.bundle.js"></script>
+
+    <script>
+
+var BrewMath = {
+    plato2sg: function(plato) {
+        return 1 + plato / (258.6 - ((plato / 258.2) * 227.1));
+    },
+    sgTempCorrected: function(Reading, F, CT) {
+        return Reading * ((1.00130346 - 0.000134722124 * F + 0.00000204052596 * F * F - 0.00000000232820948 * F * F * F) / (1.00130346 - 0.000134722124 * CT + 0.00000204052596 * CT * CT - 0.00000000232820948 * CT * CT * CT));
+    },
+    brix2sg: function(brix, wc) {
+        wc = (typeof wc === "undefined") ? 1.0 : wc;
+        var bi = brix / wc;
+        return (bi / (258.6 - ((bi / 258.2) * 227.1))) + 1;
+    },
+    sg2plato: function(sg) {
+        return (1111.14 * sg) - (630.272 * sg * sg) + (135.997 * sg * sg * sg) - 616.868;
+    },
+    gravityWithAlc:function(bi,br){
+        return 1-0.0044993*bi + 0.011774*br + 0.00027581*bi*bi-0.0012717*br*br-0.00000728*bi*bi*bi+0.000063293*br*br*br;
+    },
+    gravityWithAlcNovo(bi,br){
+        return 1.335*0.00001*bi*bi-3.239*0.00001*bi*br+2.916*0.00001*br*br-2.421*0.001*bi+6.219*0.001*br+1;
+    },
+    abv(og,fg){
+        return 131.25 * (og - fg);
+    },
+    abv2(og,fg){
+        return 76.08*(og-fg)/(1.775-og) * (fg/0.794);
+    },
+    att(og,fg){
+        return (og-fg)/(og-1) * 100.0;        
+    },
+    ogByBrixSg(brix,sg){
+        return -1.728*sg+0.01085*brix+2.728;
+    },
+    co2InBeer(T){
+        return 3.0378 - 0.050062 * (T * 9/5+32) + 0.00026555 * (T *9/5+32)*(T *9/5+32);        
+    },
+    priming(dv,t,bv){
+        return 15.195* bv *0.2641722 * ( dv - 3.0378 + 0.050062 * (t * 9/5+32) - 0.00026555 * (t *9/5+32)*(t *9/5+32));
+    },
+    pressure(Tc,V){
+        var T = Tc *9/5 +32;
+        return -16.6999 - 0.0101059 * T + 0.00116512 * T*T + 0.173354 * T * V + 4.24267 * V - 0.0684226 *V*V;
+    },
+    volume(T,P){
+        var Tf = T * 9/5 +32;
+        return (P + 14.695 )* ( 0.01821 + 0.090115 * Math.exp((32-Tf)/43.11)) - 0.003342;
+    }
+};
+
+function C2F(c) { return Math.round((c * 1.8 + 32) * 10) / 10; }
+
+function F2C(f) { return Math.round((f - 32) / 1.8 * 10) / 10; }        
+
+    $(function() {
+            $('[data-toggle="tooltip"]').tooltip();
+
+            //Temperature calibration
+            $("#hydrometer-collection input").change(function(){                
+                var T= parseFloat($("#hc-temp").val());
+                var R= parseFloat($("#hc-reading").val());
+                var CT=parseFloat($("#hc-ctemp").val());
+                var c= BrewMath.sgTempCorrected(R,C2F(T),C2F(CT));
+                $("#hc-corrected-sg").text(c.toFixed(3));
+            });
+            //    Refractometer calculation
+            $("#refractometer-calculation input").change(function(){
+                if($(this).prop("id") == "rc-ogr"){
+                    $("#rc-ogh").val(BrewMath.brix2sg(parseFloat($(this).val())).toFixed(3));
+                }else if($(this).prop("id") == "rc-ogh"){
+                    $("#rc-ogr").val(BrewMath.sg2plato(parseFloat($(this).val())).toFixed(1));
+                }
+                var ogr=parseFloat($("#rc-ogr").val());
+                var fgr=parseFloat($("#rc-sgr").val());
+                var og =parseFloat($("#rc-ogh").val());
+                var sg = BrewMath.gravityWithAlc(ogr,fgr);
+                var sgnovo=BrewMath.gravityWithAlcNovo(ogr,fgr);
+                $("#rc-sgh").text(sg.toFixed(3));
+                $("#rc-att").text( BrewMath.att(og,sg).toFixed(1));
+                $("#rc-novo-sgh").text(sgnovo.toFixed(3));
+                $("#rc-novo-att").text( BrewMath.att(og,sgnovo).toFixed(1));
+                $("#rc-abv").text(BrewMath.abv(og,sg).toFixed(1));
+                $("#rc-abva").text(BrewMath.abv2(og,sg).toFixed(1));
+            });
+
+            //ABV
+            $("#abv input").change(function(){                
+                var og= parseFloat($("#abv-og").val());
+                var fg=parseFloat($("#abv-fg").val());
+                $("#abv-abv").text(BrewMath.abv(og,fg).toFixed(1));
+                $("#abv-abv2").text(BrewMath.abv2(og,fg).toFixed(1));
+            });
+
+
+            //ABV/OG without OG
+            $("#abv-no-og input").change(function(){                
+                var R= parseFloat($("#ano-brix").val());
+                var G= parseFloat($("#ano-sg").val());
+                var T= parseFloat($("#ano-temp").val());
+                var CT=parseFloat($("#ano-ctemp").val());
+                var cG= BrewMath.sgTempCorrected(G,C2F(T),C2F(CT));
+                $("#ano-corrected-sg").text(cG.toFixed(3));
+                var og=BrewMath.ogByBrixSg(R,cG);
+                $("#ano-og").text(og.toFixed(3));
+                $("#ano-abv").text(BrewMath.abv(og,cG).toFixed(1));
+                $("#ano-abv2").text(BrewMath.abv2(og,cG).toFixed(1));
+            });
+            //priming sugar
+            $("#priming input").change(function(){                
+                var dv= parseFloat($("#prim-desire").val());
+                var T= parseFloat($("#prim-temp").val());
+                var V= parseFloat($("#prim-beervol").val());
+                var co2= BrewMath.co2InBeer(T);
+                var ps=BrewMath.priming(dv,T,V);
+                $("#prim-beerco2").text(co2.toFixed(1));
+                $("#prim-sugar").text(ps.toFixed(1));
+                $("#prim-sugar33").text(BrewMath.priming(dv,T,0.33).toFixed(1));
+                $("#prim-sugar60").text(BrewMath.priming(dv,T,0.6).toFixed(1));
+                $("#prim-sugar1l").text(BrewMath.priming(dv,T,1).toFixed(1));
+            });
+
+            $("#pressure input").change(function(){                
+                if($(this).prop("id") == "pressure-temp" 
+                    || $(this).prop("id") == "pressure-vol" ){
+                    var T = parseFloat($("#pressure-temp").val());
+                    var V = parseFloat($("#pressure-vol").val());
+                    $("#pressure-psi").val(BrewMath.pressure(T,V).toFixed(2));
+                }else{ // if($(this).prop("id") == "presure-psi" 
+                    var T = parseFloat($("#pressure-temp").val());
+                    var P = parseFloat($("#pressure-psi").val());
+                    $("#pressure-vol").val(BrewMath.volume(T,P).toFixed(2));
+               }
+            });
+
+
+        });
+    </script>
+
+</body>
+
+</html>
