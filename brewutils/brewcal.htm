@@ -67,17 +67,7 @@
         <div class="col-sm-1">&deg;Bx</div>
     </div>
     <div class="row">
-        <div class="col-sm-2" data-toggle="tooltip" data-placement="right" title="Sean Terrill’s Formula">比重</div>
-        <div class="col-sm-1 text-right"><span id="rc-sgh" data-toggle="tooltip" data-placement="right" title="Sean Terrill’s Formula"></span></div>
-        <div class="col-sm-1"></div>
-    </div>
-    <div class="row">
-        <div class="col-sm-2" data-toggle="tooltip" data-placement="right" title="Sean Terrill’s Formula">發酵度ATT</div>
-        <div class="col-sm-1 text-right"><span id="rc-att"></span></div>
-        <div class="col-sm-1">%</div>
-    </div>
-    <div class="row">
-        <div class="col-sm-2" data-toggle="tooltip" data-placement="right" title="Petr Novotny's Formula">比重(Novotny)</div>
+        <div class="col-sm-2" data-toggle="tooltip" data-placement="right" title="Petr Novotny's Formula">比重</div>
         <div class="col-sm-1 text-right"><span id="rc-novo-sgh" data-toggle="tooltip" data-placement="right" title="Petr Novotny's Formula"></span></div>
         <div class="col-sm-1"></div>
     </div>
@@ -87,17 +77,18 @@
         <div class="col-sm-1">%</div>
     </div>
     <div class="row">
-        <div class="col-sm-2">ABV</div>
+        <div class="col-sm-2" data-toggle="tooltip" data-placement="right" title="ABV">ABV</div>
         <div class="col-sm-1 text-right"><span id="rc-abv"></span></div>
         <div class="col-sm-1">%</div>
     </div>
     <div class="row">
-        <div class="col-sm-2">ABV(alt)</div>
+        <div class="col-sm-2"  data-toggle="tooltip" data-placement="right" title="考慮酒精溶液密度變化的計算">ABV(alt)</div>
         <div class="col-sm-1 text-right"><span id="rc-abva"></span></div>
         <div class="col-sm-1">%</div>
     </div>
 </div>
 <!-- Refractometer calculation-->
+
 <!-- ABV-->
 <div class="rounded container m-3" id="abv">
     <div class="row" >
@@ -248,7 +239,7 @@
 
 </div>
 <!-- ABV without OG-->
-
+Reference:
 <ol>
     <li><a href="https://www.homebrewtalk.com/threads/temp-correction-formula-for-hydrometer.10684/post-100698"></a>Temp Correction Formula for Hydrometer, HBT </a></li>
     <li><a href="https://youtu.be/RPfxf-6FcEg">BotB- Your Lyin Hydrometer, by Sui Generis Brewing </a></li>
@@ -349,8 +340,8 @@ function F2C(f) { return Math.round((f - 32) / 1.8 * 10) / 10; }
                 var og =parseFloat($("#rc-ogh").val());
                 var sg = BrewMath.gravityWithAlc(ogr,fgr);
                 var sgnovo=BrewMath.gravityWithAlcNovo(ogr,fgr);
-                $("#rc-sgh").text(sg.toFixed(3));
-                $("#rc-att").text( BrewMath.att(og,sg).toFixed(1));
+                //$("#rc-sgh").text(sg.toFixed(3));
+                //$("#rc-att").text( BrewMath.att(og,sg).toFixed(1));
                 $("#rc-novo-sgh").text(sgnovo.toFixed(3));
                 $("#rc-novo-att").text( BrewMath.att(og,sgnovo).toFixed(1));
                 $("#rc-abv").text(BrewMath.abv(og,sg).toFixed(1));
