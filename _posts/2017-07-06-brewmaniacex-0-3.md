@@ -88,7 +88,7 @@ The meaning of the tags:
 
 | tag | When | Example |
 |---|---|---|
-| open | Successfully connecgted | BrewManiac, at your service |
+| open | Successfully connected | BrewManiac, at your service |
 | tr | Setting temperature reached. | Temperature reached. |
 | addhop | reminder of adding hop | Time to add hop |
 | addmalt | reminder of adding malt | Time to add malt |

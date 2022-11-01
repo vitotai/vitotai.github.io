@@ -21,27 +21,47 @@
 <!-- Temperature calibration-->
 <div class="rounded container m-3" id="hydrometer-collection">
     <div class="row" >
-        <div class="col-sm"><h3>比重計溫度修正</h3></div>
+        <div class="col-md"><h3>比重計溫度修正</h3></div>
     </div>
     <div class="row">
-        <div class="col-sm-2">比重計讀數</div>
-        <div class="col-sm-1"><input class="form-control form-control-sm" id="hc-reading" value="1.0"></div>
-        <div class="col-sm-1"></div>
+        <div class="col-md-2">比重計讀數</div>
+        <!--<div class="col-md-w"><input class="form-control form-control-sm" id="hc-reading" value="1.0"></div>
+        <div class="col-md-1"></div>-->
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="hc-reading" class="form-control" placeholder="" aria-label="hydrometer reading" aria-describedby="basic-addon2" value="1.0">
+        </div>
     </div>
     <div class="row">
-        <div class="col-sm-2">溫度</div>
-        <div class="col-sm-1"><input class="form-control form-control-sm" id="hc-temp" value=""></div>
-        <div class="col-sm-1">&deg;C</div>
+        <div class="col-md-2">麥汁溫度</div>
+<!--        <div class="col-md-1"><input class="form-control form-control-sm" id="hc-temp" value=""></div>
+        <div class="col-md-1">&deg;C</div>
+-->    
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="hc-temp" class="form-control" placeholder="" aria-label="wrot temperature" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">&deg;C</span>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-2">校正溫度</div>
+        <!--<div class="col-md-1"><input class="form-control form-control-sm" id="hc-ctemp" value="20"></div>
+        <div class="col-md-1">&deg;C</div>-->
+
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="hc-ctemp" class="form-control" placeholder="" aria-label="Correction temperature" aria-describedby="basic-addon2" value="20">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">&deg;C</span>
+            </div>
+        </div>
+
     </div>
     <div class="row">
-        <div class="col-sm-2">校正溫度</div>
-        <div class="col-sm-1"><input class="form-control form-control-sm" id="hc-ctemp" value="20"></div>
-        <div class="col-sm-1">&deg;C</div>
-    </div>
-    <div class="row">
-        <div class="col-sm-2">比重修正值</div>
-        <div class="col-sm-1 text-right"><span id="hc-corrected-sg"></span></div>
-        <div class="col-sm-1"></div>
+        <div class="col-md-2">比重修正值</div>
+        <div class="col-md-1 text-right"><span id="hc-corrected-sg"></span></div>
+        <div class="col-md-1"></div>
     </div>
 </div>
 <!-- Temperature calibration-->
@@ -49,42 +69,59 @@
 <!-- Refractometer calculation-->
 <div class="rounded container m-3" id="refractometer-calculation">
     <div class="row" >
-        <div class="col-sm"><h3>折射儀計算</h3></div>
+        <div class="col-md"><h3>折射儀計算</h3></div>
     </div>
     <div class="row">
-        <div class="col-sm-2">OG/原始糖度</div>
-        <div class="col-sm-1"><input class="form-control form-control-sm" id="rc-ogr" value="12.5"></div>
-        <div class="col-sm-1">&deg;Bx</div>
+        <div class="col-md-2">OG/原始糖度</div>
+        <!--<div class="col-md-1"><input class="form-control form-control-sm" id="rc-ogr" value="12.5"></div>
+        <div class="col-md-1">&deg;Bx</div>-->
+
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="rc-ogr" class="form-control" placeholder="" aria-label="Original Brix" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">&deg;Bx</span>
+            </div>
+        </div>
+
     </div>
     <div class="row">
-        <div class="col-sm-2">OG/原始比重</div>
-        <div class="col-sm-1"><input class="form-control form-control-sm" id="rc-ogh" value="1.050"></div>
-        <div class="col-sm-1"></div>
+        <div class="col-md-2">OG/原始比重</div>
+        <!--<div class="col-md-1"><input class="form-control form-control-sm" id="rc-ogh" value="1.050"></div>
+        <div class="col-md-1"></div> -->
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="rc-ogh" class="form-control" placeholder="" aria-label="Original gravity" aria-describedby="basic-addon2">
+        </div>        
     </div>
     <div class="row">
-        <div class="col-sm-2">折射儀讀數</div>
-        <div class="col-sm-1"><input class="form-control form-control-sm" id="rc-sgr" value=""></div>
-        <div class="col-sm-1">&deg;Bx</div>
+        <div class="col-md-2">折射儀讀數</div>
+        <!--<div class="col-md-1"><input class="form-control form-control-sm" id="rc-sgr" value=""></div>
+        <div class="col-md-1">&deg;Bx</div>-->
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="rc-sgr" class="form-control" placeholder="" aria-label="wort Brix" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">&deg;Bx</span>
+            </div>
+        </div>        
     </div>
     <div class="row">
-        <div class="col-sm-2" data-toggle="tooltip" data-placement="right" title="Petr Novotny's Formula">比重</div>
-        <div class="col-sm-1 text-right"><span id="rc-novo-sgh" data-toggle="tooltip" data-placement="right" title="Petr Novotny's Formula"></span></div>
-        <div class="col-sm-1"></div>
+        <div class="col-md-2" data-toggle="tooltip" data-placement="right" title="Petr Novotny's Formula">比重</div>
+        <div class="col-md-2 text-right"><span id="rc-novo-sgh" data-toggle="tooltip" data-placement="right" title="Petr Novotny's Formula"></span></div>
+        <!--<div class="col-md-1"></div>-->
     </div>
     <div class="row">
-        <div class="col-sm-2" data-toggle="tooltip" data-placement="right" title="Petr Novotny's Formul">發酵度ATT</div>
-        <div class="col-sm-1 text-right"><span id="rc-novo-att"></span></div>
-        <div class="col-sm-1">%</div>
+        <div class="col-md-2" data-toggle="tooltip" data-placement="right" title="Petr Novotny's Formul">發酵度ATT</div>
+        <div class="col-md-2 text-right"><span id="rc-novo-att"></span> %</div>
+        <!--<div class="col-md-1">%</div>-->
     </div>
     <div class="row">
-        <div class="col-sm-2" data-toggle="tooltip" data-placement="right" title="ABV">ABV</div>
-        <div class="col-sm-1 text-right"><span id="rc-abv"></span></div>
-        <div class="col-sm-1">%</div>
+        <div class="col-md-2" data-toggle="tooltip" data-placement="right" title="ABV">ABV</div>
+        <div class="col-md-2 text-right"><span id="rc-abv"></span> %</div>
+        <!--<div class="col-md-1">%</div>-->
     </div>
     <div class="row">
-        <div class="col-sm-2"  data-toggle="tooltip" data-placement="right" title="考慮酒精溶液密度變化的計算">ABV(alt)</div>
-        <div class="col-sm-1 text-right"><span id="rc-abva"></span></div>
-        <div class="col-sm-1">%</div>
+        <div class="col-md-2"  data-toggle="tooltip" data-placement="right" title="考慮酒精溶液密度變化的計算">ABV(alt)</div>
+        <div class="col-md-2 text-right"><span id="rc-abva"></span> %</div>
+        <!--<div class="col-md-1">%</div>-->
     </div>
 </div>
 <!-- Refractometer calculation-->
@@ -92,27 +129,35 @@
 <!-- ABV-->
 <div class="rounded container m-3" id="abv">
     <div class="row" >
-        <div class="col-sm"><h3>酒精度ABV</h3></div>
+        <div class="col-md"><h3>酒精度ABV</h3></div>
     </div>
     <div class="row">
-        <div class="col-sm-2">原始比重OG</div>
-        <div class="col-sm-1"><input class="form-control form-control-sm" id="abv-og" value="1.0"></div>
-        <div class="col-sm-1"></div>
+        <div class="col-md-2">原始比重OG</div>
+        <!--<div class="col-md-1"><input class="form-control form-control-sm" id="abv-og" value="1.0"></div>
+        <div class="col-md-1"></div>-->
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="abv-og" class="form-control" placeholder="" aria-label="OG" aria-describedby="basic-addon2" value="1.0">
+        </div>        
+
     </div>
     <div class="row">
-        <div class="col-sm-2">最終比重FG</div>
-        <div class="col-sm-1"><input class="form-control form-control-sm" id="abv-fg" value="1.0"></div>
-        <div class="col-sm-1">&deg;C</div>
+        <div class="col-md-2">最終比重FG</div>
+        <!--<div class="col-md-1"><input class="form-control form-control-sm" id="abv-fg" value="1.0"></div>
+        <div class="col-md-1"></div>-->
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="abv-fg" class="form-control" placeholder="" aria-label="FG" aria-describedby="basic-addon2" value="1.0">
+        </div>        
+
     </div>
     <div class="row">
-        <div class="col-sm-2">ABV</div>
-        <div class="col-sm-1 text-right"><span id="abv-abv"></span></div>
-        <div class="col-sm-1">%</div>
+        <div class="col-md-2">ABV</div>
+        <div class="col-md-2 text-right"><span id="abv-abv"></span> %</div>
+        <!--<div class="col-md-1">%</div>-->
     </div>
     <div class="row">
-        <div class="col-sm-2">ABV(alt)</div>
-        <div class="col-sm-1 text-right"><span id="abv-abv2"></span></div>
-        <div class="col-sm-1">%</div>
+        <div class="col-md-2">ABV(alt)</div>
+        <div class="col-md-2 text-right"><span id="abv-abv2"></span> %</div>
+        <!--<div class="col-md-1">%</div>-->
     </div>
 </div>
 <!-- ABV-->
@@ -120,47 +165,65 @@
 <!-- Priming-->
 <div class="rounded container m-3" id="priming">
     <div class="row" >
-        <div class="col-sm"><h3>瓶發糖計算</h3></div>
+        <div class="col-md"><h3>瓶發糖計算</h3></div>
     </div>
     <div class="row">
-        <div class="col-sm-2">目標氣體數</div>
-        <div class="col-sm-1"><input class="form-control form-control-sm" id="prim-desire" value=""></div>
-        <div class="col-sm-1"></div>
+        <div class="col-md-2">目標氣體數</div>
+        <!--<div class="col-md-1"><input class="form-control form-control-sm" id="prim-desire" value=""></div>
+        <div class="col-md-1"></div>-->
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="prim-desire" class="form-control" placeholder="" aria-label="Desired Volume" aria-describedby="basic-addon2">
+        </div>        
+
     </div>
     <div class="row">
-        <div class="col-sm-2">啤酒溫度</div>
-        <div class="col-sm-1"><input class="form-control form-control-sm" id="prim-temp" value="20"></div>
-        <div class="col-sm-1">&deg;C</div>
+        <div class="col-md-2">啤酒溫度</div>
+        <!--<div class="col-md-1"><input class="form-control form-control-sm" id="prim-temp" value="20"></div>
+        <div class="col-md-1">&deg;C</div>-->
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="prim-temp" class="form-control" placeholder="" aria-label="Beer Temperature" aria-describedby="basic-addon2" value="20">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">&deg;C</span>
+            </div>
+        </div>        
+        
     </div>
     <div class="row">
-        <div class="col-sm-2">總啤酒量</div>
-        <div class="col-sm-1"><input class="form-control form-control-sm" id="prim-beervol" value="20"></div>
-        <div class="col-sm-1">L</div>
+        <div class="col-md-2">總啤酒量</div>
+        <!--<div class="col-md-1"><input class="form-control form-control-sm" id="prim-beervol" value="20"></div>
+        <div class="col-md-1">L</div>-->
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="prim-beervol" class="form-control" placeholder="" aria-label="Beer Volume" aria-describedby="basic-addon2" value="20">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">L</span>
+            </div>
+        </div>        
+
     </div>
     <div class="row">
-        <div class="col-sm-2">已含CO2</div>
-        <div class="col-sm-1 text-right"><span id="prim-beerco2"></span></div>
-        <div class="col-sm-1">vol</div>
+        <div class="col-md-2">已含CO2</div>
+        <div class="col-md-2 text-right"><span id="prim-beerco2"></span> vol</div>
+        <!--<div class="col-md-1">vol</div>-->
     </div>
     <div class="row">
-        <div class="col-sm-2">總糖量</div>
-        <div class="col-sm-1 text-right"><span id="prim-sugar"></span></div>
-        <div class="col-sm-1">g</div>
+        <div class="col-md-2">總糖量</div>
+        <div class="col-md-2 text-right"><span id="prim-sugar"></span> g</div>
+        <!--<div class="col-md-1">g</div>-->
     </div>
     <div class="row">
-        <div class="col-sm-2">330ml瓶裝糖量</div>
-        <div class="col-sm-1 text-right"><span id="prim-sugar33"></span></div>
-        <div class="col-sm-1">g</div>
+        <div class="col-md-2">330ml瓶裝糖量</div>
+        <div class="col-md-2 text-right"><span id="prim-sugar33"></span> g</div>
+        <!--<div class="col-md-1">g</div>-->
     </div>
     <div class="row">
-        <div class="col-sm-2">600ml瓶裝糖量</div>
-        <div class="col-sm-1 text-right"><span id="prim-sugar60"></span></div>
-        <div class="col-sm-1">g</div>
+        <div class="col-md-2">600ml瓶裝糖量</div>
+        <div class="col-md-2 text-right"><span id="prim-sugar60"></span> g</div>
+        <!--<div class="col-md-1">g</div>-->
     </div>
     <div class="row">
-        <div class="col-sm-2">1公升瓶裝糖量</div>
-        <div class="col-sm-1 text-right"><span id="prim-sugar1l"></span></div>
-        <div class="col-sm-1">g</div>
+        <div class="col-md-2">1公升瓶裝糖量</div>
+        <div class="col-md-2 text-right"><span id="prim-sugar1l"></span> g</div>
+        <!-- <div class="col-md-1">g</div> -->
     </div>
 
 </div>
@@ -169,22 +232,41 @@
 <!-- Pressure-->
 <div class="rounded container m-3" id="pressure">
     <div class="row" >
-        <div class="col-sm"><h3>壓力含氣量計算</h3></div>
+        <div class="col-md"><h3>壓力含氣量計算</h3></div>
     </div>
     <div class="row">
-        <div class="col-sm-2">溫度</div>
-        <div class="col-sm-1"><input class="form-control form-control-sm" id="pressure-temp" value="20"></div>
-        <div class="col-sm-1">&deg;C</div>
+        <div class="col-md-2">溫度</div>
+        <!--<div class="col-md-1"><input class="form-control form-control-sm" id="pressure-temp" value="20"></div>
+        <div class="col-md-1">&deg;C</div> -->
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="pressure-temp" class="form-control" placeholder="" aria-label="Beer Temperature" aria-describedby="basic-addon2" value="20">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">&deg;C</span>
+            </div>
+        </div>        
+
     </div>
     <div class="row">
-        <div class="col-sm-2">氣體數</div>
-        <div class="col-sm-1"><input class="form-control form-control-sm" id="pressure-vol" value=""></div>
-        <div class="col-sm-1">vol</div>
+        <div class="col-md-2">氣體數</div>
+        <!--<div class="col-md-1"><input class="form-control form-control-sm" id="pressure-vol" value=""></div>
+        <div class="col-md-1">vol</div>-->
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="pressure-vol" class="form-control" placeholder="" aria-label="Carbonation Volume" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">vol</span>
+            </div>
+        </div>        
     </div>
     <div class="row">
-        <div class="col-sm-2">頭部壓力</div>
-        <div class="col-sm-1"><input class="form-control form-control-sm" id="pressure-psi" value=""></div>
-        <div class="col-sm-1">psi</div>
+        <div class="col-md-2">頭部壓力</div>
+        <!--<div class="col-md-1"><input class="form-control form-control-sm" id="pressure-psi" value=""></div>
+        <div class="col-md-1">psi</div>-->
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="pressure-psi" class="form-control" placeholder="" aria-label="Head Pressure" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">psi</span>
+            </div>
+        </div>        
     </div>
 
 </div>
@@ -194,47 +276,76 @@
 <!-- ABV without OG-->
 <div class="rounded container m-3" id="abv-no-og">
     <div class="row" >
-        <div class="col-sm"><h3>未知原始比重,用比重計和折射儀求酒精度</h3></div>
+        <div class="col-md"><h3>未知原始比重,用比重計和折射儀求酒精度</h3></div>
     </div>
     <div class="row">
-        <div class="col-sm-2">折射儀讀數</div>
-        <div class="col-sm-1"><input class="form-control form-control-sm" id="ano-brix" value=""></div>
-        <div class="col-sm-1">&deg;Bx</div>
+        <div class="col-md-2">折射儀讀數</div>
+        <!--<div class="col-md-1"><input class="form-control form-control-sm" id="ano-brix" value=""></div>
+        <div class="col-md-1">&deg;Bx</div>-->
+
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="ano-brix" class="form-control" placeholder="" aria-label="Refractometer" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">&deg;Bx</span>
+            </div>
+        </div>        
+
     </div>
     <div class="row">
-        <div class="col-sm-2">比重計讀數</div>
-        <div class="col-sm-1"><input class="form-control form-control-sm" id="ano-sg" value="1.0"></div>
-        <div class="col-sm-1"></div>
+        <div class="col-md-2">比重計讀數</div>
+        <!--<div class="col-md-1"><input class="form-control form-control-sm" id="ano-sg" value="1.0"></div>
+        <div class="col-md-1"></div>-->
+
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="ano-sg" class="form-control" placeholder="" aria-label="Hydrometer reading" aria-describedby="basic-addon2" value="1.0">
+        </div>        
+
     </div>
     <div class="row">
-        <div class="col-sm-2">溫度</div>
-        <div class="col-sm-1"><input class="form-control form-control-sm" id="ano-temp" value="20"></div>
-        <div class="col-sm-1">&deg;C</div>
+        <div class="col-md-2">啤酒溫度</div>
+        <!--<div class="col-md-1"><input class="form-control form-control-sm" id="ano-temp" value="20"></div>
+        <div class="col-md-1">&deg;C</div>-->
+
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="ano-temp" class="form-control" placeholder="" aria-label="Beer temperature" aria-describedby="basic-addon2" value="20">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">&deg;C</span>
+            </div>
+        </div>        
+
     </div>
     <div class="row">
-        <div class="col-sm-2">校正溫度</div>
-        <div class="col-sm-1"><input class="form-control form-control-sm" id="ano-ctemp" value="20"></div>
-        <div class="col-sm-1">&deg;C</div>
+        <div class="col-md-2">校正溫度</div>
+        <!--<div class="col-md-1"><input class="form-control form-control-sm" id="ano-ctemp" value="20"></div>
+        <div class="col-md-1">&deg;C</div> -->
+
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="ano-ctemp" class="form-control" placeholder="" aria-label="Correction temperature" aria-describedby="basic-addon2" value="20">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">&deg;C</span>
+            </div>
+        </div>        
+
     </div>
     <div class="row">
-        <div class="col-sm-2">比重修正值</div>
-        <div class="col-sm-1 text-right"><span id="ano-corrected-sg"></span></div>
-        <div class="col-sm-1"></div>
+        <div class="col-md-2">比重修正值</div>
+        <div class="col-md-2 text-right"><span id="ano-corrected-sg"></span></div>
+        <!--<div class="col-md-1"></div>-->
     </div>
     <div class="row">
-        <div class="col-sm-2">推算原始比重OG</div>
-        <div class="col-sm-1 text-right"><span id="ano-og"></span></div>
-        <div class="col-sm-1"></div>
+        <div class="col-md-2">推算原始比重OG</div>
+        <div class="col-md-2 text-right"><span id="ano-og"></span></div>
+        <!--<div class="col-md-1"></div>-->
     </div>
     <div class="row">
-        <div class="col-sm-2">ABV</div>
-        <div class="col-sm-1 text-right"><span id="ano-abv"></span></div>
-        <div class="col-sm-1">%</div>
+        <div class="col-md-2">ABV</div>
+        <div class="col-md-2 text-right"><span id="ano-abv"></span> %</div>
+        <!--<div class="col-md-1">%</div>-->
     </div>
     <div class="row">
-        <div class="col-sm-2">ABV(alt)</div>
-        <div class="col-sm-1 text-right"><span id="ano-abv2"></span></div>
-        <div class="col-sm-1">%</div>
+        <div class="col-md-2">ABV(alt)</div>
+        <div class="col-md-2 text-right"><span id="ano-abv2"></span> %</div>
+        <!--<div class="col-md-1">%</div>-->
     </div>
 
 </div>
