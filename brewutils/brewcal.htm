@@ -21,8 +21,17 @@
 <!-- Temperature calibration-->
 <div class="rounded container m-3" id="hydrometer-collection">
     <div class="row" >
-        <div class="col-md"><h3>比重計溫度修正</h3></div>
+        <div class="col-md"><h3>
+            <a class="" data-toggle="collapse" href="#hcdescription" role="button" aria-expanded="false" aria-controls="hcdescription">
+            比重計溫度修正
+            </a></h3></div>
     </div>
+    <div class="collapse" id="hcdescription">
+        <div class="card card-body">
+         比重計校正溫度通常是20&deg;C或15&degC，通常在刻度最下方有標示。參考：<a href="https://www.homebrewtalk.com/threads/temp-correction-formula-for-hydrometer.10684/post-100698">Temp Correction Formula for Hydrometer, HBT </a>
+        </div>
+    </div>
+    
     <div class="row">
         <div class="col-md-2">比重計讀數</div>
         <!--<div class="col-md-w"><input class="form-control form-control-sm" id="hc-reading" value="1.0"></div>
@@ -46,7 +55,7 @@
 
 
     <div class="row">
-        <div class="col-md-2">校正溫度</div>
+        <div class="col-md-2" data-toggle="tooltip" data-placement="right" title="比重計的校正溫度，通常是15或20&deg;C，比重計上會標示。" >校正溫度</div>
         <!--<div class="col-md-1"><input class="form-control form-control-sm" id="hc-ctemp" value="20"></div>
         <div class="col-md-1">&deg;C</div>-->
 
@@ -69,10 +78,16 @@
 <!-- Refractometer calculation-->
 <div class="rounded container m-3" id="refractometer-calculation">
     <div class="row" >
-        <div class="col-md"><h3>折射儀計算</h3></div>
+        <div class="col-md"><h3><a class="" data-toggle="collapse" href="#rcdescription" role="button" aria-expanded="false" aria-controls="rcdescription">折射儀計算</a></h3></div>
     </div>
+    <div class="collapse" id="rcdescription">
+        <div class="card card-body">
+        計算麥汁比重，可輸入原始糖度換算原始比重，或反過來輸入比重換算糖度。使用糖度計(拆射儀)計算已發酵的啤汁比重，輸入原始糖度/比重，及當前量測的糖度，可推算出當成比重。參考： <a href="https://www-diversity-beer.translate.goog/2017/01/pocitame-nova-korekce-refraktometru.html?_x_tr_sch=http&_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=zh-TW&_x_tr_pto=wapp">"We count:New refractometer correction",translated</a>
+        </div>
+    </div>
+
     <div class="row">
-        <div class="col-md-2">OG/原始糖度</div>
+        <div class="col-md-2" data-toggle="tooltip" data-placement="right" title="輸入原始糖度" >OG/原始糖度</div>
         <!--<div class="col-md-1"><input class="form-control form-control-sm" id="rc-ogr" value="12.5"></div>
         <div class="col-md-1">&deg;Bx</div>-->
 
@@ -85,7 +100,7 @@
 
     </div>
     <div class="row">
-        <div class="col-md-2">OG/原始比重</div>
+        <div class="col-md-2" data-toggle="tooltip" data-placement="right" title="輪入原始比重">OG/原始比重</div>
         <!--<div class="col-md-1"><input class="form-control form-control-sm" id="rc-ogh" value="1.050"></div>
         <div class="col-md-1"></div> -->
         <div class="col-md-2 input-group input-group-sm">
@@ -93,7 +108,7 @@
         </div>        
     </div>
     <div class="row">
-        <div class="col-md-2">折射儀讀數</div>
+        <div class="col-md-2" data-toggle="tooltip" data-placement="right" title="拆射儀目前顯示讀數">折射儀讀數</div>
         <!--<div class="col-md-1"><input class="form-control form-control-sm" id="rc-sgr" value=""></div>
         <div class="col-md-1">&deg;Bx</div>-->
         <div class="col-md-2 input-group input-group-sm">
@@ -119,7 +134,7 @@
         <!--<div class="col-md-1">%</div>-->
     </div>
     <div class="row">
-        <div class="col-md-2"  data-toggle="tooltip" data-placement="right" title="考慮酒精溶液密度變化的計算">ABV(alt)</div>
+        <div class="col-md-2"  data-toggle="tooltip" data-placement="right" title="使用考慮酒精溶液密度變化的公式">ABV(alt)</div>
         <div class="col-md-2 text-right"><span id="rc-abva"></span> %</div>
         <!--<div class="col-md-1">%</div>-->
     </div>
@@ -129,8 +144,15 @@
 <!-- ABV-->
 <div class="rounded container m-3" id="abv">
     <div class="row" >
-        <div class="col-md"><h3>酒精度ABV</h3></div>
+        <div class="col-md"><h3><a class="" data-toggle="collapse" href="#abvdescription" role="button" aria-expanded="false" aria-controls="abvdescription">酒精度ABV</a></h3></div>
     </div>
+    <div class="collapse" id="abvdescription">
+        <div class="card card-body">
+        由原始比重(OG)和最終比重(FG)推算ABV。常用的公式為 131.25 * (og - fg)，但酒精密度和體積並非線性關係，所以在酒精度愈高，這個公式的誤差愈大，ABV(alt)是使用考慮體積變化的修正公式。
+        參考：<a href="https://youtu.be/RPfxf-6FcEg">BotB- Your Lyin Hydrometer, by Sui Generis Brewing </a>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-md-2">原始比重OG</div>
         <!--<div class="col-md-1"><input class="form-control form-control-sm" id="abv-og" value="1.0"></div>
@@ -155,7 +177,7 @@
         <!--<div class="col-md-1">%</div>-->
     </div>
     <div class="row">
-        <div class="col-md-2">ABV(alt)</div>
+        <div class="col-md-2"  data-toggle="tooltip" data-placement="right" title="有考慮酒精濃度不同體積有所變化的公式">ABV(alt)</div>
         <div class="col-md-2 text-right"><span id="abv-abv2"></span> %</div>
         <!--<div class="col-md-1">%</div>-->
     </div>
@@ -165,8 +187,18 @@
 <!-- Priming-->
 <div class="rounded container m-3" id="priming">
     <div class="row" >
-        <div class="col-md"><h3>瓶發糖計算</h3></div>
+        <div class="col-md"><h3><a class="" data-toggle="collapse" href="#primdescription" role="button" aria-expanded="false" aria-controls="primdescription">瓶發糖計算</a></h3></div>
     </div>
+    <div class="collapse" id="primdescription">
+        <div class="card card-body">
+        在啤酒發酵過程中，會不斷產生CO2， 在達到飽合後，多餘的會無法溶於啤酒中，於是變成氣泡散逸於空氣中。如果是常壓發酵，啤酒中的CO2濃度等於啤酒溫度的CO2飽合濃度。
+        加糖瓶發時，要扣掉目前啤酒中已含的CO2濃度目標的CO2氣體數，也就是說：<em>[加糖產生的CO2] = [目標氣體數] - [啤酒已含有的CO2] </em> 
+        通常這個啤酒溫度等於最後的發酵溫度，不管發酵結束後的冷降溫度。但如果發酵結束後、裝瓶前，
+        啤酒溫度有上升，CO2飽合濃度會再下降，部分CO2也會散失，這部分的CO2損失在溫度下降後不會回溶於啤酒中，所以要填發酵結束後、裝瓶前的最高溫。
+        參考：<em>Brew By The Numbers,  Michael L. Hall, PhD, Zymurgy 1995 Summer</em>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-md-2">目標氣體數</div>
         <!--<div class="col-md-1"><input class="form-control form-control-sm" id="prim-desire" value=""></div>
@@ -177,7 +209,7 @@
 
     </div>
     <div class="row">
-        <div class="col-md-2">啤酒溫度</div>
+        <div class="col-md-2"  data-toggle="tooltip" data-placement="right" title="通常是發酵結束時的溫度，如果發酵結束後溫度有上升，要用最高溫。">啤酒溫度</div>
         <!--<div class="col-md-1"><input class="form-control form-control-sm" id="prim-temp" value="20"></div>
         <div class="col-md-1">&deg;C</div>-->
         <div class="col-md-2 input-group input-group-sm">
@@ -201,7 +233,7 @@
 
     </div>
     <div class="row">
-        <div class="col-md-2">已含CO2</div>
+        <div class="col-md-2" data-toggle="tooltip" data-placement="right" title="未加糖前啤酒已含有的CO2氣體數">已含CO2</div>
         <div class="col-md-2 text-right"><span id="prim-beerco2"></span> vol</div>
         <!--<div class="col-md-1">vol</div>-->
     </div>
@@ -232,7 +264,13 @@
 <!-- Pressure-->
 <div class="rounded container m-3" id="pressure">
     <div class="row" >
-        <div class="col-md"><h3>壓力含氣量計算</h3></div>
+        <div class="col-md"><h3><a class="" data-toggle="collapse" href="#pressuredescription" role="button" aria-expanded="false" aria-controls="pressuredescription">壓力含氣量計算</a></h3></div>
+    </div>
+    <div class="collapse" id="pressuredescription">
+        <div class="card card-body">
+        啤酒氣體數、溫度、頭部壓力的換算。可輸入氣體數、溫度，求出壓力，或是輸入溫度、頭部壓力，求出氣體數。請注意，這是頭部壓力和啤酒溶解的CO2氣體數達到平衡的條件下，改變其中一個條件（例如打氣加壓），要達到平衡需要很長的時闁，可能需要長達數日。
+        參考：<a href="http://brainlubeonline.com/GasLawsBeer.html">The Math and Science of Carbonation </a>
+        </div>
     </div>
     <div class="row">
         <div class="col-md-2">溫度</div>
@@ -276,8 +314,15 @@
 <!-- ABV without OG-->
 <div class="rounded container m-3" id="abv-no-og">
     <div class="row" >
-        <div class="col-md"><h3>未知原始比重,用比重計和折射儀求酒精度</h3></div>
+        <div class="col-md"><h3><a class="" data-toggle="collapse" href="#anodescription" role="button" aria-expanded="false" aria-controls="anodescription">未知原始比重,用比重計和折射儀求酒精度</a></h3></div>
     </div>
+    <div class="collapse" id="anodescription">
+        <div class="card card-body">
+        未知原始比重，利用比重計和折射儀(糖度計)，估算ABV和原始比重。啤酒溫度為測量時的啤溫度，用以校正比重計。這個公式的精度要求很高，折射儀的讀數差一點點，可能就會產生很大的誤差。
+        參考：<a href="http://www.woodlandbrew.com/2013/02/abv-without-og.html">ABV without OG</a>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-md-2">折射儀讀數</div>
         <!--<div class="col-md-1"><input class="form-control form-control-sm" id="ano-brix" value=""></div>
@@ -352,15 +397,18 @@
 <!-- ABV without OG-->
 Reference:
 <ol>
-    <li><a href="https://www.homebrewtalk.com/threads/temp-correction-formula-for-hydrometer.10684/post-100698"></a>Temp Correction Formula for Hydrometer, HBT </a></li>
-    <li><a href="https://youtu.be/RPfxf-6FcEg">BotB- Your Lyin Hydrometer, by Sui Generis Brewing </a></li>
-    <li>Brew By The Numbers,  Michael L. Hall, PhD, Zymurgy 1995 Summer</li>
-    <li><a href="http://brainlubeonline.com/GasLawsBeer.html">The Math and Science of Carbonation </a></li>
-    <li><a href="https://www.homebrewtalk.com/threads/better-carbonation-calculator-hopefully.630528/">Better Carbonation Calculator,HBT</a></li>
-    <li><a href="http://www.woodlandbrew.com/2013/02/abv-without-og.html">ABV without OG</a></li>
-    <li><a href="http://seanterrill.com/2011/04/07/refractometer-fg-results/">Refractometer FG Results, Sean Terrill</a></li>
-    <li><a href="https://www-diversity-beer.translate.goog/2017/01/pocitame-nova-korekce-refraktometru.html?_x_tr_sch=http&_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=zh-TW&_x_tr_pto=wapp">"We count:New refractometer correction",translated</a></li>
+    <li id="ref-1"><a href="https://www.homebrewtalk.com/threads/temp-correction-formula-for-hydrometer.10684/post-100698">Temp Correction Formula for Hydrometer, HBT </a></li>
+    <li id="ref-2"><a href="https://youtu.be/RPfxf-6FcEg">BotB- Your Lyin Hydrometer, by Sui Generis Brewing </a></li>
+    <li id="ref-3">Brew By The Numbers,  Michael L. Hall, PhD, Zymurgy 1995 Summer</li>
+    <li id="ref-4"><a href="http://brainlubeonline.com/GasLawsBeer.html">The Math and Science of Carbonation </a></li>
+    <li id="ref-5"><a href="https://www.homebrewtalk.com/threads/better-carbonation-calculator-hopefully.630528/">Better Carbonation Calculator,HBT</a></li>
+    <li id="ref-6"><a href="http://www.woodlandbrew.com/2013/02/abv-without-og.html">ABV without OG</a></li>
+    <li id="ref-7"><a href="https://www-diversity-beer.translate.goog/2017/01/pocitame-nova-korekce-refraktometru.html?_x_tr_sch=http&_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=zh-TW&_x_tr_pto=wapp">"We count:New refractometer correction",translated</a></li>
 </ol>
+
+<div class="rounded border container">
+
+</div>
 
 </div>
    
