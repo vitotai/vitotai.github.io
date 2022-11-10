@@ -254,6 +254,11 @@
         <!--<div class="col-md-1">g</div>-->
     </div>
     <div class="row">
+        <div class="col-md-2">500ml瓶裝糖量</div>
+        <div class="col-md-2 text-right"><span id="prim-sugar50"></span> g</div>
+        <!--<div class="col-md-1">g</div>-->
+    </div>
+    <div class="row">
         <div class="col-md-2">600ml瓶裝糖量</div>
         <div class="col-md-2 text-right"><span id="prim-sugar60"></span> g</div>
         <!--<div class="col-md-1">g</div>-->
@@ -266,6 +271,84 @@
 
 </div>
 <!-- Priming-->
+
+<!--  Priming partial carbonated-->
+<div class="rounded container m-3" id="priming-partial-carbonated">
+    <div class="row" >
+        <div class="col-md"><h3><a class="" data-toggle="collapse" href="#ppcdescription" role="button" aria-expanded="false" aria-controls="ppcdescription">壓力發酵瓶發糖計算</a></h3></div>
+    </div>
+    <div class="collapse" id="ppcdescription">
+        <div class="card card-body">
+        在有壓力的情況下，溶於啤酒中的CO2會高於飽合濃度，所以必須根據溫度和平衡壓力計算濃度。溫度和平衡壓力為發酵結束時的數值。如果發酵結束後冷降，在頭部空間的CO2會溶入因為溫度降低而升高可溶性的啤酒，但這個速度不會很快。
+        相對之下，頭部空間的壓力下降比較多是因為溫度降低所導致的（PV=nRT），所以可以不考慮回溶的CO2。除非在低溫的時間很長，在裝瓶過程中因為震動及溫壓變化而散失的CO2可能還稍多一點。
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">目標氣體數</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="ppc-desire" class="form-control" placeholder="" aria-label="Desired Volume" aria-describedby="basic-addon2">
+        </div>        
+
+    </div>
+    <div class="row">
+        <div class="col-md-2"  data-toggle="tooltip" data-placement="right" title="通常是發酵結束時的溫度。">發酵結束溫度</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="ppc-temp" class="form-control" placeholder="" aria-label="Beer Temperature" aria-describedby="basic-addon2" value="20">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">&deg;C</span>
+            </div>
+        </div>         
+    </div>
+    <div class="row">
+        <div class="col-md-2">發酵結束壓力</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="ppc-pressure" class="form-control" placeholder="" aria-label="Beer Volume" aria-describedby="basic-addon2" value="15">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">psi</span>
+            </div>
+        </div>        
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">總啤酒量</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="ppc-beervol" class="form-control" placeholder="" aria-label="Beer Volume" aria-describedby="basic-addon2" value="20">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">L</span>
+            </div>
+        </div>        
+
+    </div>
+    <div class="row">
+        <div class="col-md-2" data-toggle="tooltip" data-placement="right" title="未加糖前啤酒已含有的CO2氣體數">已含CO2</div>
+        <div class="col-md-2 text-right"><span id="ppc-beerco2"></span> vol</div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">總糖量</div>
+        <div class="col-md-2 text-right"><span id="ppc-sugar"></span> g</div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">330ml瓶裝糖量</div>
+        <div class="col-md-2 text-right"><span id="ppc-sugar33"></span> g</div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">500ml瓶裝糖量</div>
+        <div class="col-md-2 text-right"><span id="ppc-sugar50"></span> g</div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">600ml瓶裝糖量</div>
+        <div class="col-md-2 text-right"><span id="ppc-sugar60"></span> g</div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">1公升瓶裝糖量</div>
+        <div class="col-md-2 text-right"><span id="ppc-sugar1l"></span> g</div>
+    </div>
+
+</div>
+<!-- Priming partial carbonated-->
+
 
 <!-- Pressure-->
 <div class="rounded container m-3" id="pressure">
@@ -468,6 +551,9 @@ var BrewMath = {
     priming(dv,t,bv){
         return 15.195* bv *0.2641722 * ( dv - 3.0378 + 0.050062 * (t * 9/5+32) - 0.00026555 * (t *9/5+32)*(t *9/5+32));
     },
+    primingCarbonated(dv,t,bv,psi){
+        return 15.195* bv *0.2641722 * ( dv - BrewMath.volume(t,psi));
+    },
     pressure(Tc,V){
         var T = Tc *9/5 +32;
         return -16.6999 - 0.0101059 * T + 0.00116512 * T*T + 0.173354 * T * V + 4.24267 * V - 0.0684226 *V*V;
@@ -536,19 +622,37 @@ function F2C(f) { return Math.round((f - 32) / 1.8 * 10) / 10; }
                 $("#ano-abv2").text(BrewMath.abv2(og,cG).toFixed(1));
             });
             //priming sugar
-            $("#priming input").change(function(){                
+            $("#priming input").change(function(){
                 var dv= parseFloat($("#prim-desire").val());
                 var T= parseFloat($("#prim-temp").val());
                 var V= parseFloat($("#prim-beervol").val());
                 var co2= BrewMath.co2InBeer(T);
                 var ps=BrewMath.priming(dv,T,V);
-                $("#prim-beerco2").text(co2.toFixed(1));
+                $("#prim-beerco2").text(co2.toFixed(2));
                 $("#prim-sugar").text(ps.toFixed(1));
                 $("#prim-sugar33").text(BrewMath.priming(dv,T,0.33).toFixed(1));
+                $("#prim-sugar50").text(BrewMath.priming(dv,T,0.5).toFixed(1));
                 $("#prim-sugar60").text(BrewMath.priming(dv,T,0.6).toFixed(1));
                 $("#prim-sugar1l").text(BrewMath.priming(dv,T,1).toFixed(1));
             });
 
+            //partial carbonated priming sugar
+            $("#priming-partial-carbonated input").change(function(){
+                var dv= parseFloat($("#ppc-desire").val());
+                var T= parseFloat($("#ppc-temp").val());
+                var P=parseFloat($("#ppc-pressure").val());
+                var V= parseFloat($("#ppc-beervol").val());
+                var co2= BrewMath.volume(T,P);
+                var ps=BrewMath.primingCarbonated(dv,T,V,P);
+                $("#ppc-beerco2").text(co2.toFixed(2));
+                $("#ppc-sugar").text(ps.toFixed(1));
+                $("#ppc-sugar33").text(BrewMath.primingCarbonated(dv,T,0.33,P).toFixed(1));
+                $("#ppc-sugar50").text(BrewMath.primingCarbonated(dv,T,0.5,P).toFixed(1));
+                $("#ppc-sugar60").text(BrewMath.primingCarbonated(dv,T,0.6,P).toFixed(1));
+                $("#ppc-sugar1l").text(BrewMath.primingCarbonated(dv,T,1,P).toFixed(1));
+            });
+
+            
             $("#pressure input").change(function(){                
                 if($(this).prop("id") == "pressure-temp" 
                     || $(this).prop("id") == "pressure-vol" ){
