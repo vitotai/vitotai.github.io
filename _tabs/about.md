@@ -4,5 +4,4 @@ icon: fas fa-info-circle
 order: 4
 ---
 
-> I write, or type to be precise, when I think. 
-{: .prompt-tip }
+這是我用來記錄、整理一些想法的地方。

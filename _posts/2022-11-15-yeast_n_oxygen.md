@@ -1,6 +1,6 @@
 ---
 id: 1592
-title: '自釀迷恩：酵母和氧氣'
+title: 自釀迷恩：酵母和氧氣
 date: '2022-11-16T14:50:35+00:00'
 author: Vito
 layout: post
