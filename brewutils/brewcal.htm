@@ -610,7 +610,7 @@ function F2C(f) { return Math.round((f - 32) / 1.8 * 10) / 10; }
                 var fg=parseFloat($("#abv-fg").val());
                 $("#abv-abv").text(BrewMath.abv(og,fg).toFixed(1));
                 $("#abv-abv2").text(BrewMath.abv2(og,fg).toFixed(1));
-                $("#abv-att").text(BrewMath.att(og,fg)).toFixed(1);
+                $("#abv-att").text(BrewMath.att(og,fg).toFixed(1));
             });
 
 
