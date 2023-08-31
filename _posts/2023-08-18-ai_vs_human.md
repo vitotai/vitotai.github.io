@@ -55,8 +55,16 @@ ChatGPT可以說是AI的一個哩程碑，自發表以來，各行各業都試�
 
 應該不到一個星期就會有結果的公布，我當然是看好Matthew的配方，不過口味一向是很見仁見智的問題，不管是那邊獲勝了，這都是一個有趣的主題。
 
+結果更新:
+
+Martin請了三位BJCP評審評分比較，另外也把酒寄給Matthew；Matthew"盲飲"比較，挑中了自己的配方；而BJCP的評審一致認為ChatGPT的比較好。其中的一個理由是ChatGPT的香蕉味比較明顯，而Matthew的配方結果香蕉味不太明顯，相對地丁香味比較明顯，讓評審認為偏比利時風味。從配方來看，Matthew很明顯的就會比較有丁香味：第一，他的糖化多了酸休止，第二，他強調要用3公升的擴培量，第三，他的發酵溫度稍微低一點（17.2&deg;C vs ChatGPT的 17.8&deg;C）。雖說如此，幾乎沒有香蕉味是有點奇怪。另外，Martin在釀Matthew和ChatGPT的配方時都有一點失誤：比重比預期低，ChatGPT的配方沒有處理，而Matthew的有加麥芽精，但煮沸完結果OG比預期高，理論上OG比高，香蕉味會比較高，但或許是酵母接種率比較高蓋過了這個因素。
+
+我的預測失準，不過仔細看了這三個影片，頗有獲益。建議對這個類型有興趣的人，可以仔細觀看，一定會對你設計配方有幫助。
+
+
 參考連結：
 - Brulosophy Show https://www.youtube.com/watch?v=JFWvRu1psyY
 - 配方： https://web.brewfather.app/share/0Ha9QnoPAnK2Xh
 - Meanbrew https://www.youtube.com/watch?v=2I4WYwiJy7E
 - 配方：  https://web.brewfather.app/share/gu4tO3fUgqiMHswRwgK0HIkY8EXvdt
+- 結果： https://youtu.be/F9WstUQwIW4?feature=shared
