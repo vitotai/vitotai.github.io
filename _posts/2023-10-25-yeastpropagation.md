@@ -76,4 +76,4 @@ Viability指的是酵母的活力，而Viability指的是酵母的數量：Vital
 - [Brewer's Friend: Yeast Pitch Rate and Starter Calculator](https://www.brewersfriend.com/yeast-pitch-rate-and-starter-calculator/)
 - [Brulosophy: EXBEERIMENT | Decated vs Full Yeast Starter](https://brulosophy.com/2016/10/10/decanted-vs-full-yeast-starter-exbeeriment-results/)
 - [EXBEERIMENT | YEAST PITCH RATE: VITALITY STARTER VS. VIABILITY STARTER IN A CZECH PALE LAGER](https://brulosophy.com/2016/08/15/yeast-pitch-rate-pt-4-vitality-starter-vs-viability-starter-in-a-lager-exbeeriment-results/)
--[Braukaiser.com: Stir speed and yeast growth](http://braukaiser.com/blog/blog/2013/03/25/stir-speed-and-yeast-growth/)
+- [Braukaiser.com: Stir speed and yeast growth](http://braukaiser.com/blog/blog/2013/03/25/stir-speed-and-yeast-growth/)
