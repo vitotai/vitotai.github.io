@@ -32,7 +32,7 @@ The logs will be put at the same place as the BPLog.htm file. Subdirectories can
 First open the log viewer page on your browser. The url should be something like
 
 ```
-https://<strong><em>your_name</em></strong>.github.io/BPLog.htm
+https://[your_name].github.io/BPLog.htm
 ```
 
 If you can see the empty log chart page. You are almost done.
@@ -42,18 +42,16 @@ If you can see the empty log chart page. You are almost done.
 Append log name after the URL above in this format
 
 ```
-https://your_name.github.io/BPLog.htm?log=<em><strong>[Your log name]</strong></em>
+https://your_name.github.io/BPLog.htm?log=[Your log name]
 ```
 
 If the log is put in a subdirectory, replace “/” by “%2F”. You will need to uriEncodeComponent special characters. If you don’t understand previous sentence, please don’t use special characters in the path and log file names.  
 eg. A log name “**nottingham.035.20171114**” in subfolder “**log**”
 
 ```
-https://vitotai.github.io/BPLog.htm?log=<strong>log</strong>%2F<strong>nottingham.035.20171114</strong>
+https://vitotai.github.io/BPLog.htm?log=log%2Fnottingham.035.20171114
 ```
 
-Copy the URL above to your browser or see it in a iFrame here:  
-\[advanced\_iframe securitykey=”2f6a474fe59ed866432591c2ec952134fcdf20b4″ src=”https://vitotai.github.io/BPLog.htm?log=log%2Fnottingham.035.20171114″ width=”100%” height=”600″\]
 
 # Step 6: Optional with selection range
 
