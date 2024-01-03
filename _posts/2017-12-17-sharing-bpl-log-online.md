@@ -55,12 +55,12 @@ https://vitotai.github.io/BPLog.htm?log=log%2Fnottingham.035.20171114
 To put the chart inside a page, you can use "iframe". For example:
 
 ```
-<iframe class="chart-frame" src="https://vitotai.github.io/BPLog.htm?log=log%2Fnottingham.035.20171114">
+<iframe class="chart-frame" src="http://www.vito.tw/brewlogs/BPLog.htm?log=log%2Fnottingham.035.20171114">
 ```
 
 The result should be:
 
-<iframe class="chart-frame" src="https://vitotai.github.io/BPLog.htm?log=log%2Fnottingham.035.20171114">
+<iframe class="chart-frame" src="http://www.vito.tw/brewlogs/BPLog.htm?log=log%2Fnottingham.035.20171114">
 
 Please note that there are some security concerns about iframe when the source is different from the page where the iframe resides.
 
