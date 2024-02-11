@@ -130,6 +130,11 @@ Kettle sour的建議流程：
 - 接種乳酸前短暫煮沸可以消滅大部分雜菌。
 - 避免接觸氧氣可以防止Bcillus subtitles等菌產生異戊酸，同時避免產生膜。
 
+# 記錄
+| --- | --- | ---- |
+|Costco無糖希臘式優格 | L. bulgaricus*, Streptococcus thermophilus, L. acidophilus*, Bifidobecterium latics, L. casei |  |
+|福樂頂極希臘式優格 | Streptococcus thermophilus, L. debrueckii, L. rhamnosus, L. Plantarum | |
+
 # FAQ
 
 - 要酸到多酸才適合？
