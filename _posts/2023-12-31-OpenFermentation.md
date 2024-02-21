@@ -52,13 +52,14 @@ categories:
 
 
 我收集了一些Open Fermentation相關的影片，有興趣可以看一下，看完應該就會很想試試看：
--[Youtube:Open Fermentation w/ John Palmer/Brulosophy SHow](https://www.youtube.com/watch?v=5oqy0UH6ifk)
--[Youtube:Open Fermentation Home Brewing/BrewinTV](https://www.youtube.com/watch?v=X9xT8DHOZFE)
--[Youtube:The Benefits of Open Fermentation/Craft Beer and Brewing (Vinnie Cilurzo)](https://www.youtube.com/watch?v=y4pA2nnX_mM)
--[Youtube:Celebration Ale Unleashed:Ken Grossman on Sierra Nevada Brewery's Craft Beer IPA Masterpiece (8:58左右)](https://www.youtube.com/watch?v=TYJkwOWXLWE)
+- [Youtube:Open Fermentation w/ John Palmer/Brulosophy SHow](https://www.youtube.com/watch?v=5oqy0UH6ifk)
+- [Youtube:Open Fermentation Home Brewing/BrewinTV](https://www.youtube.com/watch?v=X9xT8DHOZFE)
+- [Youtube:The Benefits of Open Fermentation/Craft Beer and Brewing (Vinnie Cilurzo)](https://www.youtube.com/watch?v=y4pA2nnX_mM)
+- [Youtube:Celebration Ale Unleashed:Ken Grossman on Sierra Nevada Brewery's Craft Beer IPA Masterpiece (8:58左右)](https://www.youtube.com/watch?v=TYJkwOWXLWE)
+
 
 Reference:
--[Open Fermentation everything you need to known](https://kegthat.com/blog/open-fermentation-everything-you-need-to-know/)
--[Open Fermentation- A process that continues to captivate some beer lovers](https://brewandhub.es/en/open-fermentation-a-process-that-continues-to-captivate-some-beer-lovers/)
--[Homebrewtalk.com: Open Fermentation in a plastic DIY coolship](https://www.homebrewtalk.com/threads/open-fermentation-in-a-plastic-diy-coolship.484727/page-2)
--[Escarpment labs:Decoding ester production in yeast Fermentation](https://escarpmentlabs.com/blogs/resources/decoding-ester-production-in-yeast-fermentation)
+- [Open Fermentation everything you need to known](https://kegthat.com/blog/open-fermentation-everything-you-need-to-know/)
+- [Open Fermentation- A process that continues to captivate some beer lovers](https://brewandhub.es/en/open-fermentation-a-process-that-continues-to-captivate-some-beer-lovers/)
+- [Homebrewtalk.com: Open Fermentation in a plastic DIY coolship](https://www.homebrewtalk.com/threads/open-fermentation-in-a-plastic-diy-coolship.484727/page-2)
+- [Escarpment labs:Decoding ester production in yeast Fermentation](https://escarpmentlabs.com/blogs/resources/decoding-ester-production-in-yeast-fermentation)
