@@ -31,7 +31,7 @@ categories:
     - 協會7號(kyokai no.7)「真澄酵母」: WLP705:使用最多的酵母，從本釀造到吟釀都可以用。
     - 協會7號(kyokai no.9)「熊本酵母」；WLP709，wyeast 4134:比較多用在吟釀，YK35(山田錦、熊本酵母、35%精米步合)是著名的得奬公式。
 - 酵母營養
-    - 氯化鎂 
+    - 浴塩(硫酸鎂) 
     - 氯化鉀（或食塩）
     - 氮源
 
@@ -69,7 +69,7 @@ categories:
 | kimoto | 生酛 |
 | moromi | もろみ(醪) |
 | hatsuzoe | 初添 |
-| odori | 踊 |
+| odori | 踊り |
 | nakazoe | 仲添 | 
 | tomezoe | 留添 |
 | nigori | 濁り |
