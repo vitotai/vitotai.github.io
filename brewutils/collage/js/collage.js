@@ -164,11 +164,10 @@ setPaper:function(paper){
     t.grid();
     t.images=[];
 },
-setCut:function(cut){
+setCut:function(col,row){
     var t=this;
-    var rowcol=cut.split('x');
-    t.col =parseInt(rowcol[0]);
-    t.row= parseInt(rowcol[1]);
+    t.col =col;
+    t.row= row;
 
     t.frame();
     t.grid();
@@ -202,8 +201,11 @@ $(function(){
         Canvas.setPaper($("#paper-size").val());
     });
 
-    $("#paper-cut").change(function(){
-        Canvas.setCut($("#paper-cut").val());
+    $("#paper-cut-row").change(function(){
+        Canvas.setCut(parseInt($("#paper-cut-col").val()),parseInt($("#paper-cut-row").val()));
+    });
+    $("#paper-cut-col").change(function(){
+        Canvas.setCut(parseInt($("#paper-cut-col").val()),parseInt($("#paper-cut-row").val()));
     });
 
     $("#paper-margin").change(function(){
