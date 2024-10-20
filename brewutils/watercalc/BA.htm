@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="zh">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-124244209-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-124244209-1');
+    </script>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>啤酒自釀小幫手</title>
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="js/asisstant.js" type="text/javascript"></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="py-5 text-center">
+            <h2>自釀小幫手</h2>
+            自釀小幫手可以幫助、預測目標水量及比重。
+        </div>
+        <h4><a data-toggle="collapse" href="#brew-preference" role="button" aria-expanded="true" aria-controls="brew-preference">設定及器材</a></h4>
+        <div class="card card-body collapse show" id="brew-preference">
+            <div class="row">
+                <div class="col-sm-2">
+                    單位
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-check form-check-inline">
+                        <input type="radio" class="form-check-input" name="metrics" id="unit-metrics" value=1>
+                        <label class="form-check-label" for="unit-metrics">公制</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="radio" class="form-check-input" name="metrics" id="unit-imperial" value=0>
+                        <label class="form-check-label" for="unit-imperial">美制</label>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-check form-check-inline">
+                        <input type="radio" class="form-check-input" name="gravity-unit" id="unit-sg" value=0>
+                        <label class="form-check-label" for="unit-sg">SG</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="radio" class="form-check-input" name="gravity-unit" id="unit-plato" value=1>
+                        <label class="form-check-label" for="unit-plato">Plato</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <label class="col-sm-3 col-form-label" for="mlt-deadspace">糖化過濾桶死角</label>
+                <input class="col-sm-2" type="text" size=6 id="mlt-deadspace">
+                <div class="col-sm-1 vol-unit text-left"><span class="imperial"> Gal</span><span class="metrics"> L</span></div>
+                <label class="col-sm-3 col-form-label" for="bk-deadspace">煮沸鍋死角</label>
+                <input class="col-sm-2" type="text" size=6 id="bk-deadspace">
+                <div class="col-sm-1 text-sm-left vol-unit"><span class="imperial"> Gal</span><span class="metrics"> L</span></div>
+            </div>
+            <div class="row">
+                <label class="col-sm-3 col-form-label" for="boiloff-rate">蒸發率</label>
+                <input class="col-sm-2" type="text" size=6 id="boiloff-rate">
+                <div class="vol-unit col-sm-1"><span class="imperial"> Gal/H</span><span class="metrics"> L/H</span></div>
+            </div>
+            <div class="row">
+                <label class="col-sm-3" for="grain-absorb">麥芽吸水率</label>
+                <input class="col-sm-2" type="text" size=6 id="grain-absorb">
+                <span class="col-sm-1 vol-unit"><span class="imperial"> Gal/lb</span><span class="metrics"> L/kg</span></span>
+                <label class="col-sm-3" for="hop-absorb">酒花吸水率</label>
+                <input class="col-sm-2" type="text" size=6 id="hop-absorb">
+                <span class="col-sm-1 vol-unit"><span class="imperial"> 加侖/磅</span><span class="metrics"> L/Kg</span></span>
+            </div>
+            <div class="row">
+                <label class="col-sm-3" for="wort-boil-exp-rate">沸騰麥汁膨脹率</label>
+                <input class="col-sm-2" type="text" size=4 id="wort-boil-exp-rate">
+                <div class="col-sm-1">%</div>
+                <label class="col-sm-3" for="wort-mash-exp-rate">糖化麥汁膨脹率</label>
+                <input class="col-sm-2" type="text" size=4 id="wort-mash-exp-rate">
+                <div class="col-sm-1">%</div>
+            </div>
+        </div>
+        <h4><a data-toggle="collapse" href="#brew-recipe" role="button" aria-expanded="true" aria-controls="brew-recipe">配方</a></h4>
+        <div class="card card-body collapse show" id="brew-recipe">
+            <div class="row">
+                <label class="col-sm-3" for="batch-size">批次大小</label>
+                <input class="col-sm-2" type="text" size=6 id="batch-size">
+                <span class="col-sm-1 vol-unit"><span class="imperial"> Gal</span><span class="metrics"> L</span></span>
+                <label class="col-sm-3" for="boil-time">煮沸時間</label>
+                <input class="col-sm-2" type="text" size=6 id="boil-time">
+                <span class="col-sm-1">分</span>
+            </div>
+            <div class="row">
+                <label class="col-sm-3" for="grain-amount">麥芽量</label>
+                <input class="col-sm-2" type="text" size=6 id="grain-amount">
+                <span class="col-sm-1 weight-unit"><span class="imperial"> lb</span><span class="metrics"> kg</span></span>
+                <label class="col-sm-3" for="hop-amount">酒花量</label>
+                <input class="col-sm-2" type="text" size=6 id="hop-amount">
+                <span class="col-sm-1 weight-unit-2"><span class="imperial"> oz</span><span class="metrics"> g</span></span>
+            </div>
+            <div class="row">
+                <label class="col-sm-3" for="bh-efficiency">整體效率</label>
+                <input class="col-sm-2" type="text" size=6 id="bh-efficiency">
+                <span class="col-sm-1">%</span>
+                <label class="col-sm-3" for="target-og">目標OG:</label>
+                <input class="col-sm-2 gravity-input" type="text" size=6 id="target-og">
+                <span class="col-sm-1"><span class="plato-unit">&deg;P</span></span>
+            </div>
+
+        </div>
+        <h4><a data-toggle="collapse" href="#brew-mash" role="button" aria-expanded="true" aria-controls="brew-mash">糖化/洗糖</a></h4>
+        <div class="card card-body collapse show" id="brew-mash">
+            <div class="row">
+                <div class="col-sm-2 form-check form-check-inline">
+                    <input type="radio" class="form-check-input" name="striking-val-type" id="wm-ratio" value=0>
+                    <label class="form-check-label" for="wm-ratio">水麥比</label>
+                </div>
+                <input class="col-sm-2" type="text" size=6 id="mash-thickness">
+                <span class="col-sm-1 vol-unit"><span class="imperial"> qt/lb</span><span class="metrics"> L/kg</span></span>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 form-check form-check-inline">
+                    <input type="radio" class="form-check-input" name="striking-val-type" id="fixed-volume" value=1>
+                    <label class="form-check-label" for="fixed-volume">固定水量</label>
+                </div>
+                <input class="col-sm-2" type="text" size=6 id="striking-volume">
+                <span class="col-sm-1 vol-unit"><span class="imperial"> Gal</span><span class="metrics"> L</span></span>
+            </div>
+            <div class="row mt-2">
+                <div class="col-sm-6">
+                    <div class="form-check form-check-inline">
+                        <input type="radio" class="form-check-input" name="sparge-type" id="no-sparge" value=0>
+                        <label class="form-check-label" for="no-sparge">不洗糖</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="radio" class="form-check-input" name="sparge-type" id="batch-sparge" value=1>
+                        <label class="form-check-label" for="batch-sparge">批次洗糖</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="radio" class="form-check-input" name="sparge-type" id="fly-sparge" value=2>
+                        <label class="form-check-label" for="fly-sparge">連續洗糖</label>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <label for="batch-spareg-number">批次洗糖次數</label>
+                    <input type="text" size=2 id="batch-sparge-number">
+                </div>
+            </div>
+
+        </div>
+        <hr>
+        <table class="table table-sm ml-2 mr-2">
+            <thead>
+                <tr>
+                    <th>全部用水</th>
+                    <th>糖化用水</th>
+                    <th>洗糖用水</th>
+                    <th>每批次洗糖用水</th>
+                </tr>
+            </thead>
+
+            <tr>
+                <td><span id="total-water"></span> <span class="vol-unit"><span class="imperial"> Gal</span><span class="metrics"> L</span></span>
+                </td>
+                <td><span id="mash-water"></span> <span class="vol-unit"><span class="imperial"> Gal</span><span class="metrics"> L</span></span>
+                </td>
+                <td><span id="sparge-water"></span ><span class="vol-unit"><span class="imperial"> Gal</span><span class="metrics"> L</span></span>
+                </td>
+                <td><span id="batch-sparge-water"></span ><span class="vol-unit"><span class="imperial"> Gal</span><span class="metrics"> L</span></span>
+                </td>
+            </tr>
+        </table>
+        <hr>
+        <table class="table table-sm ml-4 mr-4">
+            <tbody class="table-hover">
+                <tr>
+                    <th>數值</th>
+                    <th>最大值</th>
+                    <th>預期值</th>
+                    <th>量測值</th>
+                    <th>推測值</th>
+                </tr>
+                <tr class="fwcalrow">
+                    <th>第一道麥汁比重</th>
+                    <td><span id="max-firstwort-gravity"></span><span class="plato-unit">&deg;P</span> </td>
+                    <td><span id="exp-firstwort-gravity"></span><span class="plato-unit">&deg;P</span></td>
+                    <td><input class="gravity-input" type="text" size=6 id="i-fw-sg" dlg-title="First Wort Gravity">
+                        <span class="plato-unit">&deg;P</span></td>
+                    <td><span id="pro-firstwort-gravity"></span><span class="plato-unit">&deg;P</span></td>
+                </tr>
+                <tr class="fwcalrow">
+                    <th><span data-toggle="tooltip" data-placement="right" title="膨脹體積">第一道麥汁量 *</span></th>
+                    <td></td>
+                    <td><span id="exp-firstwort-vol"></span><span class="vol-unit"><span class="imperial">  Gal</span><span class="metrics"> L</span></span>
+                    </td>
+                    <td><input type="text" size=6 id="i-fw-vol"></td>
+                    <td><span id="pro-firstwort-vol"></span><span class="vol-unit"><span class="imperial">  Gal</span><span class="metrics"> L</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>煮沸前比重</th>
+                    <td><span id="max-preboil-gravity"></span><span class="plato-unit">&deg;P</span></td>
+                    <td><span id="exp-preboil-gravity"></span><span class="plato-unit">&deg;P</span></td>
+                    <td><input class="gravity-input" type="text" size=6 id="i-pb-sg" dlg-title="Pre-boil Gravity"><span class="plato-unit">&deg;P</span></td>
+                    <td><span id="pro-preboil-gravity"></span><span class="plato-unit">&deg;P</span></td>
+                </tr>
+                <tr>
+                    <th><span data-toggle="tooltip" data-placement="right" title="膨脹體積"> 煮沸前麥汁量 *</span></th>
+                    <td></td>
+                    <td><span id="exp-preboil-vol"></span><span class="vol-unit"><span class="imperial">  Gal</span><span class="metrics"> L</span></span>
+                    </td>
+                    <td><input type="text" size=6 id="i-pb-vol"></td>
+                    <td><span id="pro-preboil-vol"></span><span class="vol-unit"><span class="imperial">  Gal</span><span class="metrics"> L</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>原始比重(OG)</th>
+                    <td><span id="max-original-gravity"></span><span class="plato-unit">&deg;P</span></td>
+                    <td><span id="exp-original-gravity"></span><span class="plato-unit">&deg;P</span></td>
+                    <td><input class="gravity-input" type="text" size=6 id="i-final-sg" dlg-title="Original Gravity"><span class="plato-unit">&deg;P</span></td>
+                    <td><span id="pro-original-gravity"></span><span class="plato-unit">&deg;P</span></td>
+                </tr>
+                <tr>
+                    <th><span data-toggle="tooltip" data-placement="right" title="膨脹體積"> 煮沸後麥汁量 *</span></th>
+                    <td></td>
+                    <td><span id="exp-postboil-vol"></span><span class="vol-unit"><span class="imperial">  Gal</span><span class="metrics"> L</span></span>
+                    </td>
+                    <td><input type="text" size=6 id="i-final-vol"></td>
+                    <td><span id="pro-postboil-vol"></span><span class="vol-unit"><span class="imperial">  Gal</span><span class="metrics"> L</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>進發酵桶麥汁量 </th>
+                    <td></td>
+                    <td><span id="exp-fermenter-vol"></span><span class="vol-unit"><span class="imperial">  Gal</span><span class="metrics"> L</span></span>
+                    </td>
+                    <td><input type="text" size=6 id="i-fermenter-vol"></td>
+                    <td><span id="pro-fermenter-vol"></span><span class="vol-unit"><span class="imperial">  Gal</span><span class="metrics"> L</span></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>BrewHouse效率</th>
+                    <td>100%</td>
+                    <td><span id="exp-bh-efficiency"></span>%</td>
+                    <td></td>
+                    <td><span id="pro-bh-efficiency"></span>%</td>
+                </tr>
+                <tr>
+                    <th>轉化效率</th>
+                    <td>100%</td>
+                    <td><span id="exp-extract-efficiency"></span>%</td>
+                    <td></td>
+                    <td><span id="pro-extract-efficiency"></span>%</td>
+                </tr>
+                <tr>
+                    <th>調整為目標OG</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr id=adjust-dilution class=stick-og>
+                    <th></th>
+                    <td>加水</td>
+                    <td><span id="adjusted-added-water"></span><span class="vol-unit"><span class="imperial"> gal</span><span class="metrics"> L</span></td>
+                    <td><span data-toggle="tooltip" data-placement="right" title="膨漲體積">新煮沸後水量*</span><br> 入發酵桶量</td>
+                    <td><span id="adjusted-volume"></span><span class="vol-unit"><span class="imperial"> gal</span><span class="metrics"> L</span> <br> <span id="adjusted-ferm-volume"></span><span class="vol-unit"><span class="imperial"> gal</span><span class="metrics"> L</span></td>
+                </tr>
+
+                <tr id=adjust-dme class=stick-og>
+                    <th></th>
+                    <td>1:加麥芽精</td>
+                    <td><span id="adjusted-added-dme"></span><span class="imperial"> oz</span><span class="metrics"> g</span></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+                <tr id=adjust-boil class=stick-og>
+                    <th></th>
+                    <td>2:增加煮沸時間</td>
+                    <td><span id="adjusted-boil-time"></span>分鐘</td>
+                    <td><span data-toggle="tooltip" data-placement="right" title="膨漲體積">新煮沸後水量*</span><br> 入發酵桶量</td>
+                    <td><span id="adjusted-shrink-volume"></span><span class="vol-unit"><span class="imperial"> Gal</span><span class="metrics"> L </span> <br> <span id="adjusted-shrink-ferm-volume"></span><span class="vol-unit"><span class="imperial"> gal</span>
+                        <span class="metrics"> L </span>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <hr>
+        <h4>說明</h4>
+        <table class="table table-sm ml-4 mr-4">
+            <tr>
+                <th style="width: 16.66%">糖化過濾桶死角</th>
+                <td>BIAB的話，這個值為零(0)。</td>
+            </tr>
+            <tr>
+                <th>煮沸鍋死角</th>
+                <td>煮沸完後無法進入發酵桶的量，如果沒用酒花簍，也就是冷熱渣加酒花殘餘的量。</td>
+            </tr>
+            <tr>
+                <th>蒸發率</th>
+                <td>以每小時計。</td>
+            </tr>
+            <tr>
+                <th>麥芽吸水率</th>
+                <td>這個值視系統及麥芽會有所不同； 不確定可以用0.125 Gal/lb 或1.042 L/kg。</td>
+            </tr>
+            <tr>
+                <th>酒花吸水率</th>
+                <td>如果煮沸完不取出酒花，則酒花吸收的麥汁量算在煮沸鍋死角中，可以把它設成零(0)。否則可以試試看 0.5584 Gal/lb 或 4.66 L/kg。</td>
+            </tr>
+            <tr>
+                <th>沸騰麥汁膨脹率</th>
+                <td>相較於室溫的水膨脹率，通常是4%。</td>
+            </tr>
+            <tr>
+                <th>糖化麥汁膨脹率</th>
+                <td>相較於室溫的水膨脹率，通常是3%。 </td>
+            </tr>
+            <tr>
+                <th>批次大小</th>
+                <td>進入發酵桶的麥汁量。 </td>
+            </tr>
+            <tr>
+                <th>煮沸時間</th>
+                <td>用來計算總蒸發量。 </td>
+            </tr>
+            <tr>
+                <th>麥芽量</th>
+                <td>麥芽量改變，則目標OG也會跟著變。麥芽最大萃取率以1.036計算。</td>
+            </tr>
+            <tr>
+                <th>酒花量</th>
+                <td>酒花量</td>
+            </tr>
+            <tr>
+                <th>整體效率</th>
+                <td>Brew House Efficiency.更改整體效率，則目標OG也會跟著變。</td>
+            </tr>
+
+            <tr>
+                <th>目標OG</th>
+                <td>更改目標OG，則整體效率也會跟著變。</td>
+            </tr>
+            <tr>
+                <th>水麥比</th>
+                <td>用來話算糖化水量，如果不洗糖，這個值會被忽略。</td>
+            </tr>
+
+            <tr>
+                <th>洗糖類型</th>
+                <td>注意：由於連續洗糖的效率無法估計，因此用3批次洗煻的方式來計算連續洗糖的效率。實際效率可能更好。</td>
+            </tr>
+            <tr>
+                <th>批次洗糖次數</th>
+                <td>最大值是3，超過3也是用3計算。</td>
+            </tr>
+        </table>
+        <hr>
+        <h4>計算說明</h4>
+        <table class="table table-sm ml-4 mr-4">
+            <tr>
+                <th style="width: 16.66%">全部用水 </th>
+                <td>批次大小(進發酵桶量) + 蒸發 + 麥芽吸收 + 酒化吸收 + 煮沸鍋死角（或冷熱渣） + 糖化過濾桶死角 </td>
+            </tr>
+            <tr>
+                <th>糖化用水</th>
+                <td>水麥比 * 麥芽量 + 糖化過濾桶死角 </td>
+            </tr>
+            <tr>
+                <th>洗糖用水 </th>
+                <td>全部用水 - 糖化用水 </td>
+            </tr>
+            <tr>
+                <th>最大第一道麥汁比重</th>
+                <td> 最高可萃取糖(gravity points) / 糖化用水</td>
+            </tr>
+            <tr>
+                <th>最大煮沸前比重 </th>
+                <td> 用最大第一道麥汁比重，及最佳化3批次洗糖估算的比重。</td>
+            </tr>
+            <tr>
+                <th>最大原始比重</th>
+                <td> 最高可萃取糖(gravity points) / 批次量</td>
+            </tr>
+            <tr>
+                <th>預期第一道麥汁比重</th>
+                <td>由預期原始比重（OG）回推預期煮沸前比重，回推第一道麥汁比重能達到預期煮沸前比重的值。</td>
+            </tr>
+            <tr>
+                <th>預期第一道麥汁量</th>
+                <td>糖化用水 - 麥芽吸收- M 糖化過濾桶死角； 此顯示的值為膨脹後體積。</td>
+            </tr>
+            <tr>
+                <th>預期煮沸前比重</th>
+                <td>由目標OG反推的比重。</td>
+            </tr>
+            <tr>
+                <th>預期煮沸前麥汁量</th>
+                <td>預期煮沸後麥汁量 + 蒸發量；此顯示的值為膨脹後體積。</td>
+            </tr>
+            <tr>
+                <th>預期煮沸後比重</th>
+                <td>即目標比重（OG）。</td>
+            </tr>
+            <tr>
+                <th>預期煮沸後麥汁量</th>
+                <td>批次量 + 煮沸鍋死角（或冷熱渣）+ 酒花吸收量 ; 此顯示的值為膨脹後體積。</td>
+            </tr>
+
+            <tr>
+                <th>推測比重/麥汁量</th>
+                <td>根據己輸入的值來推算結果；如果值未輸入，使用預期值。</td>
+            </tr>
+
+        </table>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="dlg_sginput" tabindex="-1" role="dialog" aria-labelledby="dlg_sginput_label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="dlg_sginput_label">Input Gravity</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+                </div>
+                <div class="modal-body">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="hydrometer-tab" data-toggle="tab" href="#hydrometer" role="tab" aria-controls="hydrometer" aria-selected="true">Hydrometer</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="refractometer-tab" data-toggle="tab" href="#refractometer" role="tab" aria-controls="refractometer" aria-selected="false">Refractometer</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="hydrometer" role="tabpanel" aria-labelledby="hydrometer-tab">
+                            <div class="container m-2">
+                                <div class="row">
+                                    <label class="col-sm-4">Reading</label> <input class="hydro-input" type=text size=4 id=hydro-reading> <span class="plato-unit">&deg;P</span>
+                                </div>
+                                <div class="row">
+                                    <label class="col-sm-4">Temperature</label><input class="hydro-input" type=text size=4 value=20 id=hydro-temp> <span class="temp-unit"><span class="metrics">&deg;C </span><span class="imperial">&deg;F</span></span>
+                                </div>
+                                <div class="row">
+                                    <label class="col-sm-4">Corrected at</label><input class="hydro-input" type=text size=4 value=15 id=corrected-temp> <span class="temp-unit"><span class="metrics">&deg;C </span><span class="imperial">&deg;F</span></span>
+                                </div>
+                                <div class="row">
+                                    <span class="col-sm-4"> Corrected:</span> <span id=hydro-value></span> <span class="plato-unit">&deg;P</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="refractometer" role="tabpanel" aria-labelledby="refrac-tab">
+                            <div class="container  m-2">
+                                <div class="row">
+                                    <label class="col-sm-4">Reading</label> <input type=text size=4 id=refrac-reading class="refrac-input">
+                                </div>
+                                <div class="row">
+                                    <label class="col-sm-4">Correction</label><input type=text size=4 value="1.0" id=refrac-correction class="refrac-input">
+                                </div>
+                                <div class="row">
+                                    <span class="col-sm-4">Corrected:</span> <span id=refrac-value></span> <span class="plato-unit">&deg;P</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>
+        window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')
+    </script>
+    <script src="bootstrap/js/bootstrap.bundle.js"></script>
+
+    <script>
+        $(function() {
+            //            $("#accordion").accordion();
+            BrewAssistant.init();
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+
+</body>
+
+</html>
