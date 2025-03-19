@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Vito Tai">
+    <title>Collage Generator</title>    
+
+    <!-- Bootstrap core CSS -->
+    <!--
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    -->
+
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Favicons -->
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+
+/* layout.css Style */
+.upload-drop-zone {
+  height: 200px;
+  border-width: 2px;
+  margin-bottom: 20px;
+}
+
+/* skin.css Style*/
+.upload-drop-zone {
+  color: #ccc;
+  border-style: dashed;
+  border-color: #ccc;
+  line-height: 200px;
+  text-align: center
+}
+.upload-drop-zone.drop {
+  color: #222;
+  border-color: #222;
+} 
+.card.selected{
+    border-color:rgb(226, 81, 81);
+    border-width: 6px;
+}
+.moving{
+  position: absolute;
+  z-index: 1000;
+  opacity: 0.5;
+}
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="css/collage.css" rel="stylesheet">
+  </head>
+  <body>
+    
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Collage</a>
+</header>
+
+<div class="container-fluid" id="page">
+  <div class="row">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse" style="overflow-y: scroll;">
+      <div class="position-sticky pt-3">
+        <ul class="nav flex-column" id="thumbmail-list">
+          <li class="nav-item p-1">
+            <div class="card" style="width: 246px;">
+                <img class="card-img-top thumbnail" src="" alt="thumbmail">
+            </div>
+        </li>
+        </ul>
+
+
+        <form action="" method="post" enctype="multipart/form-data" id="js-upload-form">
+            <div class="form-inline d-none">
+              <div class="form-group">
+                <input type="file" name="files[]" id="js-upload-files" multiple>
+              </div>
+              <button type="submit" class="btn btn-sm btn-primary" id="js-upload-submit">Upload files</button>
+            </div>
+          </form>
+
+        <!-- Drop Zone -->
+        <div class="upload-drop-zone" id="drop-zone">
+          Just drag and drop files here
+        </div>
+      
+      </div>
+    </nav>
+
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <div class="d-flex flex-row form-group">
+
+            <select id="paper-size" class="form-select mx-2" aria-label="Default select example">
+              <option value="a4" selected>A4</option>
+              <option value="letter">Letter</option>
+            </select>
+            <select id="paper-cut-col" class="form-select mx-2" aria-label="Default select example">
+              <option value="1">1</option>
+              <option value="2"  selected>2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+            </select>
+            X
+            <select id="paper-cut-row" class="form-select mx-2" aria-label="Default select example">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4"  selected>4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+            </select>
+
+          </div>
+
+            <div class="d-flex flex-row form-group">
+
+           <div class="input-group mx-1">
+              <span class="input-group-text" id="basic-addon1">Page Margin</span>
+              <input id="paper-margin" type="text" size="6" class="form-control" placeholder="top right bottom left" aria-label="top" aria-describedby="basic-addon1">
+              <span class="input-group-text">mm</span>
+            </div>            
+
+            <div class="input-group mx-1">
+              <span class="input-group-text" id="basic-addon2">Label Margin</span>
+              <input id="label-margin" type="text" class="form-control" placeholder="top right bottom left" aria-label="top" aria-describedby="basic-addon2">
+              <span class="input-group-text">mm</span>
+            </div>            
+
+          </div>
+
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <div class="btn-group me-2">
+            <button type="button" class="btn btn-sm btn-outline-secondary" id="export-pdf">Export</button>
+          </div>
+        </div>
+      </div>
+        <div class="d-flex justify-content-center" style="background-color: #ddd;">
+        <canvas class="my-4" id="paper" width="420px" height="594px"></canvas>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+
+<!--
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+-->
+
+<script src="lib/jquery-3.6.0.min.js"></script>
+<script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="lib/jspdf/jspdf.min.js"></script>
+
+<script src="js/collage.js"></script>
+
+</body>
+</html>
+
