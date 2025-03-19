@@ -33,7 +33,7 @@ categories:
     - 協會7號(kyokai no.9)「熊本酵母」；WLP709，wyeast 4134:比較多用在吟釀，YK35(山田錦、熊本酵母、35%精米步合)是著名的得奬公式。
 - 酵母營養
     - 浴塩(硫酸鎂) 
-    - 氯化鉀（或食塩）
+    - 氯化鉀（Morton’s Salt Substitute）
     - 氮源
 
 流程：
