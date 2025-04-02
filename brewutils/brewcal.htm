@@ -354,6 +354,103 @@
 </div>
 <!-- Priming partial carbonated-->
 
+<!-- krausening/Speise-->
+<div class="rounded container m-3" id="krausening">
+    <div class="row" >
+        <div class="col-md"><h3><a class="" data-toggle="collapse" href="#krausendescription" role="button" aria-expanded="false" aria-controls="krausendescription">Krausening/Speise計算</a></h3></div>
+    </div>
+    <div class="collapse" id="krausendescription">
+        <div class="card card-body">
+        使用發酵到高泡期(Krausening)或未發酵麥汁來做Carbonation。Krausening和Speise的計算是一樣的，因為兩者的分別是前者多了發酵中的酵母，而比重是變化中的。雖然定義上加入了酵母的麥汁
+        就算是啤酒，為了方便，一律稱為麥汁。如果是Krausening，<em>麥汁比重</em>就是當時的比重；如果是Speise就是OG。假設krausen的溫度和啤酒溫度一樣。
+        參考：<em><a href="https://braukaiser.com/wiki/index.php?title=Kraeusening">Braukaiser's article on Krausening</a></em>
+        氣體數參考：
+        <ul>
+            <li>高： 3.0~。小麥啤酒、比利時系、商業拉格類的大都是高氣體數的，甚至有高到5個氣體數的。要注意不確定瓶子的耐壓或回收使用的瓶子不建議超過3個氣體數。</li>
+            <li>中： 2.5(2.4~2.6)。大部分的APA/IPA，德式拉格類的。</li>
+            <li>低： 2.0(1.2~2.2)。Porter,Stout及英式類型的。</li>
+        </ul>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">目標氣體數</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="krausen-desire" class="form-control" placeholder="" aria-label="Desired Volume" aria-describedby="basic-addon2">
+        </div>        
+
+    </div>
+    <div class="row">
+        <div class="col-md-2"  data-toggle="tooltip" data-placement="right" title="通常是發酵結束時的溫度，如果發酵結束後溫度有上升，要用最高溫。">啤酒溫度</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="krausen-temp" class="form-control" placeholder="" aria-label="Beer Temperature" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">&deg;C</span>
+            </div>
+        </div>        
+        
+    </div>
+    <div class="row">
+        <div class="col-md-2">啤酒量</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="krausen-beervol" class="form-control" placeholder="" aria-label="原始啤酒量" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">L</span>
+            </div>
+        </div>        
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">啤酒加麥汁總量</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="krausen-totalvol" class="form-control" placeholder="" aria-label="包括加入麥汁的總啤酒量" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">L</span>
+            </div>
+        </div>        
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">麥汁比重</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="krausen-gravity" class="form-control" placeholder="" aria-label="麥汁的比重" aria-describedby="basic-addon2" value="1.048">
+        </div>        
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">麥汁最終比重/FG</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="krausen-fg" class="form-control" placeholder="" aria-label="麥汁的FG" aria-describedby="basic-addon2" value="1.012">
+        </div>        
+    </div>
+
+    <div class="row">
+        <div class="col-md-2"> 總麥汁量</div>
+        <div class="col-md-2 text-right"><span id="krausen-vol"></span> L</div>
+    </div>
+    <div class="row">
+        <div class="col-md-2" data-toggle="tooltip" data-placement="right" title="未加糖前啤酒已含有的CO2氣體數">已含CO2</div>
+        <div class="col-md-2 text-right"><span id="krausen-beerco2"></span> vol</div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">330ml瓶麥汁量</div>
+        <div class="col-md-2 text-right"><span id="krausen-sugar33"></span> ml</div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">500ml瓶麥汁量</div>
+        <div class="col-md-2 text-right"><span id="krausen-sugar50"></span> ml</div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">600ml瓶麥汁量</div>
+        <div class="col-md-2 text-right"><span id="krausen-sugar60"></span> ml</div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">1公升瓶麥汁量</div>
+        <div class="col-md-2 text-right"><span id="krausen-sugar1l"></span> ml</div>
+    </div>
+
+</div>
+<!-- krausening/Speise-->
 
 <!-- Pressure-->
 <div class="rounded container m-3" id="pressure">
@@ -566,6 +663,15 @@ var BrewMath = {
     volume(T,P){
         var Tf = T * 9/5 +32;
         return (P + 14.695 )* ( 0.01821 + 0.090115 * Math.exp((32-Tf)/43.11)) - 0.003342;
+    },
+    krausen(dv,t,tvol,sg,fg){ // total volume
+        var kv=dv - 3.0378 + 0.050062 * (t * 9/5+32) - 0.00026555 * (t *9/5+32)*(t *9/5+32);
+        return 1.95 * tvol * kv /(sg -fg)/1000;
+    },
+    krausenBv(dv,t,bv,sg,fg){ // beer volume
+        var kv=dv - 3.0378 + 0.050062 * (t * 9/5+32) - 0.00026555 * (t *9/5+32)*(t *9/5+32);
+        var R = 1.95 * kv /(sg -fg)/1000;
+        return R/(1-R) * bv;
     }
 };
 
@@ -656,6 +762,48 @@ function F2C(f) { return Math.round((f - 32) / 1.8 * 10) / 10; }
                 $("#ppc-sugar50").text(BrewMath.primingCarbonated(dv,T,0.5,P).toFixed(1));
                 $("#ppc-sugar60").text(BrewMath.primingCarbonated(dv,T,0.6,P).toFixed(1));
                 $("#ppc-sugar1l").text(BrewMath.primingCarbonated(dv,T,1,P).toFixed(1));
+            });
+
+            //krausening/speise
+            $("#krausening input").change(function(){
+                var dv= parseFloat($("#krausen-desire").val());
+                var T= parseFloat($("#krausen-temp").val());
+                var sg= parseFloat($("#krausen-gravity").val());
+                var fg= parseFloat($("#krausen-fg").val());
+                if(isNaN(dv) || isNaN(T) || isNaN(sg) || isNaN(fg)) return;
+
+                var co2= BrewMath.co2InBeer(T);
+                $("#krausen-beerco2").text(co2.toFixed(2));
+
+                var Vk;
+                if($(this).prop("id") == "krausen-beervol"){
+                    // beervolume
+                    var Vb= parseFloat($("#krausen-beervol").val());
+                    Vk=BrewMath.krausenBv(dv,T,Vb,sg,fg);
+                    // update total volume
+                    $("#krausen-totalvol").val((Vk + Vb).toFixed(2));
+                }else if($(this).prop("id") == "krausen-total"){
+                    // total volume
+                    var Vt= parseFloat($("#krausen-totalvol").val());
+                    Vk=BrewMath.krausen(dv,T,Vt,sg,fg);
+                    // update Beer Volume
+                    $("#krausen-beervol").val((Vt - Vk).toFixed(2));
+                }else{
+                    // other value changes. but beer or total volume might have been input
+                    var Vb= parseFloat($("#krausen-beervol").val());
+                    if(!isNaN(Vb)){
+                        Vk=BrewMath.krausenBv(dv,T,Vb,sg,fg);
+                        // update total volume
+                        $("#krausen-totalvol").val((Vk + Vb).toFixed(2));
+                    }
+                }
+
+                if(! isNaN(Vk)) $("#krausen-vol").text(Vk.toFixed(2));
+
+                $("#krausen-sugar33").text(BrewMath.krausen(dv,T,330,sg,fg).toFixed(1));
+                $("#krausen-sugar50").text(BrewMath.krausen(dv,T,500,sg,fg).toFixed(1));
+                $("#krausen-sugar60").text(BrewMath.krausen(dv,T,600,sg,fg).toFixed(1));
+                $("#krausen-sugar1l").text(BrewMath.krausen(dv,T,1000,sg,fg).toFixed(1));
             });
 
             
