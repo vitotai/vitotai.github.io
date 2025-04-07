@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="zh">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>清酒計算器</title>
+    <!-- Bootstrap core CSS -->
+    <link href="watercalc/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+<div class="container p-3">
+<!-- Temperature calibration-->
+<div class="rounded container m-3" id="hydrometer-collection">
+    <div class="row" >
+        <div class="col-md"><h3>
+            <a class="" data-toggle="collapse" href="#hcdescription" role="button" aria-expanded="false" aria-controls="hcdescription">
+            比重計溫度修正
+            </a></h3></div>
+    </div>
+    <div class="collapse" id="hcdescription">
+        <div class="card card-body">
+         比重計校正溫度通常是20&deg;C或15&degC，通常在刻度最下方有標示。參考：<a href="https://www.homebrewtalk.com/threads/temp-correction-formula-for-hydrometer.10684/post-100698">Temp Correction Formula for Hydrometer, HBT </a>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-2">比重計讀數</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="hc-reading" class="form-control" placeholder="" aria-label="hydrometer reading" aria-describedby="basic-addon2" value="1.0">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">品溫</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="hc-temp" class="form-control" placeholder="" aria-label="temperature" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">&deg;C</span>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-2" data-toggle="tooltip" data-placement="right" title="比重計的校正溫度，通常是15或20&deg;C，比重計上會標示。" >校正溫度</div>
+
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="hc-ctemp" class="form-control" placeholder="" aria-label="Correction temperature" aria-describedby="basic-addon2" value="20">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">&deg;C</span>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-2">比重修正值</div>
+        <div class="col-md-1 text-right"><span id="hc-corrected-sg"></span></div>
+        <div class="col-md-1"></div>
+    </div>
+</div>
+<!-- Temperature calibration-->
+
+<!-- 比重/SMV/波美-->
+<div class="rounded container m-3" id="gravity-exchange">
+    <div class="row" >
+        <div class="col-md"><h3>
+            <a class="" data-toggle="collapse" href="#gxdescription" role="button" aria-expanded="false" aria-controls="gxdescription">
+                比重/日本酒度/波美
+            </a></h3></div>
+    </div>
+    <div class="collapse" id="gxdescription">
+        <div class="card card-body">
+            三種比重互相換算。
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-2">比重/SG</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="gx-sg" class="form-control" placeholder="" aria-label="hydrometer reading" aria-describedby="basic-addon2" value="1.021">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">日本酒度/SMV</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="gx-smv" class="form-control" placeholder="" aria-label="temperature" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">&deg;</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">波美</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="gx-bm" class="form-control" placeholder="" aria-label="temperature" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">&deg;</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!--  比重/SMV/波美-->
+
+
+
+<!-- ABV -->
+<div class="rounded container m-3" id="abv-estimation">
+    <div class="row" >
+        <div class="col-md"><h3>
+            <a class="" data-toggle="collapse" href="#gxdescription" role="button" aria-expanded="false" aria-controls="gxdescription">
+                用折射儀和比重計讀數估算ABV
+            </a></h3></div>
+    </div>
+    <div class="collapse" id="gxdescription">
+        <div class="card card-body">
+            用折射儀和比重計讀數估算ABV。
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-2">比重/SG</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="abv-sg" class="form-control" placeholder="" aria-label="hydrometer reading" aria-describedby="basic-addon2" value="1.0">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">折射儀讀數</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="abv-ref" class="form-control" placeholder="" aria-label="temperature" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">&deg;Bx</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">ABV</div>
+        <div class="col-md-2 text-right"><span id="abv-abv"></span> %</div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">エキス分</div>
+        <div class="col-md-2 text-right"><span id="abv-extract"></span> %</div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">原エキス分</div>
+        <div class="col-md-2 text-right"><span id="abv-total"></span> %</div>
+    </div>
+</div>
+<!--  ABV-->
+
+
+<!-- Extract -->
+<div class="rounded container m-3" id="extract">
+    <div class="row" >
+        <div class="col-md"><h3>
+            <a class="" data-toggle="collapse" href="#gxdescription" role="button" aria-expanded="false" aria-controls="gxdescription">
+                エキス分・原エキス分
+            </a></h3></div>
+    </div>
+    <div class="collapse" id="gxdescription">
+        <div class="card card-body">
+            エキス分・原エキス分
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-2">比重/SG</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="extract-sg" class="form-control" placeholder="" aria-label="hydrometer reading" aria-describedby="basic-addon2" value="1.0">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">ABV</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="extract-abv" class="form-control" placeholder="" aria-label="temperature" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">%</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">エキス分/Extract</div>
+        <div class="col-md-2 text-right"><span id="extract-extract"></span> %</div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">原エキス分/Total Extract</div>
+        <div class="col-md-2 text-right"><span id="extract-total"></span> %</div>
+    </div>
+
+</div>
+<!--  Extract-->
+
+
+
+<!-- amado -->
+<div class="rounded container m-3" id="amado">
+    <div class="row" >
+        <div class="col-md"><h3>
+            <a class="" data-toggle="collapse" href="#gxdescription" role="button" aria-expanded="false" aria-controls="gxdescription">
+                甘辛度
+            </a></h3></div>
+    </div>
+    <div class="collapse" id="gxdescription">
+        <div class="card card-body">
+            甘辛度: -3:非常dry, 3:非常甜，0:中庸
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-2">SMV</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="ama-smv" class="form-control" placeholder="" aria-label="hydrometer reading" aria-describedby="basic-addon2">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">酸度</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="ama-sando" class="form-control" placeholder="" aria-label="temperature" aria-describedby="basic-addon2">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">甘辛度</div>
+        <div class="col-md-2 text-right"><span id="ama-ama"></span> <span id="ama-text"></span></div>
+    </div>
+</div>
+<!-- amado -->
+
+</div>   
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script>
+    window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')
+</script>
+<script src="watercalc/bootstrap/js/bootstrap.bundle.js"></script>
+<script>
+
+function C2F(c) { return Math.round((c * 1.8 + 32) * 10) / 10; }
+
+function F2C(f) { return Math.round((f - 32) / 1.8 * 10) / 10; }        
+
+var SakeMath={
+    smv2sg:function(smv){
+        return 1443 / (1443 + smv);
+    },
+    sg2smv:function(sg){
+        return (1443 - sg * 1443 ) / sg;
+    },
+    sg2Bm:function(sg){
+        if(sg >= 1.0){
+            return (1-1/sg) * 144.3;
+        }else{
+            return (1/sg-1)* 144.3 + 10;
+        }
+    },
+    bm2smv:function(bm){
+        return SakeMath.sg2smv(SakeMath.bm2sg(bm));
+    },
+    bm2sg:function(bm){
+        return (bm>=10)?  144/(144-bm):(144/(134+bm));
+    },
+    abvByRefHyd:function(Bx,sg){
+        return 1.646 * Bx - 2.703 * (145 - 145 / sg) - 1.794;
+    },
+    amado:function(smv,sd){
+        return (193593 / (1443 + smv)) - 1.16 * sd - 132.57;
+    },
+    ekisu:function(sg,abv){
+        var abvAsSg=  1.5 * 0.00001 * abv * abv - 0.00149 * abv + 0.9991;
+        return (sg - abvAsSg) * 260 + 0.21;
+    },
+    genekisu:function(sg,abv){
+        return SakeMath.ekisu(sg,abv) + abv * 1.5894;
+    },
+    sgTempCorrected: function(Reading, F, CT) {
+        return Reading * ((1.00130346 - 0.000134722124 * F + 0.00000204052596 * F * F - 0.00000000232820948 * F * F * F) / (1.00130346 - 0.000134722124 * CT + 0.00000204052596 * CT * CT - 0.00000000232820948 * CT * CT * CT));
+    }
+};
+$(function() {
+    $('[data-toggle="tooltip"]').tooltip();
+
+    //Temperature calibration
+    $("#hydrometer-collection input").change(function(){                
+                var T= parseFloat($("#hc-temp").val());
+                var R= parseFloat($("#hc-reading").val());
+                var CT=parseFloat($("#hc-ctemp").val());
+                var c= SakeMath.sgTempCorrected(R,C2F(T),C2F(CT));
+                $("#hc-corrected-sg").text(c.toFixed(4));
+    });
+
+
+    $("#gravity-exchange input").change(function(){                
+
+        if($(this).prop("id") == "gx-sg"){
+            var sg = parseFloat($("#gx-sg").val());
+            var smv = SakeMath.sg2smv(sg);
+            var bm = SakeMath.sg2Bm(sg);
+            $("#gx-smv").val(smv.toFixed(1));
+            $("#gx-bm").val(bm.toFixed(1));
+        }else if($(this).prop("id") == "gx-smv"){
+            var smv = parseFloat($("#gx-smv").val());
+            var sg = SakeMath.smv2sg(smv);
+            var bm = SakeMath.sg2Bm(sg);
+            $("#gx-sg").val(sg.toFixed(4));
+            $("#gx-bm").val(bm.toFixed(1));
+        }else if($(this).prop("id") == "gx-bm"){
+            var bm = parseFloat($("#gx-bm").val());
+            var sg = SakeMath.bm2sg(bm);
+            var smv = SakeMath.bm2smv(bm);
+            $("#gx-sg").val(sg.toFixed(4));
+            $("#gx-smv").val(smv.toFixed(1));
+        }
+    });
+
+    $("#abv-estimation input").change(function(){                
+        var sg= parseFloat($("#abv-sg").val());
+        var r= parseFloat($("#abv-ref").val());
+        if(!isNaN(sg) && !isNaN(r)){
+            var abv= SakeMath.abvByRefHyd(r,sg);
+            $("#abv-abv").text(abv.toFixed(1));
+            var ekisu= SakeMath.ekisu(sg,abv);
+            var total=SakeMath.genekisu(sg,abv);
+            $("#abv-extract").text(ekisu.toFixed(1));
+            $("#abv-total").text(total.toFixed(1));
+        }
+    });
+
+    $("#extract input").change(function(){                
+        var sg= parseFloat($("#extract-sg").val());
+        var abv= parseFloat($("#extract-abv").val());
+        if(!isNaN(sg) && !isNaN(abv)){
+            var ekisu= SakeMath.ekisu(sg,abv);
+            var total=SakeMath.genekisu(sg,abv);
+            $("#extract-extract").text(ekisu.toFixed(1));
+            $("#extract-total").text(total.toFixed(1));
+        }
+    });
+
+    $("#amado input").change(function(){                
+        var smv= parseFloat($("#ama-smv").val());
+        var sando= parseFloat($("#ama-sando").val());
+        if(!isNaN(smv) && !isNaN(sando)){
+            var ama= SakeMath.amado(smv,sando);
+            var text=[
+                "非常辛口",
+                "相當辛口",
+                "少許辛口",
+                "中庸",
+                "少許甘口",
+                "相當甘口",
+                "非常甘口"
+            ];
+            var idx =Math.round(ama +3);
+            if (idx >6) idx=6;
+            if(idx<0) idx=0;
+            $("#ama-ama").text(ama.toFixed(1));
+            $("#ama-text").text(text[idx]);
+        }
+    });
+
+
+});
+
+</script>
+
+</body>
+
+</html>

@@ -6,6 +6,7 @@ order: 5
 
 - [自釀小幫手/比重預估](/brewutils/watercalc/BA.htm)
 - [自釀計算機](/brewutils/brewcal.htm)
+- [清酒計算機](/brewutils/sakecal.html)
 - [酒標列印排版](/brewutils/collage/index.htm)
 - [iSpindel校正](/brewutils/calibrationSG.htm)
 
