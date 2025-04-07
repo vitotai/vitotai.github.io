@@ -1,6 +1,6 @@
 ---
 title: '清酒的量測'
-date: '2025-04-07T14:50:35+00:00'
+date: '2025-04-06T14:50:35+00:00'
 author: Vito
 layout: post
 categories:
