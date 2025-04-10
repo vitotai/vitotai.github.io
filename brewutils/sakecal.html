@@ -429,12 +429,13 @@ var SakeMath={
         r.totalWater=totalOriginalLiquid;
         return r;
     },
-    kasucalEx:function(water,rice,riceAbsorb,koji,kojiAbsorb,totalExtract,kasuWater){
+    kasucalEx:function(water,rice,riceAbsorb,koji,kojiAbsorb,extract,kasuWater){
         const  K = 0.612;
         const WaterInRice = 0.13;
         var totalRice = rice + koji;
         var totalWater = water + rice * (riceAbsorb + WaterInRice) +  koji *(kojiAbsorb +  WaterInRice);
-        var disolved  = totalExtract  * totalWater / ( 1 - totalExtract * K);
+        var water2rice= totalWater / totalRice;
+        var disolved  = extract  * water2rice / ( 1 - extract * K);
         var r={};
         r.kasuSolid= totalRice * ( 1- WaterInRice - disolved);
         r.kasu = r.kasuSolid/(1-kasuWater);
