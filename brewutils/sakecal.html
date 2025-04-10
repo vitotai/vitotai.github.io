@@ -327,6 +327,120 @@
 </div>
 <!--  lee/yield-->
 
+<!-- yield from lee -->
+<div class="rounded container m-3" id="yield">
+    <div class="row" >
+        <div class="col-md"><h3>
+            <a class="" data-toggle="collapse" href="#yieldestimation" role="button" aria-expanded="false" aria-controls="gxdescription">
+            酒粕/粕步合->原エキス分
+            </a></h3></div>
+    </div>
+    <div class="collapse" id="yieldestimation">
+        <div class="card card-body">
+            用酒粕量/粕步合估算原エキス分。
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-2" data-toggle="tooltip" data-placement="right" title="蒸米的部分">掛米(乾重)</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="yield-rice" class="form-control" placeholder="" aria-label="temperature" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">kg</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2"  data-toggle="tooltip" data-placement="right" title="用來做麴的米，原料米乾重">麴(原料米乾重)</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="yield-koji" class="form-control" placeholder="" aria-label="temperature" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">kg</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2" data-toggle="tooltip" data-placement="right" title="仕込的水" >水量</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="yield-water" class="form-control" placeholder="" aria-label="temperature" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">L</span>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="row">
+        <div class="col-md-2"  data-toggle="tooltip" data-placement="right" title="掛米的吸水率，一般在25-28%，用煮的視加的水量而定，可能會高一些">蒸米吸水率</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="yield-waterAbsorb" class="form-control" placeholder="" aria-label="temperature" aria-describedby="basic-addon2" value="28">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">%</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2"  data-toggle="tooltip" data-placement="right" title="麴米的吸水率，清酒麴一般在13-19%，有的則會高到25%">麴吸水率</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="yield-kojiAbsorb" class="form-control" placeholder="" aria-label="temperature" aria-describedby="basic-addon2" value="19">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">%</span>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="row">
+        <div class="col-md-2" data-toggle="tooltip" data-placement="right" title="每公斤米產生的酒粕比率，與酒粕緦量擇一輸入">粕步合</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="yield-kasu-rate" class="form-control" placeholder="" aria-label="temperature" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">%</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2" data-toggle="tooltip" data-placement="right" title="酒粕總量，與粕步合擇一輸入">酒粕緦量</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="yield-kasu" class="form-control" placeholder="" aria-label="temperature" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">kg</span>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-2" data-toggle="tooltip" data-placement="right" title="酒粕中的液體重，50%是一般板榨的值，其他方式可更高">酒粕含水率</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="yield-kasuwater" class="form-control" placeholder="" aria-label="temperature" aria-describedby="basic-addon2" value="50">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">%</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2"  data-toggle="tooltip" data-placement="right" title="上槽後的得到的原酒重量">原酒量</div>
+        <div class="col-md-2 text-right"><span id="yield-sake"></span> kg</div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2"   data-toggle="tooltip" data-placement="right" title="米融化溶於酒中的比率，可視為原料利用率">融米率</div>
+        <div class="col-md-2 text-right"><span id="yield-disolved"></span> %</div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2"   data-toggle="tooltip" data-placement="right" title="總萃取">原エキス分</div>
+        <div class="col-md-2 text-right"><span id="yield-extract"></span> %</div>
+    </div>
+
+</div>
+<!--  yield from lee-->
+
+
 <!-- amado -->
 <div class="rounded container m-3" id="amado">
     <div class="row" >
@@ -412,23 +526,6 @@ var SakeMath={
     sgTempCorrected: function(Reading, F, CT) {
         return Reading * ((1.00130346 - 0.000134722124 * F + 0.00000204052596 * F * F - 0.00000000232820948 * F * F * F) / (1.00130346 - 0.000134722124 * CT + 0.00000204052596 * CT * CT - 0.00000000232820948 * CT * CT * CT));
     },
-    kasucal:function(water,rice,waterAbsorb,totalExtract,kasuWater){
-        const  K = 0.612;
-        const WaterInRice = 0.13;
-
-        var totalOriginalLiquid = water + rice * (waterAbsorb + WaterInRice);
-        var disolved  = totalExtract  * totalOriginalLiquid / ( 1 - totalExtract * K);
-        var r={};
-        r.kasuSolid= rice * ( 1- WaterInRice - disolved);
-        r.kasu = r.kasuSolid/(1-kasuWater);
-
-        r.totalLiquid= totalOriginalLiquid + rice * K * disolved;   // afer fermenation
-        r.sake  = r.totalLiquid - kasuWater * r.kasu;
-        r.kasu_rate = r.kasu / rice;
-        r.disolved = disolved;
-        r.totalWater=totalOriginalLiquid;
-        return r;
-    },
     kasucalEx:function(water,rice,riceAbsorb,koji,kojiAbsorb,extract,kasuWater){
         const  K = 0.612;
         const WaterInRice = 0.13;
@@ -446,10 +543,58 @@ var SakeMath={
         r.disolved = disolved;
         r.totalWater=totalWater;
         return r;
+    },
+    extractFromKasu:function(water,rice,riceAbsorb,koji,kojiAbsorb,kasu,kasuWater){
+        const  K = 0.612;
+        const WaterInRice = 0.13;
+
+        var totalRice = rice + koji;
+        var totalWater = water + rice * (riceAbsorb + WaterInRice) +  koji *(kojiAbsorb +  WaterInRice);
+        var water2rice= totalWater / totalRice;
+
+        var disolvedRate = 1- WaterInRice - kasu * (1-kasuWater)/totalRice;
+        var extract = disolvedRate / (water2rice + K * disolvedRate);
+        var totalLiquid= totalWater + totalRice * K * disolvedRate; 
+        var sake = totalLiquid - kasuWater * kasu;
+        return {sake:sake,disolved:disolvedRate,extract:extract};
     }
 };
 $(function() {
     $('[data-toggle="tooltip"]').tooltip();
+
+    $("#yield input").change(function(){       
+        var rice= parseFloat($("#yield-rice").val());
+        var water= parseFloat($("#yield-water").val());
+        var waterAbsorb= parseFloat($("#yield-waterAbsorb").val());
+        var kasuwater=parseFloat($("#yield-kasuwater").val());
+        var koji= parseFloat($("#yield-koji").val());
+        var kojiAbsorb= parseFloat($("#yield-kojiAbsorb").val());
+
+        if(isNaN(rice) || isNaN(water) ||isNaN(waterAbsorb) ||isNaN(kasuwater)
+           || isNaN(koji) || isNaN(kojiAbsorb)) return;
+
+        var kasuRate=parseFloat($("#yield-kasu-rate").val());
+        var kasu =parseFloat($("#yield-kasu").val());
+
+        if($(this).prop("id") == "yield-kasu-rate"){
+            kasu = (rice + koji) * kasuRate;
+            $("#yield-kasu").val(kasu.toFixed(2));
+        }else if($(this).prop("id") == "yield-kasu"){
+            kasuRate= kasu / (rice + koji) * 100;
+            $("#yield-kasu-rate").val(kasuRate.toFixed(1));
+        }else{
+            if(isNaN(kasuRate) || isNaN(kasu)) return;
+        }
+
+        var r=SakeMath.extractFromKasu(water,rice,waterAbsorb/100,koji,kojiAbsorb/100,kasu,kasuwater/100);
+        $("#yield-sake").text(r.sake.toFixed(2));
+
+        $("#yield-disolved").text((r.disolved*100).toFixed(1));
+
+        $("#yield-extract").text((r.extract*100).toFixed(1));
+    }); 
+
+
 
     $("#lee input").change(function(){       
         var rice= parseFloat($("#lee-rice").val());
