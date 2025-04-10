@@ -84,7 +84,7 @@
     <div class="row">
         <div class="col-md-2">比重/SG</div>
         <div class="col-md-2 input-group input-group-sm">
-            <input type="text" id="gx-sg" class="form-control" placeholder="" aria-label="hydrometer reading" aria-describedby="basic-addon2" value="1.021">
+            <input type="text" id="gx-sg" class="form-control" placeholder="" aria-label="hydrometer reading" aria-describedby="basic-addon2" value="1.0">
         </div>
     </div>
 
@@ -149,12 +149,12 @@
     </div>
 
     <div class="row">
-        <div class="col-md-2">エキス分</div>
+        <div class="col-md-2" data-toggle="tooltip" data-placement="right" title="存在100ml酒中的溶解固體重">エキス分</div>
         <div class="col-md-2 text-right"><span id="abv-extract"></span> %</div>
     </div>
 
     <div class="row">
-        <div class="col-md-2">原エキス分</div>
+        <div class="col-md-2" data-toggle="tooltip" data-placement="right" title="存在100ml酒中的己溶解固體重，包括已轉成酒精的部分">原エキス分</div>
         <div class="col-md-2 text-right"><span id="abv-total"></span> %</div>
     </div>
 </div>
@@ -192,12 +192,12 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-2">エキス分/Extract</div>
+        <div class="col-md-2" data-toggle="tooltip" data-placement="right" title="存在100ml酒中的溶解固體重">エキス分/Extract</div>
         <div class="col-md-2 text-right"><span id="extract-extract"></span> %</div>
     </div>
 
     <div class="row">
-        <div class="col-md-2">原エキス分</div>
+        <div class="col-md-2" data-toggle="tooltip" data-placement="right" title="存在100ml酒中的己溶解固體重，包括已轉成酒精的部分">原エキス分</div>
         <div class="col-md-2 text-right"><span id="extract-total"></span> %</div>
     </div>
 
@@ -219,7 +219,7 @@
     </div>
     
     <div class="row">
-        <div class="col-md-2">掛米(乾重)</div>
+        <div class="col-md-2" data-toggle="tooltip" data-placement="right" title="蒸米的部分">掛米(乾重)</div>
         <div class="col-md-2 input-group input-group-sm">
             <input type="text" id="lee-rice" class="form-control" placeholder="" aria-label="temperature" aria-describedby="basic-addon2">
             <div class="input-group-append">
@@ -228,7 +228,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-2">麴(原料米乾重)</div>
+        <div class="col-md-2"  data-toggle="tooltip" data-placement="right" title="用來做麴的米，原料米乾重">麴(原料米乾重)</div>
         <div class="col-md-2 input-group input-group-sm">
             <input type="text" id="lee-koji" class="form-control" placeholder="" aria-label="temperature" aria-describedby="basic-addon2">
             <div class="input-group-append">
@@ -238,7 +238,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-2">水量</div>
+        <div class="col-md-2" data-toggle="tooltip" data-placement="right" title="仕込的水" >水量</div>
         <div class="col-md-2 input-group input-group-sm">
             <input type="text" id="lee-water" class="form-control" placeholder="" aria-label="temperature" aria-describedby="basic-addon2">
             <div class="input-group-append">
@@ -249,7 +249,7 @@
 
     
     <div class="row">
-        <div class="col-md-2">蒸米吸水率</div>
+        <div class="col-md-2"  data-toggle="tooltip" data-placement="right" title="掛米的吸水率，一般在25-28%，用煮的視加的水量而定，可能會高一些">蒸米吸水率</div>
         <div class="col-md-2 input-group input-group-sm">
             <input type="text" id="lee-waterAbsorb" class="form-control" placeholder="" aria-label="temperature" aria-describedby="basic-addon2" value="28">
             <div class="input-group-append">
@@ -259,9 +259,9 @@
     </div>
 
     <div class="row">
-        <div class="col-md-2">麴吸水率</div>
+        <div class="col-md-2"  data-toggle="tooltip" data-placement="right" title="麴米的吸水率，清酒麴一般在13-19%，有的則會高到25%">麴吸水率</div>
         <div class="col-md-2 input-group input-group-sm">
-            <input type="text" id="lee-kojiAbsorb" class="form-control" placeholder="" aria-label="temperature" aria-describedby="basic-addon2" value="24">
+            <input type="text" id="lee-kojiAbsorb" class="form-control" placeholder="" aria-label="temperature" aria-describedby="basic-addon2" value="19">
             <div class="input-group-append">
               <span class="input-group-text" id="basic-addon2">%</span>
             </div>
@@ -270,7 +270,7 @@
 
     
     <div class="row">
-        <div class="col-md-2">原エキス分</div>
+        <div class="col-md-2" data-toggle="tooltip" data-placement="right" title="Total Extract，可以由ABV和比重算出">原エキス分</div>
         <div class="col-md-2 input-group input-group-sm">
             <input type="text" id="lee-extract" class="form-control" placeholder="" aria-label="temperature" aria-describedby="basic-addon2">
             <div class="input-group-append">
@@ -280,7 +280,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-2">酒粕含水率</div>
+        <div class="col-md-2" data-toggle="tooltip" data-placement="right" title="酒粕中的液體重，50%是一般板榨的值，其他方式可更高">酒粕含水率</div>
         <div class="col-md-2 input-group input-group-sm">
             <input type="text" id="lee-kasuwater" class="form-control" placeholder="" aria-label="temperature" aria-describedby="basic-addon2" value="50">
             <div class="input-group-append">
@@ -290,21 +290,21 @@
     </div>
 
     <div class="row">
-        <div class="col-md-2">酒粕量</div>
+        <div class="col-md-2"  data-toggle="tooltip" data-placement="right" title="上槽後的酒粕重量">酒粕量</div>
         <div class="col-md-2 text-right"><span id="lee-kasu"></span> kg</div>
     </div>
     <div class="row">
-        <div class="col-md-2">原酒量</div>
+        <div class="col-md-2"  data-toggle="tooltip" data-placement="right" title="上槽後的得到的原酒重量">原酒量</div>
         <div class="col-md-2 text-right"><span id="lee-sake"></span> kg</div>
     </div>
 
     <div class="row">
-        <div class="col-md-2">粕步合</div>
+        <div class="col-md-2"  data-toggle="tooltip" data-placement="right" title="酒粕除以總米重的比率">粕步合</div>
         <div class="col-md-2 text-right"><span id="lee-kasu-rate"></span> %</div>
     </div>
 
     <div class="row">
-        <div class="col-md-2">融米率</div>
+        <div class="col-md-2"   data-toggle="tooltip" data-placement="right" title="米融化溶於酒中的比率，可視為原料利用率">融米率</div>
         <div class="col-md-2 text-right"><span id="lee-disolved"></span> %</div>
     </div>
 
@@ -315,12 +315,12 @@
     </div>
 -->
     <div class="row">
-        <div class="col-md-2">酒粕固體</div>
+        <div class="col-md-2"   data-toggle="tooltip" data-placement="right" title="酒粕中的固體部分">酒粕固體</div>
         <div class="col-md-2 text-right"><span id="lee-kasu-solid"></span> kg</div>
     </div>
 
     <div class="row">
-        <div class="col-md-2">酒粕液體</div>
+        <div class="col-md-2" data-toggle="tooltip" data-placement="right" title="酒粕中的液體部分">酒粕液體</div>
         <div class="col-md-2 text-right"><span id="lee-kasu-liquid"></span> kg</div>
     </div>
 
