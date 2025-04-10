@@ -117,11 +117,11 @@
 <div class="rounded container m-3" id="abv-estimation">
     <div class="row" >
         <div class="col-md"><h3>
-            <a class="" data-toggle="collapse" href="#gxdescription" role="button" aria-expanded="false" aria-controls="gxdescription">
+            <a class="" data-toggle="collapse" href="#abvest" role="button" aria-expanded="false" aria-controls="gxdescription">
                 用折射儀和比重計讀數估算ABV
             </a></h3></div>
     </div>
-    <div class="collapse" id="gxdescription">
+    <div class="collapse" id="abvest">
         <div class="card card-body">
             用折射儀和比重計讀數估算ABV。
         </div>
@@ -165,11 +165,11 @@
 <div class="rounded container m-3" id="extract">
     <div class="row" >
         <div class="col-md"><h3>
-            <a class="" data-toggle="collapse" href="#gxdescription" role="button" aria-expanded="false" aria-controls="gxdescription">
+            <a class="" data-toggle="collapse" href="#ekisu" role="button" aria-expanded="false" aria-controls="gxdescription">
                 エキス分・原エキス分
             </a></h3></div>
     </div>
-    <div class="collapse" id="gxdescription">
+    <div class="collapse" id="ekisu">
         <div class="card card-body">
             エキス分・原エキス分
         </div>
@@ -197,14 +197,135 @@
     </div>
 
     <div class="row">
-        <div class="col-md-2">原エキス分/Total Extract</div>
+        <div class="col-md-2">原エキス分</div>
         <div class="col-md-2 text-right"><span id="extract-total"></span> %</div>
     </div>
 
 </div>
 <!--  Extract-->
 
+<!-- lee/yield -->
+<div class="rounded container m-3" id="lee">
+    <div class="row" >
+        <div class="col-md"><h3>
+            <a class="" data-toggle="collapse" href="#leeestimation" role="button" aria-expanded="false" aria-controls="gxdescription">
+                酒粕和收酒預估
+            </a></h3></div>
+    </div>
+    <div class="collapse" id="leeestimation">
+        <div class="card card-body">
+            用原エキス分估算酒粕和收酒量。
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-2">掛米(乾重)</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="lee-rice" class="form-control" placeholder="" aria-label="temperature" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">kg</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">麴(原料米乾重)</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="lee-koji" class="form-control" placeholder="" aria-label="temperature" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">kg</span>
+            </div>
+        </div>
+    </div>
 
+    <div class="row">
+        <div class="col-md-2">水量</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="lee-water" class="form-control" placeholder="" aria-label="temperature" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">L</span>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="row">
+        <div class="col-md-2">蒸米吸水率</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="lee-waterAbsorb" class="form-control" placeholder="" aria-label="temperature" aria-describedby="basic-addon2" value="28">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">%</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">麴吸水率</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="lee-kojiAbsorb" class="form-control" placeholder="" aria-label="temperature" aria-describedby="basic-addon2" value="24">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">%</span>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="row">
+        <div class="col-md-2">原エキス分</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="lee-extract" class="form-control" placeholder="" aria-label="temperature" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">%</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">酒粕含水率</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="lee-kasuwater" class="form-control" placeholder="" aria-label="temperature" aria-describedby="basic-addon2" value="50">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">%</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">酒粕量</div>
+        <div class="col-md-2 text-right"><span id="lee-kasu"></span> kg</div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">原酒量</div>
+        <div class="col-md-2 text-right"><span id="lee-sake"></span> kg</div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">粕步合</div>
+        <div class="col-md-2 text-right"><span id="lee-kasu-rate"></span> %</div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">融米率</div>
+        <div class="col-md-2 text-right"><span id="lee-disolved"></span> %</div>
+    </div>
+
+<!--
+    <div class="row">
+        <div class="col-md-2">總水</div>
+        <div class="col-md-2 text-right"><span id="lee-total-water"></span> kg</div>
+    </div>
+-->
+    <div class="row">
+        <div class="col-md-2">酒粕固體</div>
+        <div class="col-md-2 text-right"><span id="lee-kasu-solid"></span> kg</div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">酒粕液體</div>
+        <div class="col-md-2 text-right"><span id="lee-kasu-liquid"></span> kg</div>
+    </div>
+
+</div>
+<!--  lee/yield-->
 
 <!-- amado -->
 <div class="rounded container m-3" id="amado">
@@ -290,10 +411,70 @@ var SakeMath={
     },
     sgTempCorrected: function(Reading, F, CT) {
         return Reading * ((1.00130346 - 0.000134722124 * F + 0.00000204052596 * F * F - 0.00000000232820948 * F * F * F) / (1.00130346 - 0.000134722124 * CT + 0.00000204052596 * CT * CT - 0.00000000232820948 * CT * CT * CT));
+    },
+    kasucal:function(water,rice,waterAbsorb,totalExtract,kasuWater){
+        const  K = 0.612;
+        const WaterInRice = 0.13;
+
+        var totalOriginalLiquid = water + rice * (waterAbsorb + WaterInRice);
+        var disolved  = totalExtract  * totalOriginalLiquid / ( 1 - totalExtract * K);
+        var r={};
+        r.kasuSolid= rice * ( 1- WaterInRice - disolved);
+        r.kasu = r.kasuSolid/(1-kasuWater);
+
+        r.totalLiquid= totalOriginalLiquid + rice * K * disolved;   // afer fermenation
+        r.sake  = r.totalLiquid - kasuWater * r.kasu;
+        r.kasu_rate = r.kasu / rice;
+        r.disolved = disolved;
+        r.totalWater=totalOriginalLiquid;
+        return r;
+    },
+    kasucalEx:function(water,rice,riceAbsorb,koji,kojiAbsorb,totalExtract,kasuWater){
+        const  K = 0.612;
+        const WaterInRice = 0.13;
+        var totalRice = rice + koji;
+        var totalWater = water + rice * (riceAbsorb + WaterInRice) +  koji *(kojiAbsorb +  WaterInRice);
+        var disolved  = totalExtract  * totalWater / ( 1 - totalExtract * K);
+        var r={};
+        r.kasuSolid= totalRice * ( 1- WaterInRice - disolved);
+        r.kasu = r.kasuSolid/(1-kasuWater);
+
+        r.totalLiquid= totalWater + totalRice * K * disolved;   // afer fermenation
+        r.sake  = r.totalLiquid - kasuWater * r.kasu;
+        r.kasu_rate = r.kasu / totalRice;
+        r.disolved = disolved;
+        r.totalWater=totalWater;
+        return r;
     }
 };
 $(function() {
     $('[data-toggle="tooltip"]').tooltip();
+
+    $("#lee input").change(function(){       
+        var rice= parseFloat($("#lee-rice").val());
+        var water= parseFloat($("#lee-water").val());
+        var waterAbsorb= parseFloat($("#lee-waterAbsorb").val());
+        var extract=parseFloat($("#lee-extract").val());
+        var kasuwater=parseFloat($("#lee-kasuwater").val());
+
+        var koji= parseFloat($("#lee-koji").val());
+        var kojiAbsorb= parseFloat($("#lee-kojiAbsorb").val());
+
+        if(isNaN(rice) || isNaN(water) ||isNaN(waterAbsorb) ||isNaN(extract) ||isNaN(kasuwater)
+           || isNaN(koji) || isNaN(kojiAbsorb)) return;
+
+        var r=SakeMath.kasucalEx(water,rice,waterAbsorb/100,koji,kojiAbsorb/100,extract/100,kasuwater/100);
+        $("#lee-kasu").text(r.kasu.toFixed(2));
+        $("#lee-sake").text(r.sake.toFixed(2));
+
+        $("#lee-kasu-rate").text((r.kasu_rate * 100).toFixed(1));
+        $("#lee-disolved").text((r.disolved*100).toFixed(1));
+        $("#lee-kasu-solid").text(r.kasuSolid.toFixed(2));
+        $("#lee-kasu-liquid").text((r.kasu - r.kasuSolid).toFixed(2));
+
+        //$("#lee-total-water").text(r.totalWater.toFixed(2));
+
+    }); 
 
     //Temperature calibration
     $("#hydrometer-collection input").change(function(){                
