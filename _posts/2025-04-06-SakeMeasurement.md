@@ -77,8 +77,9 @@ ABV (estimated) = 1.646 * Bx - 2.703 * (145 - 145 / SG) - 1.794
 **原エキス分**是包括已經轉換成酒精的糖的總溶解物比例：
 
 ```
-原エキス分 = エキス分 + ABV (%) x 1.5894.
+原エキス分 = エキス分 + ABV (%) x 0.7942× 2
 ```
+*註：原本酒精的比重是認定為0.7947， 但JIS B 7548:2009中改為0.7942
 
 ### 甘辛度
 
@@ -96,3 +97,4 @@ ABV (estimated) = 1.646 * Bx - 2.703 * (145 - 145 / SG) - 1.794
 - http://www.nada-ken.com/main/en/index_e/276.html
 - https://www.brewsake.org/calculations
 - https://sake.science/日本酒の味わいと香りの表現/
+- https://www.kem.kyoto/column/勝木氏-連載コラム/4850/

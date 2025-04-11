@@ -521,7 +521,7 @@ var SakeMath={
         return (sg - abvAsSg) * 260 + 0.21;
     },
     genekisu:function(sg,abv){
-        return SakeMath.ekisu(sg,abv) + abv * 1.5894;
+        return SakeMath.ekisu(sg,abv) + abv * 0.7942*2;
     },
     sgTempCorrected: function(Reading, F, CT) {
         return Reading * ((1.00130346 - 0.000134722124 * F + 0.00000204052596 * F * F - 0.00000000232820948 * F * F * F) / (1.00130346 - 0.000134722124 * CT + 0.00000204052596 * CT * CT - 0.00000000232820948 * CT * CT * CT));
@@ -577,7 +577,7 @@ $(function() {
         var kasu =parseFloat($("#yield-kasu").val());
 
         if($(this).prop("id") == "yield-kasu-rate"){
-            kasu = (rice + koji) * kasuRate;
+            kasu = (rice + koji) * kasuRate/100;
             $("#yield-kasu").val(kasu.toFixed(2));
         }else if($(this).prop("id") == "yield-kasu"){
             kasuRate= kasu / (rice + koji) * 100;
