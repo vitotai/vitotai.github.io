@@ -90,7 +90,7 @@ categories:
  - 乳酸  3.8mL
  - 酵母營養 4g
  - 浴鹽    0.7g
- - 海鹽     6g 
+ - 氯化鉀    6g 
 
 ## 步驟
 
@@ -124,7 +124,7 @@ categories:
   - 乳酸 3.8ml
   - 酵母營養 4g
   - 浴鹽  0.7gm
-  - morton's salt 7g
+  - morton's salt subsitute(氯化鉀) 7g
 3. 把120ml的混合水放入冰箱，其餘480ml置於15-18C過夜
 
 ### Day 2 酛：第1天 
@@ -258,7 +258,7 @@ categories:
  - 水  8杯 (2L)
  - 乳酸  1mL
  - 1/8 tsp DAP或酵母營養劑
- - 1/8 tsp 浴鹽，1/8 tsp Morton's Salt
+ - 1/8 tsp 浴鹽，1/8 tsp Morton's Salt Substitute(氯化鉀)
 
 麴米 : 米 : 水 = 25% : 100% : 160% 
 水 8 cups = 8 *250ml = 2L 

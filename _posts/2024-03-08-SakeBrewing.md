@@ -35,7 +35,6 @@ categories:
 - 酵母營養
     - 浴塩(硫酸鎂) 
     - 氯化鉀（Morton’s Salt Substitute）
-    - 氮源
 
 流程：
     
