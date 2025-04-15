@@ -174,13 +174,7 @@
             エキス分・原エキス分
         </div>
     </div>
-    
-    <div class="row">
-        <div class="col-md-2">比重/SG</div>
-        <div class="col-md-2 input-group input-group-sm">
-            <input type="text" id="extract-sg" class="form-control" placeholder="" aria-label="hydrometer reading" aria-describedby="basic-addon2" value="1.0">
-        </div>
-    </div>
+
 
     <div class="row">
         <div class="col-md-2">ABV</div>
@@ -191,6 +185,28 @@
             </div>
         </div>
     </div>
+    
+    <div class="row">
+        <div class="col-md-2">日本酒度/SMV</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="extract-smv" class="form-control" placeholder="" aria-label="Nihonshu do" aria-describedby="basic-addon2">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">比重/SG</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="extract-sg" class="form-control" placeholder="" aria-label="hydrometer reading" aria-describedby="basic-addon2">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">波美度</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="extract-bm" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon2">
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-md-2" data-toggle="tooltip" data-placement="right" title="存在100ml酒中的溶解固體重">エキス分/Extract</div>
         <div class="col-md-2 text-right"><span id="extract-extract"></span> %</div>
@@ -559,6 +575,55 @@ var SakeMath={
         return {sake:sake,disolved:disolvedRate,extract:extract};
     }
 };
+
+Ekisu={
+    //https://www.gitc.pref.nagano.lg.jp/pdf/gijutujoho/No.237(Shokuhin).pdf
+    density:[1.0000, 
+    .9985,.9970,.9956,.9942,.9929,.9916,.9903,.9891,.9878,.9867,
+    .9855,.9844,.9833,.9822,.9812,.9802,.9792,.9782,.9773,.9763,
+    .9753,.9742,.9732,.9721,.9711,.9700,.9690,.9679,.9668,.9657,
+    .9645,.9633,.9621,.9608,.9594,.9581,.9567,.9553,.9538,.9523,
+    .9507,.9491,.9474,.9457,.9440,.9422,.9404,.9386,.9367,.9348,
+    .9329,.9309,.9289,.9269,.9248,.9227,.9206,.9185,.9163,.9141,
+    .9119,.9096,.9073,.9050,.9027,.9004,.8980,.8956,.8932,.8907,
+    .8882,.8857,.8831,.8805,.8779,.8753,.8726,.8699,.8672,.8645,
+    .8617,.8589,.8560,.8531,.8502,.8472,.8442,.8411,.8379,.8346,
+    .8312,.8278,.8242,.8200,.8168,.8128,.8086,.8042,.7996,.7947
+    ],
+    ex: function(dal,dsm){
+        return (dsm-dal) *260+.21;
+    },
+
+    ekisuBun:function(alc,gravity){
+
+        var al= Math.floor(alc); 
+        var al1 = al +1;
+        var dev = alc - al;
+        var dex=Ekisu.ex(Ekisu.density[al1],gravity) - Ekisu.ex(Ekisu.density[al],gravity);
+
+        var exdev=dev*dex+Ekisu.ex(Ekisu.density[al],gravity);
+
+        // roudn exdev
+        e=100*exdev+.05; 
+        exdev=e/100.0;
+    
+        return exdev ;
+    },
+    tex:function(dal,dsm,al){
+        var tex=Ekisu.ex(dal,dsm) +1.5894*al;
+        return (tex);
+    },
+    tEkisuBun:function(alc,gravity){
+        var al= Math.floor(alc); 
+        var al1 = al +1;
+        var dev = alc - al;
+
+        var texdev=Ekisu.tex(Ekisu.density[al1],gravity,al+1) - Ekisu.tex(Ekisu.density[al],gravity,al);
+        texdev=dev*texdev + Ekisu.tex(Ekisu.density[al],gravity,al); 
+        return texdev;
+    }
+};
+
 $(function() {
     $('[data-toggle="tooltip"]').tooltip();
 
@@ -661,19 +726,38 @@ $(function() {
         if(!isNaN(sg) && !isNaN(r)){
             var abv= SakeMath.abvByRefHyd(r,sg);
             $("#abv-abv").text(abv.toFixed(1));
-            var ekisu= SakeMath.ekisu(sg,abv);
-            var total=SakeMath.genekisu(sg,abv);
+            var ekisu = Ekisu.ekisuBun(abv,sg);
+            var total = Ekisu.tEkisuBun(abv,sg);
             $("#abv-extract").text(ekisu.toFixed(1));
             $("#abv-total").text(total.toFixed(1));
         }
     });
 
     $("#extract input").change(function(){                
-        var sg= parseFloat($("#extract-sg").val());
+        var sg,smv,bm;
         var abv= parseFloat($("#extract-abv").val());
+
+        if($(this).prop("id") == "extract-sg"){
+            sg = parseFloat($("#extract-sg").val());
+            smv = SakeMath.sg2smv(sg);
+            bm = SakeMath.sg2Bm(sg);
+        }else if($(this).prop("id") == "extract-smv"){
+            smv = parseFloat($("#extract-smv").val());
+            sg = SakeMath.smv2sg(smv);
+            bm = SakeMath.sg2Bm(sg);
+        }else if($(this).prop("id") == "extract-bm"){
+            bm = parseFloat($("#extract-bm").val());
+            sg = SakeMath.bm2sg(bm);
+            smv = SakeMath.bm2smv(bm);
+        }
+        $("#extract-sg").val(sg.toFixed(4));
+        $("#extract-smv").val(smv.toFixed(1));
+        $("#extract-bm").val(bm.toFixed(1));
+
+
         if(!isNaN(sg) && !isNaN(abv)){
-            var ekisu= SakeMath.ekisu(sg,abv);
-            var total=SakeMath.genekisu(sg,abv);
+            var ekisu = Ekisu.ekisuBun(abv,sg);
+            var total = Ekisu.tEkisuBun(abv,sg);
             $("#extract-extract").text(ekisu.toFixed(1));
             $("#extract-total").text(total.toFixed(1));
         }
