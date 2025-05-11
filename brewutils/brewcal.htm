@@ -586,6 +586,119 @@
 
 </div>
 <!-- ABV without OG-->
+
+
+
+<!-- Pycnometer-->
+<div class="rounded container m-3" id="pycnometer">
+    <div class="row" >
+        <div class="col-md"><h3><a class="" data-toggle="collapse" href="#pycnometerdes" role="button" aria-expanded="false" aria-controls="pycnometerdes">比重瓶計算</a></h3></div>
+    </div>
+    <div class="collapse" id="pycnometerdes">
+        <div class="card card-body">
+        比重瓶的使用方式應該是測量<em>同溫</em>下，同一個比重瓶的水以及麥汁的淨重；麥汁的淨重除以水淨重即為比重值。然而，實務操作下，要讓麥汁和水達到同一個溫度，需要一些時間。依照我看到的教學影片，都要30分鐘，而且是放在
+        恆溫箱中。如果不考慮<em>瓶子的真實容積</em>在不同溫度下可能會有的微小差異，可以先測量<em>瓶子乾重以及真實容積</em>，測量比重時，只需要測量麥汁淨重以及溫度即可。
+        瓶子的真實體積可以用水測量得出：先測瓶子乾重，後測裝滿水的重量，然後可以由查表得知道水密度，計算出瓶子的真實容積。
+        有了瓶子的真實容積以及瓶子的乾重。測量比重時，可以測量麥汁淨重，除以容積，就是麥汁的密度，查得水在同樣溫度的密度，即可算出比重：麥汁密度除以水的密度。
+       </div>
+    </div>
+    <div class="row">
+            <div class="col-md-4">測量比重瓶容積</div>
+    </div>
+    
+    <div class="row">
+            <div class="col-md-2">水溫</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="pycn-temp" class="form-control" placeholder="" aria-label="Water Temperature" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">&deg;C</span>
+            </div>
+    </div>        
+
+    </div>
+    <div class="row">
+        <div class="col-md-2">比重瓶重</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="pycn-bottle" class="form-control" placeholder="" aria-label="Carbonation Volume" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">g</span>
+            </div>
+        </div>        
+    </div>
+    <div class="row">
+        <div class="col-md-2">總重</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="pycn-w-total" class="form-control" placeholder="" aria-label="Head Pressure" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">g</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">純水密度</div>
+        <div class="col-md-2 text-right"><span id="pycn-water-density"></span> g/cm3</div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">比重瓶容積</div>
+        <div class="col-md-2 text-right"><span id="pycn-volume"></span> cm3</div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">測量麥汁比重</div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">麥汁溫度</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="pycn-temp2" class="form-control" placeholder="" aria-label="Water Temperature" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+            <span class="input-group-text" id="basic-addon2">&deg;C</span>
+            </div>
+        </div>        
+
+    </div>
+<div class="row">
+    <div class="col-md-2">比重瓶容積</div>
+    <div class="col-md-2 input-group input-group-sm">
+        <input type="text" id="pycn-bottle-vol" class="form-control" placeholder="" aria-label="Carbonation Volume" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+          <span class="input-group-text" id="basic-addon2">ml</span>
+        </div>
+    </div>        
+</div>
+<div class="row">
+    <div class="col-md-2">比重瓶重</div>
+    <div class="col-md-2 input-group input-group-sm">
+        <input type="text" id="pycn-bottle2" class="form-control" placeholder="" aria-label="Carbonation Volume" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+          <span class="input-group-text" id="basic-addon2">g</span>
+        </div>
+    </div>        
+</div>
+<div class="row">
+    <div class="col-md-2">總重</div>
+    <div class="col-md-2 input-group input-group-sm">
+        <input type="text" id="pycn-w-total2" class="form-control" placeholder="" aria-label="Head Pressure" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+          <span class="input-group-text" id="basic-addon2">g</span>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-2">純水密度</div>
+    <div class="col-md-2 text-right"><span id="pycn-water-density2"></span> g/cm3</div>
+</div>
+<div class="row">
+    <div class="col-md-2">密度</div>
+    <div class="col-md-2 text-right"><span id="pycn-density"></span> g/cm3</div>
+</div>
+<div class="row">
+    <div class="col-md-2">比重</div>
+    <div class="col-md-2 text-right"><span id="pycn-gravity"></span></div>
+</div>
+
+</div>
+<!-- Pycnometer-->
+
 Reference:
 <ol>
     <li id="ref-1"><a href="https://www.homebrewtalk.com/threads/temp-correction-formula-for-hydrometer.10684/post-100698">Temp Correction Formula for Hydrometer, HBT </a></li>
@@ -611,7 +724,7 @@ Reference:
         window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')
     </script>
     <script src="watercalc/bootstrap/js/bootstrap.bundle.js"></script>
-
+    <script src="water.js"></script>
     <script>
 
 var BrewMath = {
@@ -679,8 +792,47 @@ function C2F(c) { return Math.round((c * 1.8 + 32) * 10) / 10; }
 
 function F2C(f) { return Math.round((f - 32) / 1.8 * 10) / 10; }        
 
+function waterDensityFromTempInput(pid){
+    var t= parseFloat($(pid).val());
+    if(isNaN(t)) return NaN;
+    if(t<0 || t>100) return NaN;
+    return WaterDensityTable[Math.round(t*10)];
+}
+
     $(function() {
             $('[data-toggle="tooltip"]').tooltip();
+
+            // pycnometer calculation
+            $("#pycnometer input").change(function(){
+                // vol
+                var Wd= waterDensityFromTempInput("#pycn-temp");
+                if(! isNaN(Wd)){
+                    $("#pycn-water-density").text(Wd);
+                }
+                var Wp= parseFloat($("#pycn-bottle").val());
+                var Wt= parseFloat($("#pycn-w-total").val());
+                if(!isNaN(Wp) && !isNaN(Wt) && !isNaN(Wd)){
+                    var vol = (Wt - Wp)/Wd;
+                    $("#pycn-volume").text(vol.toFixed(2));
+                }
+                // wort
+                var Wd2= waterDensityFromTempInput("#pycn-temp2");
+                if(! isNaN(Wd2)){
+                    $("#pycn-water-density2").text(Wd2);
+                }
+                var Wp2= parseFloat($("#pycn-bottle2").val());
+                var Wt2= parseFloat($("#pycn-w-total2").val());
+                var Wv= parseFloat($("#pycn-bottle-vol").val());
+                if(!isNaN(Wd2) && !isNaN(Wp2) && !isNaN(Wt2)){
+                    var density = (Wt2 - Wp2)/Wv;
+                    $("#pycn-density").text(density.toFixed(4));
+                    var gravity = density / Wd2;
+                    $("#pycn-gravity").text(gravity.toFixed(4));
+                }
+
+            });
+
+            // pycnometer
 
             //Temperature calibration
             $("#hydrometer-collection input").change(function(){                
