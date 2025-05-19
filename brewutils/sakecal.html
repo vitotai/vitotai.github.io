@@ -516,7 +516,11 @@
         <div class="col-md-2">甘辛度</div>
         <div class="col-md-2 text-right"><span id="ama-ama"></span> <span id="ama-text"></span></div>
     </div>
+    <div class="row">
+        <div class=""col-md-2><canvas id="amesan" width="557" height="572"></canvas></div>
+    </div>    
 </div>
+
 <!-- amado -->
 
 </div>   
@@ -528,6 +532,7 @@
     window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')
 </script>
 <script src="water.js"></script>
+<script src="amesando.js"></script>
 <script src="watercalc/bootstrap/js/bootstrap.bundle.js"></script>
 <script>
 
@@ -660,6 +665,8 @@ Ekisu={
 };
 
 $(function() {
+    AmeSan.init("amesan","nihonshu.png");
+
     $('[data-toggle="tooltip"]').tooltip();
 
     $("#yield input").change(function(){       
@@ -830,6 +837,8 @@ $(function() {
             if(idx<0) idx=0;
             $("#ama-ama").text(ama.toFixed(1));
             $("#ama-text").text(text[idx]);
+
+            AmeSan.plotOn(smv,sando);
         }
     });
 
