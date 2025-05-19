@@ -17,8 +17,56 @@
 
 <body>
 <div class="container p-3">
+
+
+<!-- 比重/SMV/波美-->
+<div class="rounded container m-3" id="gravity-exchange">
+    <div class="row" >
+        <div class="col-md"><h3>
+            <a class="" data-toggle="collapse" href="#gxdescription" role="button" aria-expanded="false" aria-controls="gxdescription">
+                比重/日本酒度/波美互換
+            </a></h3></div>
+    </div>
+    <div class="collapse" id="gxdescription">
+        <div class="card card-body">
+            三種比重互相換算；比重使用日本酒使用的15&deg;C/4&deg;C。
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-2">比重(15&deg;C/4&deg;C)</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="gx-sg" class="form-control" placeholder="" aria-label="hydrometer reading" aria-describedby="basic-addon2" value="1.0">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">日本酒度/SMV</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="gx-smv" class="form-control" placeholder="" aria-label="temperature" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">&deg;</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">波美</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="gx-bm" class="form-control" placeholder="" aria-label="temperature" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">&deg;</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!--  比重/SMV/波美-->
+
+
+
 <!-- Temperature calibration-->
-<div class="rounded container m-3" id="hydrometer-collection">
+<div class="rounded container m-3" id="hydrometer-correction">
     <div class="row" >
         <div class="col-md"><h3>
             <a class="" data-toggle="collapse" href="#hcdescription" role="button" aria-expanded="false" aria-controls="hcdescription">
@@ -27,7 +75,10 @@
     </div>
     <div class="collapse" id="hcdescription">
         <div class="card card-body">
-         比重計校正溫度通常是20&deg;C或15&deg;C，通常在刻度最下方有標示。參考：<a href="https://www.homebrewtalk.com/threads/temp-correction-formula-for-hydrometer.10684/post-100698">Temp Correction Formula for Hydrometer, HBT </a>
+        日本酒使用的比重是15&deg;C/4&deg;C，意思是在15&deg;C下測量，相對於4&deg;C下水的比重，所以水的日本酒度量起來不是0，而是+1.26， 因為15&deg;C的水密度略小於4&deg;C的水，所以在15&deg;C量起來的對比4&deg;C的比重不是1.0。
+        一般啤酒用的比重計通常是20&deg;C/20&deg;C或60&deg;F/60&deg;F（美國產的），要修正成15&deg;C/4&deg;C才能套用這個公式。
+
+         比重計校正溫度通常在刻度最下方有標示。參考：<a href="https://www.homebrewtalk.com/threads/temp-correction-formula-for-hydrometer.10684/post-100698">Temp Correction Formula for Hydrometer, HBT </a>
         </div>
     </div>
     
@@ -64,52 +115,29 @@
         <div class="col-md-1 text-right"><span id="hc-corrected-sg"></span></div>
         <div class="col-md-1"></div>
     </div>
-</div>
-<!-- Temperature calibration-->
 
-<!-- 比重/SMV/波美-->
-<div class="rounded container m-3" id="gravity-exchange">
-    <div class="row" >
-        <div class="col-md"><h3>
-            <a class="" data-toggle="collapse" href="#gxdescription" role="button" aria-expanded="false" aria-controls="gxdescription">
-                比重/日本酒度/波美
-            </a></h3></div>
-    </div>
-    <div class="collapse" id="gxdescription">
-        <div class="card card-body">
-            三種比重互相換算。
-        </div>
-    </div>
-    
     <div class="row">
-        <div class="col-md-2">比重/SG</div>
-        <div class="col-md-2 input-group input-group-sm">
-            <input type="text" id="gx-sg" class="form-control" placeholder="" aria-label="hydrometer reading" aria-describedby="basic-addon2" value="1.0">
-        </div>
+        <div class="col-md-2">比重(15&deg;C/4&deg;C)</div>
+        <div class="col-md-1 text-right"><span id="hc-154-sg"></span></div>
+        <div class="col-md-1"></div>
     </div>
 
     <div class="row">
-        <div class="col-md-2">日本酒度/SMV</div>
-        <div class="col-md-2 input-group input-group-sm">
-            <input type="text" id="gx-smv" class="form-control" placeholder="" aria-label="temperature" aria-describedby="basic-addon2">
-            <div class="input-group-append">
-              <span class="input-group-text" id="basic-addon2">&deg;</span>
-            </div>
-        </div>
+        <div class="col-md-2">日本酒度SMV</div>
+        <div class="col-md-1 text-right"><span id="hc-smv"></span></div>
+        <div class="col-md-1"></div>
     </div>
 
     <div class="row">
         <div class="col-md-2">波美</div>
-        <div class="col-md-2 input-group input-group-sm">
-            <input type="text" id="gx-bm" class="form-control" placeholder="" aria-label="temperature" aria-describedby="basic-addon2">
-            <div class="input-group-append">
-              <span class="input-group-text" id="basic-addon2">&deg;</span>
-            </div>
-        </div>
+        <div class="col-md-1 text-right"><span id="hc-bm"></span></div>
+        <div class="col-md-1"></div>
     </div>
 
+    
 </div>
-<!--  比重/SMV/波美-->
+<!-- Temperature calibration-->
+
 
 
 
@@ -499,8 +527,15 @@
 <script>
     window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')
 </script>
+<script src="water.js"></script>
 <script src="watercalc/bootstrap/js/bootstrap.bundle.js"></script>
 <script>
+
+function waterDensity(t){
+    if(isNaN(t)) return NaN;
+    if(t<0 || t>100) return NaN;
+    return WaterDensityTable[Math.round(t*10)];
+}
 
 function C2F(c) { return Math.round((c * 1.8 + 32) * 10) / 10; }
 
@@ -688,12 +723,25 @@ $(function() {
     }); 
 
     //Temperature calibration
-    $("#hydrometer-collection input").change(function(){                
-                var T= parseFloat($("#hc-temp").val());
-                var R= parseFloat($("#hc-reading").val());
-                var CT=parseFloat($("#hc-ctemp").val());
-                var c= SakeMath.sgTempCorrected(R,C2F(T),C2F(CT));
-                $("#hc-corrected-sg").text(c.toFixed(4));
+    $("#hydrometer-correction input").change(function(){                
+        var T= parseFloat($("#hc-temp").val());
+        var R= parseFloat($("#hc-reading").val());
+        var CT=parseFloat($("#hc-ctemp").val());
+        var c= SakeMath.sgTempCorrected(R,C2F(T),C2F(CT));
+        $("#hc-corrected-sg").text(c.toFixed(5));
+        if(!isNaN(CT) && !isNaN(c)){
+            var w4c = waterDensity(4);
+            var wct = waterDensity(CT);
+            
+            var sg= c * wct / w4c;
+            $("#hc-154-sg").text(sg.toFixed(5));
+
+            var smv = SakeMath.sg2smv(sg);
+            var bm = SakeMath.sg2Bm(sg);
+            $("#hc-smv").text(smv.toFixed(2));
+            $("#hc-bm").text(bm.toFixed(1));
+
+        }
     });
 
 
@@ -703,7 +751,7 @@ $(function() {
             var sg = parseFloat($("#gx-sg").val());
             var smv = SakeMath.sg2smv(sg);
             var bm = SakeMath.sg2Bm(sg);
-            $("#gx-smv").val(smv.toFixed(1));
+            $("#gx-smv").val(smv.toFixed(2));
             $("#gx-bm").val(bm.toFixed(1));
         }else if($(this).prop("id") == "gx-smv"){
             var smv = parseFloat($("#gx-smv").val());
@@ -716,7 +764,7 @@ $(function() {
             var sg = SakeMath.bm2sg(bm);
             var smv = SakeMath.bm2smv(bm);
             $("#gx-sg").val(sg.toFixed(4));
-            $("#gx-smv").val(smv.toFixed(1));
+            $("#gx-smv").val(smv.toFixed(2));
         }
     });
 
