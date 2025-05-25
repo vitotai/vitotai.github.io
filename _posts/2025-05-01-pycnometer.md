@@ -50,6 +50,11 @@ categories:
 這個方法中，關鍵之一是**水的密度**，我找到一個水在不同溫度下的密度的表，然後寫成[計算器](https://www.vito.tw/brewutils/brewcal.htm)。實際操作下，25ml的不比我的比重計差，而10ml的則需要很細心的操作。
 另外，測量啤酒時，一定要確實把二氧化碳去除，二氧化碳的泡泡影響很大。
 
+**更正:**
+
+啤酒的比重通常是20&deg;C或60&deg;F（美標），也就是在20&deg;C或60&deg;F測量，相對於20&deg;C或60&deg;F的水的比重。用上面這個方法測出來的，和標準的20&deg;C或60&deg;F會有一點誤差，需要修正。
+具體修正方法就是比較兩個溫度下水的密度。
+
 參考：
 - https://www.jimsbeerkit.co.uk/forum/viewtopic.php?t=83887
 - https://www.homebrewtalk.com/threads/sg-and-temperature-compensation.730749/
