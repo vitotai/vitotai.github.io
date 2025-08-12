@@ -106,7 +106,7 @@ PCB需要插入USB時按住SW1才會進入燒錄模式，那個按鈕很小、�
 | S.4 | Steam Switch 4  | 紅 | 電源N線 | x  |
 | BT.A | Brew Thermostat | 紅 | 電源N線 | BT.B   |
 | BT.B | Brew Thermostat  | 灰 | 蒸汽鍵(S.2)，Steam Thermostat | BT.A |
-| ST.A | Steam Thermostat | 灰 | 蒸汽鍵(S.2)，Brew Thermostat | SSR | 
+| ST.A | Steam Thermostat | 灰 | 沖煮鍵(BT.B)，Brew Thermostat | SSR | 
 | ST.B | Steam Thermostat | 黄 | 鍋爐電熱 | SSR |
 | PMP.A | Pump | 紅 | Brew Thermotat(BT.A),電源N線 | PCB P port |
 | PMP.B | Pump | 白| 供水按鍵(W.1)、沖煮鍵(C.1),電磁閥 | PCB N port |
