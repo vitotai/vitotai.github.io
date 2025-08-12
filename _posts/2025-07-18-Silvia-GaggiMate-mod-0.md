@@ -1,5 +1,5 @@
 ---
-title: 'Rancilio Silvia改GaggiMate記錄-0:準備工作'
+title: 'Rancilio Silvia改GaggiMate記錄'
 date: '2025-07-04T14:50:35+00:00'
 author: Vito
 layout: post
@@ -52,8 +52,9 @@ GaggiMate官方的Silvia接法是從鍋爐接出來，把三通接在OPV和鍋�
 
 
 ### 線材
-| 編號 | 名稱 | AWG | 顏色 | 長度 |  接頭 |
-| -- | --  | --  | --  | --  | -- |
+
+| 編號 | 名稱 | AWG | 顏色 | 長度 | 接頭 |
+|  -- |  -- | -- | -- | -- | -- |
 | L1 | Heater bridge | 18 | 紅 | 30mm | male-male  |
 | L2 | Eco bridge | 18 | 黃 | 30mm | male-male  |
 | L3 | 3-way valve | 18 | 紅 |450mm  | spad-  |
