@@ -1,0 +1,981 @@
+<!doctype html>
+<html lang="zh">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>自釀計算器</title>
+    <!-- Bootstrap core CSS -->
+    <link href="watercalc/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+<div class="container p-3">
+
+<!-- Temperature calibration-->
+<div class="rounded container m-3" id="hydrometer-collection">
+    <div class="row" >
+        <div class="col-md"><h3>
+            <a class="" data-toggle="collapse" href="#hcdescription" role="button" aria-expanded="false" aria-controls="hcdescription">
+            比重計溫度修正
+            </a></h3></div>
+    </div>
+    <div class="collapse" id="hcdescription">
+        <div class="card card-body">
+         比重計校正溫度通常是20&deg;C或15&degC，通常在刻度最下方有標示。參考：<a href="https://www.homebrewtalk.com/threads/temp-correction-formula-for-hydrometer.10684/post-100698">Temp Correction Formula for Hydrometer, HBT </a>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-2">比重計讀數</div>
+        <!--<div class="col-md-w"><input class="form-control form-control-sm" id="hc-reading" value="1.0"></div>
+        <div class="col-md-1"></div>-->
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="hc-reading" class="form-control" placeholder="" aria-label="hydrometer reading" aria-describedby="basic-addon2" value="1.0">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">麥汁溫度</div>
+<!--        <div class="col-md-1"><input class="form-control form-control-sm" id="hc-temp" value=""></div>
+        <div class="col-md-1">&deg;C</div>
+-->    
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="hc-temp" class="form-control" placeholder="" aria-label="wrot temperature" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">&deg;C</span>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-2" data-toggle="tooltip" data-placement="right" title="比重計的校正溫度，通常是15或20&deg;C，比重計上會標示。" >校正溫度</div>
+        <!--<div class="col-md-1"><input class="form-control form-control-sm" id="hc-ctemp" value="20"></div>
+        <div class="col-md-1">&deg;C</div>-->
+
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="hc-ctemp" class="form-control" placeholder="" aria-label="Correction temperature" aria-describedby="basic-addon2" value="20">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">&deg;C</span>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-2">比重修正值</div>
+        <div class="col-md-1 text-right"><span id="hc-corrected-sg"></span></div>
+        <div class="col-md-1"></div>
+    </div>
+</div>
+<!-- Temperature calibration-->
+
+<!-- Refractometer calculation-->
+<div class="rounded container m-3" id="refractometer-calculation">
+    <div class="row" >
+        <div class="col-md"><h3><a class="" data-toggle="collapse" href="#rcdescription" role="button" aria-expanded="false" aria-controls="rcdescription">折射儀計算</a></h3></div>
+    </div>
+    <div class="collapse" id="rcdescription">
+        <div class="card card-body">
+        計算麥汁比重，可輸入原始糖度換算原始比重，或反過來輸入比重換算糖度。使用糖度計(拆射儀)計算已發酵的啤汁比重，輸入原始糖度/比重，及當前量測的糖度，可推算出當成比重。參考： <a href="https://www-diversity-beer.translate.goog/2017/01/pocitame-nova-korekce-refraktometru.html?_x_tr_sch=http&_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=zh-TW&_x_tr_pto=wapp">"We count:New refractometer correction",translated</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2" data-toggle="tooltip" data-placement="right" title="輸入原始糖度" >OG/原始糖度</div>
+        <!--<div class="col-md-1"><input class="form-control form-control-sm" id="rc-ogr" value="12.5"></div>
+        <div class="col-md-1">&deg;Bx</div>-->
+
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="rc-ogr" class="form-control" placeholder="" aria-label="Original Brix" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">&deg;Bx</span>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-2" data-toggle="tooltip" data-placement="right" title="輪入原始比重">OG/原始比重</div>
+        <!--<div class="col-md-1"><input class="form-control form-control-sm" id="rc-ogh" value="1.050"></div>
+        <div class="col-md-1"></div> -->
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="rc-ogh" class="form-control" placeholder="" aria-label="Original gravity" aria-describedby="basic-addon2">
+        </div>        
+    </div>
+    <div class="row">
+        <div class="col-md-2" data-toggle="tooltip" data-placement="right" title="拆射儀目前顯示讀數">折射儀讀數</div>
+        <!--<div class="col-md-1"><input class="form-control form-control-sm" id="rc-sgr" value=""></div>
+        <div class="col-md-1">&deg;Bx</div>-->
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="rc-sgr" class="form-control" placeholder="" aria-label="wort Brix" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">&deg;Bx</span>
+            </div>
+        </div>        
+    </div>
+    <div class="row">
+        <div class="col-md-2" data-toggle="tooltip" data-placement="right" title="Petr Novotny's Formula">比重</div>
+        <div class="col-md-2 text-right"><span id="rc-novo-sgh" data-toggle="tooltip" data-placement="right" title="Petr Novotny's Formula"></span></div>
+        <!--<div class="col-md-1"></div>-->
+    </div>
+    <div class="row">
+        <div class="col-md-2" data-toggle="tooltip" data-placement="right" title="Petr Novotny's Formul">發酵度ATT</div>
+        <div class="col-md-2 text-right"><span id="rc-novo-att"></span> %</div>
+        <!--<div class="col-md-1">%</div>-->
+    </div>
+    <div class="row">
+        <div class="col-md-2" data-toggle="tooltip" data-placement="right" title="ABV">ABV</div>
+        <div class="col-md-2 text-right"><span id="rc-abv"></span> %</div>
+        <!--<div class="col-md-1">%</div>-->
+    </div>
+    <div class="row">
+        <div class="col-md-2"  data-toggle="tooltip" data-placement="right" title="使用考慮酒精溶液密度變化的公式">ABV(alt)</div>
+        <div class="col-md-2 text-right"><span id="rc-abva"></span> %</div>
+        <!--<div class="col-md-1">%</div>-->
+    </div>
+</div>
+<!-- Refractometer calculation-->
+
+<!-- ABV-->
+<div class="rounded container m-3" id="abv">
+    <div class="row" >
+        <div class="col-md"><h3><a class="" data-toggle="collapse" href="#abvdescription" role="button" aria-expanded="false" aria-controls="abvdescription">酒精度ABV</a></h3></div>
+    </div>
+    <div class="collapse" id="abvdescription">
+        <div class="card card-body">
+        由原始比重(OG)和最終比重(FG)推算ABV。常用的公式為 131.25 * (og - fg)，但酒精密度和體積並非線性關係，所以在酒精度愈高，這個公式的誤差愈大，ABV(alt)是使用考慮體積變化的修正公式。
+        參考：<a href="https://youtu.be/RPfxf-6FcEg">BotB- Your Lyin Hydrometer, by Sui Generis Brewing </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">原始比重OG</div>
+        <!--<div class="col-md-1"><input class="form-control form-control-sm" id="abv-og" value="1.0"></div>
+        <div class="col-md-1"></div>-->
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="abv-og" class="form-control" placeholder="" aria-label="OG" aria-describedby="basic-addon2" value="1.0">
+        </div>        
+
+    </div>
+    <div class="row">
+        <div class="col-md-2">最終比重FG</div>
+        <!--<div class="col-md-1"><input class="form-control form-control-sm" id="abv-fg" value="1.0"></div>
+        <div class="col-md-1"></div>-->
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="abv-fg" class="form-control" placeholder="" aria-label="FG" aria-describedby="basic-addon2" value="1.0">
+        </div>        
+
+    </div>
+    <div class="row">
+        <div class="col-md-2">ATT</div>
+        <div class="col-md-2 text-right"><span id="abv-att"></span> %</div>
+        <!--<div class="col-md-1">%</div>-->
+    </div>
+    <div class="row">
+        <div class="col-md-2">ABV</div>
+        <div class="col-md-2 text-right"><span id="abv-abv"></span> %</div>
+        <!--<div class="col-md-1">%</div>-->
+    </div>
+    <div class="row">
+        <div class="col-md-2"  data-toggle="tooltip" data-placement="right" title="有考慮酒精濃度不同體積有所變化的公式">ABV(alt)</div>
+        <div class="col-md-2 text-right"><span id="abv-abv2"></span> %</div>
+        <!--<div class="col-md-1">%</div>-->
+    </div>
+</div>
+<!-- ABV-->
+
+<!-- Priming-->
+<div class="rounded container m-3" id="priming">
+    <div class="row" >
+        <div class="col-md"><h3><a class="" data-toggle="collapse" href="#primdescription" role="button" aria-expanded="false" aria-controls="primdescription">瓶發糖計算</a></h3></div>
+    </div>
+    <div class="collapse" id="primdescription">
+        <div class="card card-body">
+        加糖瓶發時，要扣掉目前啤酒中已含的CO2氣體數，也就是說：<em>[加糖產生的CO2] = [目標氣體數] - [啤酒已含有的CO2] </em> 
+        在啤酒發酵過程中，會不斷產生CO2， 在達到飽合後，多餘的CO2會無法溶於啤酒中，於是變成氣泡散逸於空氣中。如果是常壓發酵，啤酒中的CO2濃度約略等於啤酒當時溫度的CO2飽合濃度。
+        通常這個啤酒溫度等於最後的發酵溫度，不用管發酵結束後的冷降溫度。但如果發酵結束後、裝瓶前，
+        啤酒溫度有上升，CO2飽合濃度會再下降，部分CO2也會散失，這部分的CO2損失，即使在溫度下降後不會回溶於啤酒中，所以啤酒溫度要填發酵結束後、裝瓶前的最高溫。
+        參考：<em>Brew By The Numbers,  Michael L. Hall, PhD, Zymurgy 1995 Summer</em>
+        氣體數參考：
+        <ul>
+            <li>高： 3.0~。小麥啤酒、比利時系、商業拉格類的大都是高氣體數的，甚至有高到5個氣體數的。要注意不確定瓶子的耐壓或回收使用的瓶子不建議超過3個氣體數。</li>
+            <li>中： 2.5(2.4~2.6)。大部分的APA/IPA，德式拉格類的。</li>
+            <li>低： 2.0(1.2~2.2)。Porter,Stout及英式類型的。</li>
+        </ul>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">目標氣體數</div>
+        <!--<div class="col-md-1"><input class="form-control form-control-sm" id="prim-desire" value=""></div>
+        <div class="col-md-1"></div>-->
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="prim-desire" class="form-control" placeholder="" aria-label="Desired Volume" aria-describedby="basic-addon2">
+        </div>        
+
+    </div>
+    <div class="row">
+        <div class="col-md-2"  data-toggle="tooltip" data-placement="right" title="通常是發酵結束時的溫度，如果發酵結束後溫度有上升，要用最高溫。">啤酒溫度</div>
+        <!--<div class="col-md-1"><input class="form-control form-control-sm" id="prim-temp" value="20"></div>
+        <div class="col-md-1">&deg;C</div>-->
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="prim-temp" class="form-control" placeholder="" aria-label="Beer Temperature" aria-describedby="basic-addon2" value="20">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">&deg;C</span>
+            </div>
+        </div>        
+        
+    </div>
+    <div class="row">
+        <div class="col-md-2">總啤酒量</div>
+        <!--<div class="col-md-1"><input class="form-control form-control-sm" id="prim-beervol" value="20"></div>
+        <div class="col-md-1">L</div>-->
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="prim-beervol" class="form-control" placeholder="" aria-label="Beer Volume" aria-describedby="basic-addon2" value="20">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">L</span>
+            </div>
+        </div>        
+
+    </div>
+    <div class="row">
+        <div class="col-md-2" data-toggle="tooltip" data-placement="right" title="未加糖前啤酒已含有的CO2氣體數">已含CO2</div>
+        <div class="col-md-2 text-right"><span id="prim-beerco2"></span> vol</div>
+        <!--<div class="col-md-1">vol</div>-->
+    </div>
+    <div class="row">
+        <div class="col-md-2">總糖量</div>
+        <div class="col-md-2 text-right"><span id="prim-sugar"></span> g</div>
+        <!--<div class="col-md-1">g</div>-->
+    </div>
+    <div class="row">
+        <div class="col-md-2">330ml瓶裝糖量</div>
+        <div class="col-md-2 text-right"><span id="prim-sugar33"></span> g</div>
+        <!--<div class="col-md-1">g</div>-->
+    </div>
+    <div class="row">
+        <div class="col-md-2">500ml瓶裝糖量</div>
+        <div class="col-md-2 text-right"><span id="prim-sugar50"></span> g</div>
+        <!--<div class="col-md-1">g</div>-->
+    </div>
+    <div class="row">
+        <div class="col-md-2">600ml瓶裝糖量</div>
+        <div class="col-md-2 text-right"><span id="prim-sugar60"></span> g</div>
+        <!--<div class="col-md-1">g</div>-->
+    </div>
+    <div class="row">
+        <div class="col-md-2">1公升瓶裝糖量</div>
+        <div class="col-md-2 text-right"><span id="prim-sugar1l"></span> g</div>
+        <!-- <div class="col-md-1">g</div> -->
+    </div>
+
+</div>
+<!-- Priming-->
+
+<!--  Priming partial carbonated-->
+<div class="rounded container m-3" id="priming-partial-carbonated">
+    <div class="row" >
+        <div class="col-md"><h3><a class="" data-toggle="collapse" href="#ppcdescription" role="button" aria-expanded="false" aria-controls="ppcdescription">壓力發酵瓶發糖計算</a></h3></div>
+    </div>
+    <div class="collapse" id="ppcdescription">
+        <div class="card card-body">
+        在有壓力的情況下，溶於啤酒中的CO2會高於飽合濃度，所以必須根據溫度和平衡壓力計算濃度。溫度和平衡壓力為發酵結束時的數值。如果發酵結束後冷降，在頭部空間的CO2會溶入因為溫度降低而升高可溶性的啤酒，但這個速度不會很快。
+        相對之下，頭部空間的壓力下降比較多是因為溫度降低所導致的（PV=nRT），所以可以不考慮回溶的CO2。除非在低溫的時間很長，在裝瓶過程中因為震動及溫壓變化而散失的CO2可能還稍多一點。
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">目標氣體數</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="ppc-desire" class="form-control" placeholder="" aria-label="Desired Volume" aria-describedby="basic-addon2">
+        </div>        
+
+    </div>
+    <div class="row">
+        <div class="col-md-2"  data-toggle="tooltip" data-placement="right" title="通常是發酵結束時的溫度。">發酵結束溫度</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="ppc-temp" class="form-control" placeholder="" aria-label="Beer Temperature" aria-describedby="basic-addon2" value="20">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">&deg;C</span>
+            </div>
+        </div>         
+    </div>
+    <div class="row">
+        <div class="col-md-2">發酵結束壓力</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="ppc-pressure" class="form-control" placeholder="" aria-label="Beer Volume" aria-describedby="basic-addon2" value="15">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">psi</span>
+            </div>
+        </div>        
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">總啤酒量</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="ppc-beervol" class="form-control" placeholder="" aria-label="Beer Volume" aria-describedby="basic-addon2" value="20">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">L</span>
+            </div>
+        </div>        
+
+    </div>
+    <div class="row">
+        <div class="col-md-2" data-toggle="tooltip" data-placement="right" title="未加糖前啤酒已含有的CO2氣體數">已含CO2</div>
+        <div class="col-md-2 text-right"><span id="ppc-beerco2"></span> vol</div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">總糖量</div>
+        <div class="col-md-2 text-right"><span id="ppc-sugar"></span> g</div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">330ml瓶裝糖量</div>
+        <div class="col-md-2 text-right"><span id="ppc-sugar33"></span> g</div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">500ml瓶裝糖量</div>
+        <div class="col-md-2 text-right"><span id="ppc-sugar50"></span> g</div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">600ml瓶裝糖量</div>
+        <div class="col-md-2 text-right"><span id="ppc-sugar60"></span> g</div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">1公升瓶裝糖量</div>
+        <div class="col-md-2 text-right"><span id="ppc-sugar1l"></span> g</div>
+    </div>
+
+</div>
+<!-- Priming partial carbonated-->
+
+<!-- krausening/Speise-->
+<div class="rounded container m-3" id="krausening">
+    <div class="row" >
+        <div class="col-md"><h3><a class="" data-toggle="collapse" href="#krausendescription" role="button" aria-expanded="false" aria-controls="krausendescription">Krausening/Speise計算</a></h3></div>
+    </div>
+    <div class="collapse" id="krausendescription">
+        <div class="card card-body">
+        使用發酵到高泡期(Krausening)或未發酵麥汁來做Carbonation。Krausening和Speise的計算是一樣的，因為兩者的分別是前者多了發酵中的酵母，而比重是變化中的。雖然定義上加入了酵母的麥汁
+        就算是啤酒，為了方便，一律稱為麥汁。如果是Krausening，<em>麥汁比重</em>就是當時的比重；如果是Speise就是OG。假設krausen的溫度和啤酒溫度一樣。
+        參考：<em><a href="https://braukaiser.com/wiki/index.php?title=Kraeusening">Braukaiser's article on Krausening</a></em>
+        氣體數參考：
+        <ul>
+            <li>高： 3.0~。小麥啤酒、比利時系、商業拉格類的大都是高氣體數的，甚至有高到5個氣體數的。要注意不確定瓶子的耐壓或回收使用的瓶子不建議超過3個氣體數。</li>
+            <li>中： 2.5(2.4~2.6)。大部分的APA/IPA，德式拉格類的。</li>
+            <li>低： 2.0(1.2~2.2)。Porter,Stout及英式類型的。</li>
+        </ul>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">目標氣體數</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="krausen-desire" class="form-control" placeholder="" aria-label="Desired Volume" aria-describedby="basic-addon2">
+        </div>        
+
+    </div>
+    <div class="row">
+        <div class="col-md-2"  data-toggle="tooltip" data-placement="right" title="通常是發酵結束時的溫度，如果發酵結束後溫度有上升，要用最高溫。">啤酒溫度</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="krausen-temp" class="form-control" placeholder="" aria-label="Beer Temperature" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">&deg;C</span>
+            </div>
+        </div>        
+        
+    </div>
+    <div class="row">
+        <div class="col-md-2">啤酒量</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="krausen-beervol" class="form-control" placeholder="" aria-label="原始啤酒量" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">L</span>
+            </div>
+        </div>        
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">啤酒加麥汁總量</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="krausen-totalvol" class="form-control" placeholder="" aria-label="包括加入麥汁的總啤酒量" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">L</span>
+            </div>
+        </div>        
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">麥汁比重</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="krausen-gravity" class="form-control" placeholder="" aria-label="麥汁的比重" aria-describedby="basic-addon2" value="1.048">
+        </div>        
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">麥汁最終比重/FG</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="krausen-fg" class="form-control" placeholder="" aria-label="麥汁的FG" aria-describedby="basic-addon2" value="1.012">
+        </div>        
+    </div>
+
+    <div class="row">
+        <div class="col-md-2"> 總麥汁量</div>
+        <div class="col-md-2 text-right"><span id="krausen-vol"></span> L</div>
+    </div>
+    <div class="row">
+        <div class="col-md-2" data-toggle="tooltip" data-placement="right" title="未加糖前啤酒已含有的CO2氣體數">已含CO2</div>
+        <div class="col-md-2 text-right"><span id="krausen-beerco2"></span> vol</div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">330ml瓶麥汁量</div>
+        <div class="col-md-2 text-right"><span id="krausen-sugar33"></span> ml</div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">500ml瓶麥汁量</div>
+        <div class="col-md-2 text-right"><span id="krausen-sugar50"></span> ml</div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">600ml瓶麥汁量</div>
+        <div class="col-md-2 text-right"><span id="krausen-sugar60"></span> ml</div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">1公升瓶麥汁量</div>
+        <div class="col-md-2 text-right"><span id="krausen-sugar1l"></span> ml</div>
+    </div>
+
+</div>
+<!-- krausening/Speise-->
+
+<!-- Pressure-->
+<div class="rounded container m-3" id="pressure">
+    <div class="row" >
+        <div class="col-md"><h3><a class="" data-toggle="collapse" href="#pressuredescription" role="button" aria-expanded="false" aria-controls="pressuredescription">壓力含氣量計算</a></h3></div>
+    </div>
+    <div class="collapse" id="pressuredescription">
+        <div class="card card-body">
+        啤酒氣體數、溫度、頭部壓力的換算。可輸入氣體數、溫度，求出壓力，或是輸入溫度、頭部壓力，求出氣體數。請注意，這是頭部壓力和啤酒溶解的CO2氣體數達到平衡的條件下，改變其中一個條件（例如打氣加壓），要達到平衡需要很長的時闁，可能需要長達數日。
+        參考：<a href="http://brainlubeonline.com/GasLawsBeer.html">The Math and Science of Carbonation </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">溫度</div>
+        <!--<div class="col-md-1"><input class="form-control form-control-sm" id="pressure-temp" value="20"></div>
+        <div class="col-md-1">&deg;C</div> -->
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="pressure-temp" class="form-control" placeholder="" aria-label="Beer Temperature" aria-describedby="basic-addon2" value="20">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">&deg;C</span>
+            </div>
+        </div>        
+
+    </div>
+    <div class="row">
+        <div class="col-md-2">氣體數</div>
+        <!--<div class="col-md-1"><input class="form-control form-control-sm" id="pressure-vol" value=""></div>
+        <div class="col-md-1">vol</div>-->
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="pressure-vol" class="form-control" placeholder="" aria-label="Carbonation Volume" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">vol</span>
+            </div>
+        </div>        
+    </div>
+    <div class="row">
+        <div class="col-md-2">頭部壓力</div>
+        <!--<div class="col-md-1"><input class="form-control form-control-sm" id="pressure-psi" value=""></div>
+        <div class="col-md-1">psi</div>-->
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="pressure-psi" class="form-control" placeholder="" aria-label="Head Pressure" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">psi</span>
+            </div>
+        </div>        
+    </div>
+
+</div>
+<!-- Pressure-->
+
+
+<!-- ABV without OG-->
+<div class="rounded container m-3" id="abv-no-og">
+    <div class="row" >
+        <div class="col-md"><h3><a class="" data-toggle="collapse" href="#anodescription" role="button" aria-expanded="false" aria-controls="anodescription">未知原始比重,用比重計和折射儀求酒精度</a></h3></div>
+    </div>
+    <div class="collapse" id="anodescription">
+        <div class="card card-body">
+        未知原始比重，利用比重計和折射儀(糖度計)，估算ABV和原始比重。啤酒溫度為測量時的啤溫度，用以校正比重計。這個公式的精度要求很高，折射儀的讀數差一點點，可能就會產生很大的誤差。
+        參考：<a href="http://www.woodlandbrew.com/2013/02/abv-without-og.html">ABV without OG</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">折射儀讀數</div>
+        <!--<div class="col-md-1"><input class="form-control form-control-sm" id="ano-brix" value=""></div>
+        <div class="col-md-1">&deg;Bx</div>-->
+
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="ano-brix" class="form-control" placeholder="" aria-label="Refractometer" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">&deg;Bx</span>
+            </div>
+        </div>        
+
+    </div>
+    <div class="row">
+        <div class="col-md-2">比重計讀數</div>
+        <!--<div class="col-md-1"><input class="form-control form-control-sm" id="ano-sg" value="1.0"></div>
+        <div class="col-md-1"></div>-->
+
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="ano-sg" class="form-control" placeholder="" aria-label="Hydrometer reading" aria-describedby="basic-addon2" value="1.0">
+        </div>        
+
+    </div>
+    <div class="row">
+        <div class="col-md-2">啤酒溫度</div>
+        <!--<div class="col-md-1"><input class="form-control form-control-sm" id="ano-temp" value="20"></div>
+        <div class="col-md-1">&deg;C</div>-->
+
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="ano-temp" class="form-control" placeholder="" aria-label="Beer temperature" aria-describedby="basic-addon2" value="20">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">&deg;C</span>
+            </div>
+        </div>        
+
+    </div>
+    <div class="row">
+        <div class="col-md-2">校正溫度</div>
+        <!--<div class="col-md-1"><input class="form-control form-control-sm" id="ano-ctemp" value="20"></div>
+        <div class="col-md-1">&deg;C</div> -->
+
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="ano-ctemp" class="form-control" placeholder="" aria-label="Correction temperature" aria-describedby="basic-addon2" value="20">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">&deg;C</span>
+            </div>
+        </div>        
+
+    </div>
+    <div class="row">
+        <div class="col-md-2">比重修正值</div>
+        <div class="col-md-2 text-right"><span id="ano-corrected-sg"></span></div>
+        <!--<div class="col-md-1"></div>-->
+    </div>
+    <div class="row">
+        <div class="col-md-2">推算原始比重OG</div>
+        <div class="col-md-2 text-right"><span id="ano-og"></span></div>
+        <!--<div class="col-md-1"></div>-->
+    </div>
+    <div class="row">
+        <div class="col-md-2">ABV</div>
+        <div class="col-md-2 text-right"><span id="ano-abv"></span> %</div>
+        <!--<div class="col-md-1">%</div>-->
+    </div>
+    <div class="row">
+        <div class="col-md-2">ABV(alt)</div>
+        <div class="col-md-2 text-right"><span id="ano-abv2"></span> %</div>
+        <!--<div class="col-md-1">%</div>-->
+    </div>
+
+</div>
+<!-- ABV without OG-->
+
+
+
+<!-- Pycnometer-->
+<div class="rounded container m-3" id="pycnometer">
+    <div class="row" >
+        <div class="col-md"><h3><a class="" data-toggle="collapse" href="#pycnometerdes" role="button" aria-expanded="false" aria-controls="pycnometerdes">比重瓶計算</a></h3></div>
+    </div>
+    <div class="collapse" id="pycnometerdes">
+        <div class="card card-body">
+        比重瓶的使用方式應該是測量<em>同溫</em>下，同一個比重瓶的水以及麥汁的淨重；麥汁的淨重除以水淨重即為比重值。然而，實務操作下，要讓麥汁和水達到同一個溫度，需要一些時間。依照我看到的教學影片，都要30分鐘，而且是放在
+        恆溫箱中。如果不考慮<em>瓶子的真實容積</em>在不同溫度下可能會有的微小差異，可以先測量<em>瓶子乾重以及真實容積</em>，測量比重時，只需要測量麥汁淨重以及溫度即可。
+        瓶子的真實體積可以用水測量得出：先測瓶子乾重，後測裝滿水的重量，然後可以由查表得知道水密度，計算出瓶子的真實容積。
+        有了瓶子的真實容積以及瓶子的乾重。測量比重時，可以測量麥汁淨重，除以容積，就是麥汁的密度，查得水在同樣溫度的密度，即可算出比重：麥汁密度除以水的密度。
+       </div>
+    </div>
+    <div class="row">
+            <div class="col-md-4">測量比重瓶容積</div>
+    </div>
+    
+    <div class="row">
+            <div class="col-md-2">水溫</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="pycn-temp" class="form-control" placeholder="" aria-label="Water Temperature" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">&deg;C</span>
+            </div>
+    </div>        
+
+    </div>
+    <div class="row">
+        <div class="col-md-2">比重瓶重</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="pycn-bottle" class="form-control" placeholder="" aria-label="Carbonation Volume" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">g</span>
+            </div>
+        </div>        
+    </div>
+    <div class="row">
+        <div class="col-md-2">總重</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="pycn-w-total" class="form-control" placeholder="" aria-label="Head Pressure" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">g</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">純水密度</div>
+        <div class="col-md-2 text-right"><span id="pycn-water-density"></span> g/cm3</div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">比重瓶容積</div>
+        <div class="col-md-2 text-right"><span id="pycn-volume"></span> cm3</div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">測量麥汁比重</div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">麥汁溫度</div>
+        <div class="col-md-2 input-group input-group-sm">
+            <input type="text" id="pycn-temp2" class="form-control" placeholder="" aria-label="Water Temperature" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+            <span class="input-group-text" id="basic-addon2">&deg;C</span>
+            </div>
+        </div>        
+
+    </div>
+<div class="row">
+    <div class="col-md-2">比重瓶容積</div>
+    <div class="col-md-2 input-group input-group-sm">
+        <input type="text" id="pycn-bottle-vol" class="form-control" placeholder="" aria-label="Carbonation Volume" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+          <span class="input-group-text" id="basic-addon2">ml</span>
+        </div>
+    </div>        
+</div>
+<div class="row">
+    <div class="col-md-2">比重瓶重</div>
+    <div class="col-md-2 input-group input-group-sm">
+        <input type="text" id="pycn-bottle2" class="form-control" placeholder="" aria-label="Carbonation Volume" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+          <span class="input-group-text" id="basic-addon2">g</span>
+        </div>
+    </div>        
+</div>
+<div class="row">
+    <div class="col-md-2">總重</div>
+    <div class="col-md-2 input-group input-group-sm">
+        <input type="text" id="pycn-w-total2" class="form-control" placeholder="" aria-label="Head Pressure" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+          <span class="input-group-text" id="basic-addon2">g</span>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-2">純水密度</div>
+    <div class="col-md-2 text-right"><span id="pycn-water-density2"></span> g/cm3</div>
+</div>
+<div class="row">
+    <div class="col-md-2">密度</div>
+    <div class="col-md-2 text-right"><span id="pycn-density"></span> g/cm3</div>
+</div>
+<div class="row">
+    <div class="col-md-2">比重</div>
+    <div class="col-md-2 text-right"><span id="pycn-gravity"></span></div>
+</div>
+
+</div>
+<!-- Pycnometer-->
+
+Reference:
+<ol>
+    <li id="ref-1"><a href="https://www.homebrewtalk.com/threads/temp-correction-formula-for-hydrometer.10684/post-100698">Temp Correction Formula for Hydrometer, HBT </a></li>
+    <li id="ref-2"><a href="https://youtu.be/RPfxf-6FcEg">BotB- Your Lyin Hydrometer, by Sui Generis Brewing </a></li>
+    <li id="ref-3">Brew By The Numbers,  Michael L. Hall, PhD, Zymurgy 1995 Summer</li>
+    <li id="ref-4"><a href="http://brainlubeonline.com/GasLawsBeer.html">The Math and Science of Carbonation </a></li>
+    <li id="ref-5"><a href="https://www.homebrewtalk.com/threads/better-carbonation-calculator-hopefully.630528/">Better Carbonation Calculator,HBT</a></li>
+    <li id="ref-6"><a href="http://www.woodlandbrew.com/2013/02/abv-without-og.html">ABV without OG</a></li>
+    <li id="ref-7"><a href="https://www-diversity-beer.translate.goog/2017/01/pocitame-nova-korekce-refraktometru.html?_x_tr_sch=http&_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=zh-TW&_x_tr_pto=wapp">"We count:New refractometer correction",translated</a></li>
+</ol>
+
+<div class="rounded border container">
+
+</div>
+
+</div>
+   
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>
+        window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')
+    </script>
+    <script src="watercalc/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="water.js"></script>
+    <script>
+
+var BrewMath = {
+    plato2sg: function(plato) {
+        return 1 + plato / (258.6 - ((plato / 258.2) * 227.1));
+    },
+    sgTempCorrected: function(Reading, F, CT) {
+        return Reading * ((1.00130346 - 0.000134722124 * F + 0.00000204052596 * F * F - 0.00000000232820948 * F * F * F) / (1.00130346 - 0.000134722124 * CT + 0.00000204052596 * CT * CT - 0.00000000232820948 * CT * CT * CT));
+    },
+    brix2sg: function(brix, wc) {
+        wc = (typeof wc === "undefined") ? 1.0 : wc;
+        var bi = brix / wc;
+        return (bi / (258.6 - ((bi / 258.2) * 227.1))) + 1;
+    },
+    sg2plato: function(sg) {
+        return (1111.14 * sg) - (630.272 * sg * sg) + (135.997 * sg * sg * sg) - 616.868;
+    },
+    gravityWithAlc:function(bi,br){
+        return 1-0.0044993*bi + 0.011774*br + 0.00027581*bi*bi-0.0012717*br*br-0.00000728*bi*bi*bi+0.000063293*br*br*br;
+    },
+    gravityWithAlcNovo(bi,br){
+        return 1.335*0.00001*bi*bi-3.239*0.00001*bi*br+2.916*0.00001*br*br-2.421*0.001*bi+6.219*0.001*br+1;
+    },
+    abv(og,fg){
+        return 131.25 * (og - fg);
+    },
+    abv2(og,fg){
+        return 76.08*(og-fg)/(1.775-og) * (fg/0.794);
+    },
+    att(og,fg){
+        return (og-fg)/(og-1) * 100.0;        
+    },
+    ogByBrixSg(brix,sg){
+        return -1.728*sg+0.01085*brix+2.728;
+    },
+    co2InBeer(T){
+        return 3.0378 - 0.050062 * (T * 9/5+32) + 0.00026555 * (T *9/5+32)*(T *9/5+32);        
+    },
+    priming(dv,t,bv){
+        return 15.195* bv *0.2641722 * ( dv - 3.0378 + 0.050062 * (t * 9/5+32) - 0.00026555 * (t *9/5+32)*(t *9/5+32));
+    },
+    primingCarbonated(dv,t,bv,psi){
+        return 15.195* bv *0.2641722 * ( dv - BrewMath.volume(t,psi));
+    },
+    pressure(Tc,V){
+        var T = Tc *9/5 +32;
+        return -16.6999 - 0.0101059 * T + 0.00116512 * T*T + 0.173354 * T * V + 4.24267 * V - 0.0684226 *V*V;
+    },
+    volume(T,P){
+        var Tf = T * 9/5 +32;
+        return (P + 14.695 )* ( 0.01821 + 0.090115 * Math.exp((32-Tf)/43.11)) - 0.003342;
+    },
+    krausen(dv,t,tvol,sg,fg){ // total volume
+        var kv=dv - 3.0378 + 0.050062 * (t * 9/5+32) - 0.00026555 * (t *9/5+32)*(t *9/5+32);
+        return 1.95 * tvol * kv /(sg -fg)/1000;
+    },
+    krausenBv(dv,t,bv,sg,fg){ // beer volume
+        var kv=dv - 3.0378 + 0.050062 * (t * 9/5+32) - 0.00026555 * (t *9/5+32)*(t *9/5+32);
+        var R = 1.95 * kv /(sg -fg)/1000;
+        return R/(1-R) * bv;
+    }
+};
+
+function C2F(c) { return Math.round((c * 1.8 + 32) * 10) / 10; }
+
+function F2C(f) { return Math.round((f - 32) / 1.8 * 10) / 10; }        
+
+function waterDensityFromTempInput(pid){
+    var t= parseFloat($(pid).val());
+    if(isNaN(t)) return NaN;
+    if(t<0 || t>100) return NaN;
+    return WaterDensityTable[Math.round(t*10)];
+}
+
+    $(function() {
+            $('[data-toggle="tooltip"]').tooltip();
+
+            // pycnometer calculation
+            $("#pycnometer input").change(function(){
+                // vol
+                var Wd= waterDensityFromTempInput("#pycn-temp");
+                if(! isNaN(Wd)){
+                    $("#pycn-water-density").text(Wd);
+                }
+                var Wp= parseFloat($("#pycn-bottle").val());
+                var Wt= parseFloat($("#pycn-w-total").val());
+                if(!isNaN(Wp) && !isNaN(Wt) && !isNaN(Wd)){
+                    var vol = (Wt - Wp)/Wd;
+                    $("#pycn-volume").text(vol.toFixed(2));
+                }
+                // wort
+                var Wd2= waterDensityFromTempInput("#pycn-temp2");
+                if(! isNaN(Wd2)){
+                    $("#pycn-water-density2").text(Wd2);
+                }
+                var Wp2= parseFloat($("#pycn-bottle2").val());
+                var Wt2= parseFloat($("#pycn-w-total2").val());
+                var Wv= parseFloat($("#pycn-bottle-vol").val());
+                if(!isNaN(Wd2) && !isNaN(Wp2) && !isNaN(Wt2)){
+                    var density = (Wt2 - Wp2)/Wv;
+                    $("#pycn-density").text(density.toFixed(4));
+                    var gravity = density / Wd2;
+                    $("#pycn-gravity").text(gravity.toFixed(4));
+                }
+
+            });
+
+            // pycnometer
+
+            //Temperature calibration
+            $("#hydrometer-collection input").change(function(){                
+                var T= parseFloat($("#hc-temp").val());
+                var R= parseFloat($("#hc-reading").val());
+                var CT=parseFloat($("#hc-ctemp").val());
+                var c= BrewMath.sgTempCorrected(R,C2F(T),C2F(CT));
+                $("#hc-corrected-sg").text(c.toFixed(3));
+            });
+            //    Refractometer calculation
+            $("#refractometer-calculation input").change(function(){
+                if($(this).prop("id") == "rc-ogr"){
+                    $("#rc-ogh").val(BrewMath.brix2sg(parseFloat($(this).val())).toFixed(3));
+                }else if($(this).prop("id") == "rc-ogh"){
+                    $("#rc-ogr").val(BrewMath.sg2plato(parseFloat($(this).val())).toFixed(1));
+                }
+                var ogr=parseFloat($("#rc-ogr").val());
+                var fgr=parseFloat($("#rc-sgr").val());
+                var og =parseFloat($("#rc-ogh").val());
+                var sg = BrewMath.gravityWithAlc(ogr,fgr);
+                var sgnovo=BrewMath.gravityWithAlcNovo(ogr,fgr);
+                //$("#rc-sgh").text(sg.toFixed(3));
+                //$("#rc-att").text( BrewMath.att(og,sg).toFixed(1));
+                $("#rc-novo-sgh").text(sgnovo.toFixed(3));
+                $("#rc-novo-att").text( BrewMath.att(og,sgnovo).toFixed(1));
+                $("#rc-abv").text(BrewMath.abv(og,sg).toFixed(1));
+                $("#rc-abva").text(BrewMath.abv2(og,sg).toFixed(1));
+            });
+
+            //ABV
+            $("#abv input").change(function(){                
+                var og= parseFloat($("#abv-og").val());
+                var fg=parseFloat($("#abv-fg").val());
+                $("#abv-abv").text(BrewMath.abv(og,fg).toFixed(1));
+                $("#abv-abv2").text(BrewMath.abv2(og,fg).toFixed(1));
+                $("#abv-att").text(BrewMath.att(og,fg).toFixed(1));
+            });
+
+
+            //ABV/OG without OG
+            $("#abv-no-og input").change(function(){                
+                var R= parseFloat($("#ano-brix").val());
+                var G= parseFloat($("#ano-sg").val());
+                var T= parseFloat($("#ano-temp").val());
+                var CT=parseFloat($("#ano-ctemp").val());
+                var cG= BrewMath.sgTempCorrected(G,C2F(T),C2F(CT));
+                $("#ano-corrected-sg").text(cG.toFixed(3));
+                var og=BrewMath.ogByBrixSg(R,cG);
+                $("#ano-og").text(og.toFixed(3));
+                $("#ano-abv").text(BrewMath.abv(og,cG).toFixed(1));
+                $("#ano-abv2").text(BrewMath.abv2(og,cG).toFixed(1));
+            });
+            //priming sugar
+            $("#priming input").change(function(){
+                var dv= parseFloat($("#prim-desire").val());
+                var T= parseFloat($("#prim-temp").val());
+                var V= parseFloat($("#prim-beervol").val());
+                var co2= BrewMath.co2InBeer(T);
+                var ps=BrewMath.priming(dv,T,V);
+                $("#prim-beerco2").text(co2.toFixed(2));
+                $("#prim-sugar").text(ps.toFixed(1));
+                $("#prim-sugar33").text(BrewMath.priming(dv,T,0.33).toFixed(1));
+                $("#prim-sugar50").text(BrewMath.priming(dv,T,0.5).toFixed(1));
+                $("#prim-sugar60").text(BrewMath.priming(dv,T,0.6).toFixed(1));
+                $("#prim-sugar1l").text(BrewMath.priming(dv,T,1).toFixed(1));
+            });
+
+            //partial carbonated priming sugar
+            $("#priming-partial-carbonated input").change(function(){
+                var dv= parseFloat($("#ppc-desire").val());
+                var T= parseFloat($("#ppc-temp").val());
+                var P=parseFloat($("#ppc-pressure").val());
+                var V= parseFloat($("#ppc-beervol").val());
+                var co2= BrewMath.volume(T,P);
+                var ps=BrewMath.primingCarbonated(dv,T,V,P);
+                $("#ppc-beerco2").text(co2.toFixed(2));
+                $("#ppc-sugar").text(ps.toFixed(1));
+                $("#ppc-sugar33").text(BrewMath.primingCarbonated(dv,T,0.33,P).toFixed(1));
+                $("#ppc-sugar50").text(BrewMath.primingCarbonated(dv,T,0.5,P).toFixed(1));
+                $("#ppc-sugar60").text(BrewMath.primingCarbonated(dv,T,0.6,P).toFixed(1));
+                $("#ppc-sugar1l").text(BrewMath.primingCarbonated(dv,T,1,P).toFixed(1));
+            });
+
+            //krausening/speise
+            $("#krausening input").change(function(){
+                var dv= parseFloat($("#krausen-desire").val());
+                var T= parseFloat($("#krausen-temp").val());
+                var sg= parseFloat($("#krausen-gravity").val());
+                var fg= parseFloat($("#krausen-fg").val());
+                if(isNaN(dv) || isNaN(T) || isNaN(sg) || isNaN(fg)) return;
+
+                var co2= BrewMath.co2InBeer(T);
+                $("#krausen-beerco2").text(co2.toFixed(2));
+
+                var Vk;
+                if($(this).prop("id") == "krausen-beervol"){
+                    // beervolume
+                    var Vb= parseFloat($("#krausen-beervol").val());
+                    Vk=BrewMath.krausenBv(dv,T,Vb,sg,fg);
+                    // update total volume
+                    $("#krausen-totalvol").val((Vk + Vb).toFixed(2));
+                }else if($(this).prop("id") == "krausen-total"){
+                    // total volume
+                    var Vt= parseFloat($("#krausen-totalvol").val());
+                    Vk=BrewMath.krausen(dv,T,Vt,sg,fg);
+                    // update Beer Volume
+                    $("#krausen-beervol").val((Vt - Vk).toFixed(2));
+                }else{
+                    // other value changes. but beer or total volume might have been input
+                    var Vb= parseFloat($("#krausen-beervol").val());
+                    if(!isNaN(Vb)){
+                        Vk=BrewMath.krausenBv(dv,T,Vb,sg,fg);
+                        // update total volume
+                        $("#krausen-totalvol").val((Vk + Vb).toFixed(2));
+                    }
+                }
+
+                if(! isNaN(Vk)) $("#krausen-vol").text(Vk.toFixed(2));
+
+                $("#krausen-sugar33").text(BrewMath.krausen(dv,T,330,sg,fg).toFixed(1));
+                $("#krausen-sugar50").text(BrewMath.krausen(dv,T,500,sg,fg).toFixed(1));
+                $("#krausen-sugar60").text(BrewMath.krausen(dv,T,600,sg,fg).toFixed(1));
+                $("#krausen-sugar1l").text(BrewMath.krausen(dv,T,1000,sg,fg).toFixed(1));
+            });
+
+            
+            $("#pressure input").change(function(){                
+                if($(this).prop("id") == "pressure-temp" 
+                    || $(this).prop("id") == "pressure-vol" ){
+                    var T = parseFloat($("#pressure-temp").val());
+                    var V = parseFloat($("#pressure-vol").val());
+                    $("#pressure-psi").val(BrewMath.pressure(T,V).toFixed(2));
+                }else{ // if($(this).prop("id") == "presure-psi" 
+                    var T = parseFloat($("#pressure-temp").val());
+                    var P = parseFloat($("#pressure-psi").val());
+                    $("#pressure-vol").val(BrewMath.volume(T,P).toFixed(2));
+               }
+            });
+
+
+        });
+    </script>
+
+</body>
+
+</html>
