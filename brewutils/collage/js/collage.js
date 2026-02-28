@@ -38,7 +38,7 @@ function parseMargin(str){
         return { top:V[0], right:V[1], bottom:V[2], left:V[3]};
     }
 }
-function savePDF(images,row,col,paper,page,label,filename){
+function savePDF(images,row,col,paper,page,label,filename,line){
     var dim=PaperDimension[paper];
 
     var doc= new jsPDF({orientation: "portrait",unit:"mm",format:"[" + dim[0] +"," + dim[1] +"]"});
@@ -53,11 +53,25 @@ function savePDF(images,row,col,paper,page,label,filename){
             var y = page.top  +  h * Math.floor(i/col) + label.top; 
             if(typeof images[i] != "undefined") doc.addImage(images[i], 'JPEG', x ,y ,iw,ih);     
             i++;
-        });
+    });
+    if(line){
+        doc.setLineWidth(0.05);
+        doc.setLineDash([0.5, 3], 0);
+        // vertical line
+        var vx=page.left+ w;
+        for(i=1;i<col;i++){
+            doc.line(vx, 0, vx, doc.internal.pageSize.getHeight());
+            vx += w;
+        }
+        // horizone
+        var hy=  page.top + h;
+        for(i=1;i<row;i++){
+            doc.line(0, hy, doc.internal.pageSize.getWidth(), hy);
+            hy += h;
+        }
+    }
 
-        //var filename= $("#filename").val().trim();
-
-        doc.save(filename);
+    doc.save(filename);
     alert("saved as "+ filename);
 }
 
@@ -224,7 +238,7 @@ $(function(){
                 images[i].src=img.src;
             }
         });
-        savePDF(images,Canvas.row,Canvas.col,Canvas.paper,Canvas.PM,Canvas.LM,"labels.pdf");
+        savePDF(images,Canvas.row,Canvas.col,Canvas.paper,Canvas.PM,Canvas.LM,"labels.pdf",$("#cutting-line").prop('checked'));
     });
 
     Canvas.init("#paper");

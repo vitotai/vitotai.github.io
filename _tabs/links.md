@@ -18,3 +18,6 @@ order: 5
 
 釀造比重記錄
 - [我的釀造記錄](/brewlogs/index.html)
+
+GPX Utility
+- [GPX Trace Reduce](/gpxutils/gpxutils.htm)
