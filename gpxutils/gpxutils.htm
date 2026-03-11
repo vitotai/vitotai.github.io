@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="zh">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GPX Utils</title>
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+<div class="container p-3">
+
+
+<div class="rounded border container">
+    <div id="fileinputgrp">
+        <input class="btn btn--primary" type="file" id="fileinput">
+    </div>
+
+</div>
+
+
+    <div class="row">
+        <div class="col">
+
+<table class="table" id="track-table">
+  <thead>
+    <tr>
+      <th scope="col">Track</th>
+      <th scope="col">#Points</th>
+      <th scope="col">Show Points</th>
+      <th scope="col">Reduce by</th>
+      <th scope="col">Reduced Points</th>
+      <th scope="col">Show Reduced</th>
+      <th scope="col">Download Reduced</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="track-name">Track</td>
+      <td><span class="number-points">256</span> Points</td>
+      <td><a href="#" class="btn show-btn">show</a></td>
+      <td><div class="input-group mb-3" >
+            <input type="text" class="form-control reduce-input" placeholder="Reduce by" aria-label="Reduce by" aria-describedby="basic-addon2" maxlength="5" value="8" style="max-width: 100px;">
+            <span class="input-group-text" id="basic-addon2">m</span>
+            </div>
+    </td>
+      <td><span class="number-reduced">256</span> Points</td>
+      <td><a href="#" class="btn show-reduced-btn">show</a></td>
+      <td><a href="#" class="btn dl-gpx-btn">GPX</a></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div id="messages">
+                <div id=""></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <button class="button" id="select-btn">Select All</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="rounded border" id="point-list">
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+   
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>
+        window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')
+    </script>
+    <script src="bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="rdp.js"></script>
+    <script src="gpx.js"></script>
+    <script src="kml.js"></script>
+    <script>
+
+// --- Example Usage ---
+
+
+
+function downloadGPX(gpxContent, file) {
+    const blob = new Blob([gpxContent], { type: 'application/gpx+xml' });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement('a');
+    a.setAttribute("href", url);
+    a.setAttribute("download", file);
+    a.style.visibility = 'hidden';
+
+    document.body.appendChild(a);
+
+    setTimeout(() => {
+        // Trigger the download
+        a.click();
+
+        // 3. Clean up the temporary elements and URL (after the click is triggered)
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }, 0); // 0ms delay defers execution to the next event loop cycle
+}
+
+// downloadGPX(gpxString, "simplified_track.gpx");
+
+
+    function openfile(file) {
+        const reader = new FileReader();
+
+            // Define what happens when the file is successfully loaded
+        reader.onload = function(e) {
+
+            const lowerFilename = file.name.toLowerCase();
+            var tracks;
+
+            if (lowerFilename.endsWith('.gpx')) {
+                const xmlString = e.target.result;
+                const parser = new DOMParser();
+                // The 'text/xml' MIME type tells the parser how to interpret the string
+                const xmlDoc = parser.parseFromString(xmlString, "text/xml");
+
+                // Check for parsing errors
+                const errorNode = xmlDoc.querySelector('parsererror');
+                if (errorNode) {
+                    console.error("Error parsing XML:", errorNode.textContent);
+                    return;
+                }
+                // 🎉 xmlDoc is now a ready-to-use XML Document Object!
+                console.log("XML Document loaded successfully:", xmlDoc);
+
+                tracks=getTracks(xmlDoc);
+
+            } else if (lowerFilename.endsWith('.kml')) {
+                tracks=parseKMLTracksWithNames(e.target.result);
+            } else {
+                return;
+            }
+
+
+
+            $.each(tracks,function(i,trk){
+                addTrack(trk.name,trk.points);
+            });
+            
+         };
+
+            // Define what happens if there's an error
+        reader.onerror = function(e) {
+            console.error("Error reading file:", e);
+        };
+
+        // Start reading the file as text
+        reader.readAsText(file);
+    }
+
+    
+    $(function() {
+            $('[data-toggle="tooltip"]').tooltip();
+
+        $('#fileinput').change(function (evt) {
+            var f = evt.target.files[0];
+            openfile(f);
+        });
+        window.saved_raw=$("#track-table tbody tr")[0];
+        $(window.saved_raw).detach();
+
+        $("#select-btn").click(function(){
+            selectDivContent($("#point-list")[0]);
+        });
+    });
+
+    function listPoints(points){
+        var text="";
+        $.each(points,function(idx,pt){
+            text = text + pt.lon +","+ pt.lat +"," + pt.ele + "\n";
+        });
+
+        $("#point-list").empty().append($('<pre>').text(text));
+    }
+    
+    function addTrack(name,points){
+        var row = $(window.saved_raw).clone();
+        $(row).find(".track-name").text(name);
+        $(row).find(".number-points").text("" + points.length);
+        $(row).find(".show-btn").click(function(){
+            listPoints(points);
+        });
+
+        $(row).find(".reduce-input").change(function(){
+            var reduced=rdp(points,$(row).find(".reduce-input").val());
+            $(row).find(".number-reduced").text(""+ reduced.length);
+        });
+        var reduced=rdp(points,$(row).find(".reduce-input").val());
+        $(row).find(".number-reduced").text(""+ reduced.length);
+        $(row).find(".show-reduced-btn").click(function(){
+            var reduced=rdp(points,$(row).find(".reduce-input").val());
+            listPoints(reduced);
+        });
+        $(row).find(".dl-gpx-btn").click(function(){
+            var reduced=rdp(points,$(row).find(".reduce-input").val());
+
+            downloadGPX(generateGPX(reduced),"r-"+name);
+        });
+
+        $("#track-table tbody").append(row);
+    }
+
+    function selectDivContent(element) {
+    
+        // 1. Create a Range object
+        const range = document.createRange();
+        
+        // 2. Set the Range to encompass the entire element's content
+        range.selectNodeContents(element); 
+        
+        // 3. Get the current Selection object
+        const selection = window.getSelection();
+        
+        // 4. Clear any existing selections
+        selection.removeAllRanges();
+        
+        // 5. Add the new Range to the Selection object
+        selection.addRange(range);
+        
+        console.log("Text inside the div has been selected.");
+    }
+</script>
+
+</body>
+
+</html>
